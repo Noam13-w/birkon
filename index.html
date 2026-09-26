@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ברכון לשעון</title>
+<meta name="description" content="ברכון לשעון (Birkon Watch): ברכת המזון, מעין שלוש, בורא נפשות, אשר יצר, תפילת הדרך והושענות על השעון החכם, בשלושה נוסחים, עם התוספות של כל יום.">
+<link rel="icon" href="assets/icon.png">
+<style>
+  :root { --bg:#f7f5ef; --surface:#fff; --text:#1d2233; --muted:#5b6275; --accent:#9a6b12; --rule:#e4dfd2; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#070d1c; --surface:#0e1a33; --text:#ecebe6; --muted:#aab0c0; --accent:#e8c170; --rule:#22325a; }
+  }
+  :root[data-theme="dark"] { --bg:#070d1c; --surface:#0e1a33; --text:#ecebe6; --muted:#aab0c0; --accent:#e8c170; --rule:#22325a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI","Noto Sans Hebrew","Arial Hebrew",Arial,sans-serif; font-size:17px; line-height:1.65; }
+  main { max-width:860px; margin:0 auto; padding:32px 16px 56px; }
+  header { text-align:center; margin-bottom:28px; }
+  header img { width:112px; height:112px; border-radius:26px; }
+  h1 { color:var(--accent); font-size:2em; margin:12px 0 4px; }
+  .en-name { color:var(--muted); margin:0 0 12px; }
+  .tagline { font-size:1.15em; max-width:620px; margin:0 auto; }
+  .stores { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:20px 0 0; }
+  .store { border:1px solid var(--rule); background:var(--surface); border-radius:12px; padding:10px 16px; color:var(--muted); }
+  .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px; margin:32px 0; }
+  .shots img { width:100%; aspect-ratio:1; border-radius:50%; background:#000; border:3px solid #2a2f3d; }
+  section { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:20px 24px 12px; margin-bottom:24px; }
+  h2 { font-size:1.2em; margin:0 0 8px; }
+  ul { padding-inline-start:22px; margin:6px 0 12px; }
+  li { margin-bottom:6px; }
+  a { color:var(--accent); }
+  footer { text-align:center; color:var(--muted); font-size:14px; }
+  footer a { margin:0 8px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="assets/icon.png" alt="אייקון ברכון לשעון">
+    <h1>ברכון לשעון</h1>
+    <p class="en-name" lang="en" dir="ltr">Birkon Watch</p>
+    <p class="tagline">ברכת המזון, מעין שלוש ועוד, ישירות על השעון. בשלושה נוסחים, עם התוספות של כל יום לפי התאריך העברי.</p>
+    <div class="stores">
+      <span class="store">בקרוב ב־Google Play (Wear OS)</span>
+      <span class="store">בקרוב ב־App Store (Apple Watch)</span>
+    </div>
+  </header>
+
+  <div class="shots">
+    <img src="assets/01_home.png" alt="מסך הבית">
+    <img src="assets/03_birkat_hamazon.png" alt="ברכת המזון">
+    <img src="assets/07_hoshanot_text.png" alt="הושענות">
+    <img src="assets/04_auto_scroll.png" alt="גלילה אוטומטית">
+  </div>
+
+  <section>
+    <h2>מה יש באפליקציה</h2>
+    <ul>
+      <li>ברכת המזון, ברכה מעין שלוש (על המחיה, על הגפן, על העץ), בורא נפשות, אשר יצר ותפילת הדרך.</li>
+      <li>הושענות בימי סוכות, לפי סדר הימים של כל נוסח, כולל הושענא רבה.</li>
+      <li>נוסח ספרד, אשכנז ועדות המזרח, בניקוד מלא.</li>
+      <li>רצה, יעלה ויבוא, על הניסים ושאר התוספות מופיעים אוטומטית לפי התאריך העברי ושעת השקיעה.</li>
+      <li>גלילה בכתר, גלילה אוטומטית במהירות לבחירה, הגדלה בצביטה וארבעה גופנים.</li>
+      <li>המסך נשאר דלוק בזמן הקריאה. האפליקציה עובדת בלי טלפון ובלי אינטרנט.</li>
+    </ul>
+  </section>
+
+  <section id="support">
+    <h2>תמיכה</h2>
+    <p>מצאתם טעות בנוסח, יש לכם שאלה או רעיון? כתבו לנו: <a href="mailto:support@nisai.dev" dir="ltr">support@nisai.dev</a></p>
+    <p><a href="privacy.html">מדיניות הפרטיות</a>: האפליקציה לא אוספת שום מידע.</p>
+  </section>
+
+  <section lang="en" dir="ltr">
+    <h2>Birkon Watch</h2>
+    <p>A Hebrew birkon (Jewish blessings) for Wear OS and Apple Watch. It includes Birkat HaMazon, Al HaMichya, Borei Nefashot, Asher Yatzar, Tefilat HaDerech and Hoshanot, in the Sefard, Ashkenaz and Edot HaMizrach nusachim, with the day's insertions added automatically from the Hebrew date. It works fully offline and collects no data.</p>
+    <p>Support: <a href="mailto:support@nisai.dev">support@nisai.dev</a> · <a href="privacy.html#en">Privacy policy</a></p>
+  </section>
+
+  <footer>
+    ברכון לשעון · Birkon Watch
+    <a href="privacy.html">פרטיות</a>
+    <a href="mailto:support@nisai.dev" dir="ltr">support@nisai.dev</a>
+  </footer>
+</main>
+</body>
+</html>
