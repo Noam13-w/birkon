@@ -22,6 +22,8 @@
   .tagline { font-size:1.15em; max-width:620px; margin:0 auto; }
   .stores { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:20px 0 0; }
   .store { border:1px solid var(--rule); background:var(--surface); border-radius:12px; padding:10px 16px; color:var(--muted); }
+  a.store-live { border-color:var(--accent); color:var(--accent); font-weight:600; text-decoration:none; }
+  a.store-live:hover { background:var(--accent); color:var(--surface); }
   .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px; margin:32px 0; }
   .shots img { width:100%; aspect-ratio:1; border-radius:50%; background:#000; border:3px solid #2a2f3d; }
   section { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:20px 24px 12px; margin-bottom:24px; }
@@ -41,7 +43,7 @@
     <p class="en-name" lang="en" dir="ltr">Birkon Watch</p>
     <p class="tagline">ברכת המזון, מעין שלוש ועוד, ישירות על השעון. בשלושה נוסחים, עם התוספות של כל יום לפי התאריך העברי.</p>
     <div class="stores">
-      <span class="store">בקרוב ב־Google Play (Wear OS)</span>
+      <a class="store store-live" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener">להורדה ב־Google Play (Wear OS)</a>
       <span class="store">בקרוב ב־App Store (Apple Watch)</span>
     </div>
   </header>
@@ -74,6 +76,7 @@
   <section lang="en" dir="ltr">
     <h2>Birkon Watch</h2>
     <p>A Hebrew birkon (Jewish blessings) for Wear OS and Apple Watch. It includes Birkat HaMazon, Al HaMichya, Borei Nefashot, Asher Yatzar, Tefilat HaDerech and Hoshanot, in the Sefard, Ashkenaz and Edot HaMizrach nusachim, with the day's insertions added automatically from the Hebrew date. It works fully offline and collects no data.</p>
+    <p><a href="https://play.google.com/store/apps/details?id=com.noam.birkon">Get it on Google Play (Wear OS)</a> · Apple Watch coming soon.</p>
     <p>Support: <a href="mailto:support@nisai.dev">support@nisai.dev</a> · <a href="privacy.html#en">Privacy policy</a></p>
   </section>
 
