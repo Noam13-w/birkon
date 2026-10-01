@@ -9,7 +9,7 @@
 <meta property="og:description" content="סידור וברכון עברי לשעון. Apple Watch, Wear OS ו־Garmin.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://noam13-w.github.io/birkon/assets/og.jpg">
-<meta name="theme-color" content="#0a1128">
+<meta name="theme-color" content="#fffdf8">
 <link rel="icon" href="assets/icon-96.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,7 +107,7 @@ svg.i{width:1em;height:1em;fill:currentColor;flex:none}
 .deck:active{cursor:grabbing}
 .dial{position:absolute;left:50%;top:50%;width:calc(var(--D)*1.72);height:calc(var(--D)*1.72);transform:translate(-50%,-50%);pointer-events:none}
 .unit{position:absolute;left:50%;top:50%;width:var(--D);--o:0;--a:0;
-  transform:translate(calc(-50% + var(--o)*-68%),-50%) scale(calc(1 - var(--a)*.32));opacity:calc(1 - var(--a)*.5);z-index:calc(5 - var(--a)*3);
+  transform:translate(calc(-50% + var(--o)*-68%),-50%) scale(calc(1 - var(--a)*.32));opacity:calc(1 - var(--a)*.22);z-index:calc(5 - var(--a)*3);
   transition:transform .8s var(--ease),opacity .8s;display:flex;justify-content:center}
 .unit .dev{width:100%}
 .unit.sq .dev{width:86%}
@@ -305,6 +305,52 @@ footer .mem{color:var(--on-dark);font-size:16px;font-weight:500;padding-top:14px
   .js .rv{opacity:1;transform:none}
   .stmt .w{color:#fff}
 }
+
+/* ===== LIGHT THEME: overrides the earlier dark surfaces ===== */
+:root{--on-dark:#141a2e;--on-dark-muted:#5f6275;--line-dark:#ddd7c8}
+.dark{background:var(--white);color:var(--ink)}
+.dark .eyebrow{color:var(--blue)}
+.hero{background:radial-gradient(55% 70% at 22% 45%,#fff0cf 0%,rgba(255,240,207,0) 70%),radial-gradient(50% 60% at 85% 20%,#e6edfb 0%,rgba(230,237,251,0) 70%),var(--white)}
+.hero h1 .g{color:var(--blue)}
+.btn{background:var(--navy-900);color:#fff;border-color:var(--navy-900)}
+.btn svg{color:var(--gold)}
+.btn:hover{background:var(--blue);border-color:var(--blue);box-shadow:0 14px 28px -14px rgba(42,88,184,.6)}
+.link:hover{color:var(--blue)}
+.nav.is-dark{background:rgba(255,253,248,.84);border-color:rgba(0,0,0,.07)}
+.nav.is-dark .brand{color:inherit}
+.nav.is-dark ul a{color:#3b4052}.nav.is-dark ul a:hover{color:#000}
+.nav.is-dark .dl{background:var(--navy-900);color:#fff}.nav.is-dark .dl:hover{background:var(--blue)}
+.menu{background:#fff;box-shadow:0 30px 60px -24px rgba(20,26,46,.35)}
+.menu a:hover{background:rgba(20,26,46,.05)}
+.menu svg{color:var(--blue)}
+.nbtn{background:rgba(20,26,46,.05)}
+.nbtn:hover{background:rgba(42,88,184,.1);border-color:var(--blue)}
+.tabs .seg{background:rgba(20,26,46,.05)}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--navy-900);color:#fff}
+.dial circle:nth-child(1){stroke:rgba(155,112,33,.35)}
+.dial circle:nth-child(2){stroke:rgba(155,112,33,.55)}
+.dial circle:nth-child(3){stroke:rgba(20,26,46,.08)}
+.ground{background:radial-gradient(closest-side,rgba(20,26,46,.35),transparent)}
+.story.dark{background:var(--paper)}
+.step .tag{color:var(--gold-d)}
+.dots i{background:#d6cfbc}.dots i.on{background:var(--navy-900)}
+.case{box-shadow:0 0 0 2px #33363f,0 0 0 calc(var(--h)*.016) #14151a,0 0 0 calc(var(--h)*.02) #5a5d68,0 40px 70px -30px rgba(20,26,46,.5)}
+.stmt{background:var(--white);color:var(--ink)}
+.stmt .w{color:#d3cdbd}
+.slide{color:var(--ink);border:1px solid var(--line)}
+.slide:nth-child(3n+1){background:linear-gradient(165deg,#e8eefb 0%,#f7f4ec 80%)}
+.slide:nth-child(3n+2){background:linear-gradient(165deg,#fbefd2 0%,#fdf9ef 80%)}
+.slide:nth-child(3n+3){background:linear-gradient(165deg,#e9edf3 0%,#f6f1e6 80%)}
+.slide .tag{color:var(--blue)}
+.show .arrow{background:#ebe5d6}
+.get{background:linear-gradient(180deg,var(--paper) 0%,var(--white) 100%)}
+.tile{background:#fff;box-shadow:0 20px 40px -30px rgba(20,26,46,.3)}
+.tile:hover{border-color:var(--blue);background:#fff;box-shadow:0 34px 56px -30px rgba(20,26,46,.4)}
+footer{background:var(--paper);border-top:1px solid var(--line)}
+footer a{color:var(--blue)}
+@media (max-width:900px){.sbar{background:rgba(255,253,248,.92);border-top-color:var(--line)}}
+@media (prefers-reduced-motion:reduce){.stmt .w{color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -604,7 +650,7 @@ footer .mem{color:var(--on-dark);font-size:16px;font-weight:500;padding-top:14px
     nav.classList.toggle('is-dark',darks.some(function(d){var b=d.getBoundingClientRect();return b.top<=28&&b.bottom>=28}));
     var hb=hero.getBoundingClientRect(),gb=getsec.getBoundingClientRect();
     sbar.classList.toggle('show',hb.bottom<0&&gb.top>vh*.7);
-    if(!reduce)words.forEach(function(w){var t=clamp((vh*.82-w.getBoundingClientRect().top)/(vh*.3),0,1);w.style.color='rgb('+Math.round(lerp(42,255,t))+','+Math.round(lerp(51,255,t))+','+Math.round(lerp(88,255,t))+')'});
+    if(!reduce)words.forEach(function(w){var t=clamp((vh*.82-w.getBoundingClientRect().top)/(vh*.3),0,1);w.style.color='rgb('+Math.round(lerp(211,20,t))+','+Math.round(lerp(205,26,t))+','+Math.round(lerp(189,46,t))+')'});
   }
   function req(){if(!tick){tick=true;requestAnimationFrame(frame)}}
   addEventListener('scroll',req,{passive:true});addEventListener('resize',req);frame();
