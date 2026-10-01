@@ -335,7 +335,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .nline p{grid-area:1/1;margin:0;max-width:none;color:var(--ink);font:inherit;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .5s var(--ease);visibility:hidden}
 .nline p.on{opacity:1;transform:none;visibility:visible}
 .nline mark{background:#f8e8b0;color:inherit;border-radius:4px;padding:0 2px}
-.nsrc{text-wrap:pretty}
+.nsrc{text-wrap:balance}
 .privacy .card p{text-wrap:balance}
 .nsrc{font-size:13px!important;color:#6e6e73!important;margin-top:8px!important}
 /* screens: colour means the platform */
@@ -347,7 +347,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .dotsrow button::before{inset:-14px -6px}
 .lroll .lt{letter-spacing:0}
 /* garmin text crop needs breathing room inside the round bezel */
-.dev img[src*="garmin"]{padding:9%;background:#000;-webkit-mask-image:radial-gradient(closest-side,#000 90%,#0000);mask-image:radial-gradient(closest-side,#000 90%,#0000)}
+.dev img[src*="garmin"]{padding:11%;background:#000;-webkit-mask-image:radial-gradient(closest-side,#000 90%,#0000);mask-image:radial-gradient(closest-side,#000 90%,#0000)}
 @media (max-width:739px){
   .card .dev,.card .mini{margin-bottom:-18%}
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
@@ -380,7 +380,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   .bento .c6{grid-column:span 6}
   .bento .c2.has-dev>.dev,.bento .c2.has-dev>.mini{width:90%;max-width:none;margin-bottom:-24%}
   .groups{grid-template-columns:repeat(3,1fr);gap:32px}
-  .card.wide{grid-template-columns:1fr 1.3fr;align-items:center;min-height:0}
+  .card.wide{grid-template-columns:1fr 1.3fr;align-items:start;min-height:0}
 }
 
 /* ===== round 7 ===== */
@@ -424,7 +424,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .hface p{margin:0 0 .55em}
 .card .hface p{margin:0 0 .55em;color:#f5f1e6;font-size:inherit;line-height:inherit;max-width:none}
 .card .hface .ht{font:700 5.6cqw var(--sans);color:#b9b2ff;margin-bottom:.8em}
-@media (min-width:740px){.bento .c3.has-dev>.dev{width:56%;max-width:280px;margin-bottom:-22%}}
+@media (min-width:740px){.bento .c3.has-dev>.dev{width:56%;max-width:280px;margin-bottom:-22%}.bento .c3.has-dev>.dev.sq{width:47%;max-width:235px}}
+.proof{display:inline-block;margin:-34px auto 36px;font-size:14.5px;font-weight:600;color:var(--lav-d);text-decoration:none;padding:6px 12px;border-radius:99px}
+.proof:hover{background:rgba(255,255,255,.7)}
 </style>
 </head>
 <body>
@@ -480,6 +482,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       </div>
       <div class="w" aria-hidden="true"><div class="dev live-face"><div class="hface"><p class="ht">בורא נפשות</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא נְפָשׁוֹת רַבּוֹת וְחֶסְרוֹנָן, עַל כָּל מַה שֶּׁבָּרָאתָ לְהַחֲיוֹת בָּהֶם נֶפֶשׁ כָּל חָי.</p><p>בָּרוּךְ חֵי הָעוֹלָמִים.</p></div></div><span class="cap">Garmin</span></div>
     </div>
+    <a class="proof" href="#screens">צילומי מסך אמיתיים מהשעונים ←</a>
   </div>
 </header>
 
