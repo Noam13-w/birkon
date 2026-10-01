@@ -733,7 +733,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(ch>=1&&ch<=8){lab.push('חנוכה, נר '+gem(ch));if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===14){lab.push('פורים');if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===15)lab.push('שושן פורים');
-      return {date:(night||hr<su.rise?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:shab,rest:rest,head:head,bye:bye,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il&&!night?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
+      return {key:h.d+h.m,date:(night||hr<su.rise?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:shab,rest:rest,head:head,bye:bye,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il&&!night?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
     }
     if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;
       var face=TODAY.lab.filter(function(l){return l!=='שבת'});
@@ -763,8 +763,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     document.addEventListener('visibilitychange',function(){if(pending&&document.hidden)location.reload()});
     if(TODAY&&F)setInterval(function(){
       var t=today(new Date());
-      if(t.rest&&!TODAY.rest){held=true;lroll.innerHTML='<p class="rest">'+t.head+'</p><p class="rest2">'+t.bye+'</p>';lroll.classList.add('resting');lroll.style.transform='';$('#lday').textContent='';crown.disabled=true;crown.setAttribute('aria-hidden','true');var ls=$('#lscr');ls.removeAttribute('role');ls.removeAttribute('aria-pressed');ls.tabIndex=-1;ls.setAttribute('aria-label','השעון נח');$('.hero').classList.add('resting');$('#lcap').textContent='השעון נח';var tbi=$('#todaybar .tbi');if(tbi)tbi.hidden=true;$('.today .panel .page').hidden=true;$('.days').hidden=true;$$('.chips li.today').forEach(function(li){li.classList.remove('today')});TODAY=t;return reloadSoon()}
-      if(t.rest!==TODAY.rest||t.date!==TODAY.date)return reloadSoon();
+      if(t.rest&&!TODAY.rest){held=true;lroll.innerHTML='<p class="rest">'+t.head+'</p><p class="rest2">'+t.bye+'</p>';lroll.classList.add('resting');lroll.style.transform='';$('#lday').textContent='';crown.disabled=true;crown.setAttribute('aria-hidden','true');var ls=$('#lscr');ls.removeAttribute('role');ls.removeAttribute('aria-pressed');ls.tabIndex=-1;ls.setAttribute('aria-label','השעון נח');$('.hero').classList.add('resting');$('#lcap').textContent='השעון נח';var tbi=$('#todaybar .tbi');if(tbi)tbi.hidden=true;$('.today .panel .page').hidden=true;$('.days').hidden=true;$$('.chips li.today').forEach(function(li){li.classList.remove('today');var sr=li.querySelector('.sr');if(sr)sr.remove()});$('.live').classList.remove('stopped');$('#ldate').textContent=t.date;var tbb=$('#todaybar b');if(tbb)tbb.textContent=t.date;var nw=$('#now');if(nw)nw.innerHTML='<b>'+t.head+'. השעון נח עכשיו, ו'+t.bye+'.</b>';var nt=$('.today .note');if(nt)nt.hidden=true;$('.today .panel').classList.add('restp');TODAY=t;return reloadSoon()}
+      if(t.rest!==TODAY.rest||t.key!==TODAY.key)return reloadSoon();
       if(!TODAY.rest){var k2=hourKey();if(k2!==HK){HK=k2;setPrayer(k2);lroll.innerHTML+=lroll.innerHTML;y=0;move(0)}}
       var soon=$('#todaybar .soon');if(soon&&t.toSet>0)soon.textContent=' · עוד '+t.toSet+' דק׳ לשקיעה';
     },30000);
@@ -777,7 +777,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     var BHM=lroll.innerHTML;
     function setPrayer(k){
       if(resting)return;
-      var side=$('.trio .w:first-child img');if(side)side.src=k==='shema'?'assets/apple-maariv.webp':'assets/apple-shema.webp';
+      var side=$('.trio .w:first-child img');if(side){var tw=k==='shema';side.src=tw&&TODAY&&TODAY.yv?'assets/apple-maariv.webp':'assets/apple-shema.webp';side.closest('.w').style.visibility=tw&&!(TODAY&&TODAY.yv)?'hidden':''}
       if(!k){lroll.innerHTML=BHM}else{var x=TX[k];lroll.innerHTML='<p class="lt">'+x.t+'</p>'+x.p.map(function(t){return '<p>'+t+'</p>'}).join('')}
       $('#lscr').setAttribute('aria-label','שעון חי: '+lroll.querySelector('.lt').textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
     }
@@ -802,7 +802,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up)}
     drag(crown,1.6);
     var live=$('.live');
-    function tog(){paused=!paused;live.classList.toggle('stopped',paused);$('#lscr').setAttribute('aria-pressed',paused)}
+    function tog(){if(crown.disabled)return;paused=!paused;live.classList.toggle('stopped',paused);$('#lscr').setAttribute('aria-pressed',paused)}
     $('#lscr').addEventListener('click',function(){if(moved){moved=false;return}tog()});
     $('#lscr').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
     $('#lscr').setAttribute('aria-describedby','lcap');$('#lscr').tabIndex=0;$('#lscr').setAttribute('role','button');$('#lscr').setAttribute('aria-pressed','false');$('#lscr').setAttribute('aria-label','שעון חי: '+(lroll.querySelector('.lt')||{textContent:'ברכת המזון'}).textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
