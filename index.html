@@ -101,7 +101,7 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.08;letter-spacin
 .crown{position:absolute;right:-6%;top:33%;width:6.5%;height:21%;border-radius:5px;cursor:ns-resize;touch-action:none;
   background:linear-gradient(90deg,#2c2c2e,#a5a5ab 50%,#2c2c2e);overflow:visible}
 .crown::before{content:"";position:absolute;inset:-30% -120%}
-.crown i{position:absolute;inset:8% 0;border-radius:3px;background:repeating-linear-gradient(0deg,rgba(0,0,0,.5) 0 2px,transparent 2px 5px);background-position:0 var(--cy,0px)}
+.crown i{position:absolute;inset:8% 0;border-radius:3px;background:repeating-linear-gradient(0deg,rgba(0,0,0,.5) 0 2px,transparent 2px 5px);background-position:0 calc(var(--cy,0px) + var(--sy,0px))}
 .crown.nudge{animation:nudge 2.4s ease-in-out 3}
 @keyframes nudge{25%{transform:translateX(18%)}40%{transform:none}55%{transform:translateX(18%)}70%{transform:none}}
 .live-cap .dot{width:7px;height:7px;border-radius:50%;background:#34c759;animation:pulse 2s infinite}
@@ -423,9 +423,12 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .dev.sq .hface{padding:12cqw 10cqw 0}
 .hface p{margin:0 0 .55em}
 .card .hface p{margin:0 0 .55em;color:#f5f1e6;font-size:inherit;line-height:inherit;max-width:none}
+.hface .hclock{font:600 7.5cqw/1 var(--sans);color:#fff;direction:ltr;margin-bottom:.5em}
+.trio .hface{padding-top:10cqw}
 .card .hface .ht{font:700 5.6cqw var(--sans);color:#b9b2ff;margin-bottom:.8em}
 @media (min-width:740px){.bento .c3.has-dev>.dev{width:56%;max-width:280px;margin-bottom:-22%}.bento .c3.has-dev>.dev.sq{width:47%;max-width:235px}}
-.proof{display:inline-block;margin:-34px auto 36px;font-size:14.5px;font-weight:600;color:var(--lav-d);text-decoration:none;padding:6px 12px;border-radius:99px}
+.proof{display:inline-block;margin:-42px auto 30px;font-size:14.5px;font-weight:600;color:var(--lav-d);text-decoration:none;padding:12px 16px;border-radius:99px}
+@media (max-width:479px){.proof{margin-top:-56px}}
 .proof:hover{background:rgba(255,255,255,.7)}
 </style>
 </head>
@@ -459,7 +462,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <a class="store" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span><b>גרמין</b><small>Garmin</small></span></a>
     </div>
     <div class="trio">
-      <div class="w" aria-hidden="true"><div class="dev sq live-face"><div class="hface"><p class="ht">אשר יצר</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר יָצַר אֶת הָאָדָם בְּחָכְמָה, וּבָרָא בוֹ נְקָבִים נְקָבִים, חֲלוּלִים חֲלוּלִים.</p><p>גָּלוּי וְיָדוּעַ לִפְנֵי כִסֵּא כְבוֹדֶךָ, שֶׁאִם יִפָּתֵחַ אֶחָד מֵהֶם, אוֹ יִסָּתֵם אֶחָד מֵהֶם, אִי אֶפְשַׁר לְהִתְקַיֵּם וְלַעֲמֹד לְפָנֶיךָ אֲפִילוּ שָׁעָה אֶחָת.</p></div></div><span class="cap">Apple Watch</span></div>
+      <div class="w" aria-hidden="true"><div class="dev sq live-face"><div class="hface"><p class="hclock">--:--</p><p class="ht">אשר יצר</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר יָצַר אֶת הָאָדָם בְּחָכְמָה, וּבָרָא בוֹ נְקָבִים נְקָבִים, חֲלוּלִים חֲלוּלִים.</p><p>גָּלוּי וְיָדוּעַ לִפְנֵי כִסֵּא כְבוֹדֶךָ, שֶׁאִם יִפָּתֵחַ אֶחָד מֵהֶם, אוֹ יִסָּתֵם אֶחָד מֵהֶם, אִי אֶפְשַׁר לְהִתְקַיֵּם וְלַעֲמֹד לְפָנֶיךָ אֲפִילוּ שָׁעָה אֶחָת.</p></div></div><span class="cap">Apple Watch</span></div>
       <div class="w live-w">
         <div class="live">
           <div class="lscr" id="lscr" role="img" aria-label="שעון חי: התאריך העברי של היום וברכת המזון בגלילה אוטומטית">
@@ -480,7 +483,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
         </div>
         <span class="cap live-cap" id="lcap"><span class="dot"></span>חי · סובבו את הכתר</span>
       </div>
-      <div class="w" aria-hidden="true"><div class="dev live-face"><div class="hface"><p class="ht">בורא נפשות</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא נְפָשׁוֹת רַבּוֹת וְחֶסְרוֹנָן, עַל כָּל מַה שֶּׁבָּרָאתָ לְהַחֲיוֹת בָּהֶם נֶפֶשׁ כָּל חָי.</p><p>בָּרוּךְ חֵי הָעוֹלָמִים.</p></div></div><span class="cap">Garmin</span></div>
+      <div class="w" aria-hidden="true"><div class="dev live-face"><div class="hface"><p class="hclock">--:--</p><p class="ht">בורא נפשות</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא נְפָשׁוֹת רַבּוֹת וְחֶסְרוֹנָן, עַל כָּל מַה שֶּׁבָּרָאתָ לְהַחֲיוֹת בָּהֶם נֶפֶשׁ כָּל חָי.</p><p>בָּרוּךְ חֵי הָעוֹלָמִים.</p></div></div><span class="cap">Garmin</span></div>
     </div>
     <a class="proof" href="#screens">צילומי מסך אמיתיים מהשעונים ←</a>
   </div>
@@ -620,7 +623,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 
   /* nav rule, sticky download bar */
   var nav=$('#nav'),sbar=$('#sbar'),hero=$('.hero'),dl=$('#download'),tick=false;
-  function frame(){tick=false;nav.classList.toggle('lined',scrollY>4);var sh=hero.getBoundingClientRect().bottom<0&&dl.getBoundingClientRect().top>innerHeight;sbar.classList.toggle('show',sh);nav.classList.toggle('sb',sh)}
+  function frame(){tick=false;var cr=document.getElementById('crown');if(cr&&!reduce)cr.style.setProperty('--sy',(scrollY*.35).toFixed(1)+'px');nav.classList.toggle('lined',scrollY>4);var sh=hero.getBoundingClientRect().bottom<0&&dl.getBoundingClientRect().top>innerHeight;sbar.classList.toggle('show',sh);nav.classList.toggle('sb',sh)}
   addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});frame();
 
   new IntersectionObserver(function(es){hero.classList.toggle('off',!es[0].isIntersecting)}).observe(hero);
@@ -765,7 +768,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 
     }
     if(!resting&&matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
-    function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
+    function clock(){var n=new Date(),t=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2);$('#lclock').textContent=t;$$('.hface .hclock').forEach(function(c){c.textContent=t})}
     clock();(function t(){setTimeout(function(){clock();t()},60000-Date.now()%60000+50)})();
     /* the page follows the clock: a quiet reload when the date, the rest state or the prayer of the hour changes,
        deferred while the reader is busy; the sunset countdown ticks in place */
