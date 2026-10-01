@@ -295,7 +295,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 
 /* ===== round 4 ===== */
 /* today bar under the nav */
-.js .todaybar{display:block;min-height:36px}
+.js:not(.noheb) .todaybar{display:block;min-height:36px}
 .todaybar{display:none;position:relative;z-index:1;text-align:center;font-size:13.5px;line-height:1.4;padding:8px var(--g);color:#3f3f46;background:rgba(255,255,255,.6);border-bottom:1px solid var(--hair)}
 .todaybar.on{display:block}
 @media (max-width:479px){.todaybar .tbi{display:none}}
@@ -386,7 +386,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .lpause{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:3;padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--ink);font:600 13px var(--sans);opacity:0;transition:opacity .25s;pointer-events:none}
 .live.stopped .lpause{opacity:1}
 .crown:disabled{cursor:default}
-.hero.resting .trio .w:not(.live-w) img{opacity:.35;filter:grayscale(1)}
+.hero.resting .trio .w:not(.live-w) .dev img{opacity:0}
 .ins:not(.on) .body{transition:opacity .18s,transform .3s}
 .ins.on .body{transition-delay:.22s}
 .rail-wrap{position:relative}
@@ -399,6 +399,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   .rarrow.prev{right:16px}.rarrow.next{left:16px}
 }
 .todaybar .soon{color:var(--peach-d);font-weight:600}
+.hero.off::before{animation-play-state:paused}
 .hero.mincha::before{filter:hue-rotate(-18deg) saturate(1.2)}
 .qa .hero [class*=in-],.qa .trio{animation:none!important}
 @media (max-width:479px){.trio .w:nth-child(1),.trio .w:nth-child(3){display:none}.trio .live-w{--s:66vw}}
@@ -406,7 +407,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add('js');if(/[?&]qa/.test(location.search))document.documentElement.classList.add('qa')</script>
+<script>document.documentElement.classList.add('js');try{new Intl.DateTimeFormat('en-u-ca-hebrew').formatToParts(new Date())}catch(e){document.documentElement.classList.add('noheb')}if(/[?&]qa/.test(location.search))document.documentElement.classList.add('qa')</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.15-2.8.85-3.5.85s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.35 1.2-.05 1.6-.75 3-.75s1.8.75 3 .72c1.25-.02 2.05-1.15 2.8-2.28.9-1.3 1.25-2.55 1.27-2.62-.03-.01-2.45-.94-2.47-3.7ZM14.1 5.8c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.05-.52 2.69-1.27Z"/></symbol>
@@ -595,6 +596,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   function frame(){tick=false;nav.classList.toggle('lined',scrollY>4);var sh=hero.getBoundingClientRect().bottom<0&&dl.getBoundingClientRect().top>innerHeight;sbar.classList.toggle('show',sh);nav.classList.toggle('sb',sh)}
   addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});frame();
 
+  new IntersectionObserver(function(es){hero.classList.toggle('off',!es[0].isIntersecting)}).observe(hero);
+
   /* reveal once */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
   $$('.rv').forEach(function(el){if(/[?&]qa/.test(location.search))el.classList.add('in');else io.observe(el)});
@@ -738,11 +741,17 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     if(!resting&&matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
     clock();setInterval(clock,10000);
-    if(TODAY&&F)setInterval(function(){var t=today(new Date());if(t.rest!==TODAY.rest||t.date!==TODAY.date||hourKey()!==HK)return location.reload();return;
-      var tb=$('#todaybar'),face=t.lab.filter(function(l){return l!=='שבת'});
-      $('#ldate').textContent=t.date;if(!resting)$('#lday').textContent=face.length?face.join(' · '):'יום חול';
-      tb.innerHTML='<b>'+t.date+'</b>'+(t.lab.length?' · '+t.lab.join(' · '):'')+(t.ins.length?'<span class="tbi"> · בברכת המזון: <i>'+t.ins.join(', ')+'</i></span>':'');
-      $('.hero').classList.remove('mincha');TODAY=t},30000);
+    /* the page follows the clock: a quiet reload when the date, the rest state or the prayer of the hour changes,
+       deferred while the reader is busy; the sunset countdown ticks in place */
+    var lastInput=0,pending=false;
+    ['pointerdown','keydown','wheel','scroll'].forEach(function(e){addEventListener(e,function(){lastInput=performance.now()},{passive:true})});
+    function reloadSoon(){if(document.hidden||performance.now()-lastInput>60000)location.reload();else pending=true}
+    document.addEventListener('visibilitychange',function(){if(pending&&document.hidden)location.reload()});
+    if(TODAY&&F)setInterval(function(){
+      var t=today(new Date());
+      if(t.rest!==TODAY.rest||t.date!==TODAY.date||(!TODAY.rest&&hourKey()!==HK))return reloadSoon();
+      var soon=$('#todaybar .soon');if(soon&&t.toSet>0)soon.textContent=' · עוד '+t.toSet+' דק׳ לשקיעה';
+    },30000);
 
     /* the prayer of the hour */
     var TX={"mincha": {"t": "מנחה", "p": ["אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ עוֹד יְהַלְלוּךָ סֶּלָה. אַשְׁרֵי הָעָם שֶׁכָּכָה לּוֹ אַשְׁרֵי הָעָם שֶׁיְיָ אֱלֹהָיו. תְּהִלָּה לְדָוִד אֲרוֹמִמְךָ אֱלוֹהַי הַמֶּלֶךְ וַאֲבָרְכָה שִׁמְךָ לְעוֹלָם וָעֶד.", "בְּכָל יוֹם אֲבָרְכֶךָּ וַאֲהַלְלָה שִׁמְךָ לְעוֹלָם וָעֶד. גָּדוֹל יְיָ וּמְהֻלָּל מְאֹד וְלִגְדֻלָּתוֹ אֵין חֵקֶר. דּוֹר לְדוֹר יְשַׁבַּח מַעֲשֶׂיךָ וּגְבוּרֹתֶיךָ יַגִּידוּ. הֲדַר כְּבוֹד הוֹדֶךָ וְדִבְרֵי נִפְלְאֹתֶיךָ אָשִׂיחָה.", "וֶעֱזוּז נוֹרְאֹתֶיךָ יֹאמֵרוּ וּגְדֻלָּתְךָ אֲסַפְּרֶנָּה. זֵכֶר רַב טוּבְךָ יַבִּיעוּ וְצִדְקָתְךָ יְרַנֵּנוּ. חַנּוּן וְרַחוּם יְיָ אֶרֶךְ אַפַּיִם וּגְדָל חָסֶד. טוֹב יְיָ לַכֹּל וְרַחֲמָיו עַל כָּל מַעֲשָׂיו.", "יוֹדוּךָ יְיָ כָּל מַעֲשֶׂיךָ וַחֲסִידֶיךָ יְבָרְכוּכָה. כְּבוֹד מַלְכוּתְךָ יֹאמֵרוּ וּגְבוּרָתְךָ יְדַבֵּרוּ. לְהוֹדִיעַ לִבְנֵי הָאָדָם גְּבוּרֹתָיו וּכְבוֹד הֲדַר מַלְכוּתוֹ. מַלְכוּתְךָ מַלְכוּת כָּל עֹלָמִים וּמֶמְשַׁלְתְּךָ בְּכָל דּוֹר וָדֹר."]}, "maariv": {"t": "ערבית", "p": ["וְהוּא רַחוּם יְכַפֵּר עָוֹן וְלֹא יַשְׁחִית, וְהִרְבָּה לְהָשִׁיב אַפּוֹ וְלֹא יָעִיר כָּל חֲמָתוֹ. יְיָ הוֹשִׁיעָה, הַמֶּלֶךְ יַעֲנֵנוּ בְיוֹם קָרְאֵנוּ.", "בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר בִּדְבָרוֹ מַעֲרִיב עֲרָבִים, בְּחָכְמָה פּוֹתֵחַ שְׁעָרִים, וּבִתְבוּנָה מְשַׁנֶּה עִתִּים וּמַחֲלִיף אֶת הַזְּמַנִּים, וּמְסַדֵּר אֶת הַכּוֹכָבִים בְּמִשְׁמְרוֹתֵיהֶם בָּרָקִיעַ כִּרְצוֹנוֹ."]}, "shema": {"t": "קריאת שמע שעל המיטה", "p": ["רִבּוֹנוֹ שֶׁל עוֹלָם, הֲרֵינִי מוֹחֵל לְכָל מִי שֶׁהִכְעִיס וְהִקְנִיט אוֹתִי אוֹ שֶׁחָטָא כְּנֶגְדִּי, בֵּין בְּגוּפִי בֵּין בְּמָמוֹנִי בֵּין בִּכְבוֹדִי בֵּין בְּכָל אֲשֶׁר לִי, בֵּין בְּאֹנֶס בֵּין בְּרָצוֹן בֵּין בְּשׁוֹגֵג בֵּין בְּמֵזִיד, בֵּין בְּדִבּוּר בֵּין בְּמַעֲשֶׂה, בֵּין בְּגִלְגּוּל זֶה בֵּין בְּגִלְגּוּל אַחֵר, לְכָל בַּר יִשְׂרָאֵל, וְלֹא יֵעָנֵשׁ שׁוּם אָדָם בְּסִבָּתִי.", "יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהַי וֵאלֹהֵי אֲבוֹתַי, שֶׁלֹּא אֶחֱטָא עוֹד, וְלֹא אֶחֱזוֹר בָּהֶם, וְלֹא אָשׁוּב עוֹד לְהַכְעִיסֶךָ, וְלֹא אֶעֱשֶׂה הָרַע בְּעֵינֶיךָ, וּמַה שֶּׁחָטָאתִי מְחוֹק בְּרַחֲמֶיךָ הָרַבִּים, וְלֹא עַל יְדֵי יִסּוּרִים וָחֳלָיִם רָעִים.", "בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, הַמַּפִּיל חֶבְלֵי שֵׁנָה עַל עֵינָי וּתְנוּמָה עַל עַפְעַפָּי, וּמֵאִיר לְאִישׁוֹן בַּת עָיִן."]}};
