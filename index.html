@@ -9,268 +9,296 @@
 <meta property="og:description" content="סידור וברכון עברי לשעון. Apple Watch, Wear OS ו־Garmin.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://noam13-w.github.io/birkon/assets/og.jpg">
-<meta name="theme-color" content="#101a3a">
+<meta name="theme-color" content="#fbfbfd">
 <link rel="icon" href="assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Heebo:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap">
 <style>
-/* A siddur page: framed, typographic, in the app icon's own colors. Sharp corners for the book, round faces for the watches. */
 :root{
-  --navy:#101a3a; --blue:#2c4f93; --gold:#e8c070; --paper:#f4ecd9; --ink:#101a3a;
-  --serif:'Frank Ruhl Libre','David Libre','Times New Roman',serif; --sans:'Heebo','Segoe UI',Arial,sans-serif;
+  --bg:#fbfbfd; --gray:#f5f5f7; --ink:#1d1d1f; --muted:#6e6e73; --line:#d2d2d7; --blue:#0071e3; --blue-h:#0077ed;
+  --brand:#2c4f93; --gold:#e8c070; --night:#000; --night-ink:#f5f5f7; --night-muted:#a1a1a6;
+  --sans:'Heebo',-apple-system,'SF Pro Text','Segoe UI',Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html{color-scheme:light}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.7}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;line-height:1.1;text-wrap:balance}
-.wrap{max-width:1160px;margin-inline:auto;padding-inline:24px;position:relative}
-.kicker{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.2em;margin-bottom:18px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.05;text-wrap:balance}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:22px}
+.grad-blue{background:linear-gradient(100deg,#2c4f93 0%,#0071e3 55%,#5aa7ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad-gold{background:linear-gradient(100deg,#f7e0a6 0%,#e8c070 50%,#d99a3e 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* nav */
+.nav{position:fixed;top:0;inset-inline:0;height:52px;z-index:100;background:rgba(251,251,253,.78);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.nav .in{max-width:1080px;height:100%;margin-inline:auto;padding-inline:22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;text-decoration:none}
+.brand img{width:28px;height:28px;border-radius:7px}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:13.5px}
+.nav ul a{text-decoration:none;color:#424245}
+.nav ul a:hover{color:#000}
+.pill{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:500;border-radius:980px;padding:9px 22px;font-size:17px;transition:background .2s}
+.pill:hover{background:var(--blue-h)}
+.nav .pill{padding:5px 15px;font-size:13px}
+.more{color:var(--blue);text-decoration:none;font-size:20px;font-weight:500}
+.more:hover{text-decoration:underline}
+.more::after{content:" \203A";display:inline-block;transform:scaleX(-1)}
 
 /* hero */
-.hero{background:var(--navy);color:var(--paper);position:relative;padding-bottom:0}
-.hero::before{content:"";position:absolute;inset:14px;border:1px solid rgba(232,192,112,.55);pointer-events:none}
-.hero::after{content:"";position:absolute;inset:20px;border:1px solid rgba(232,192,112,.22);pointer-events:none}
-.bar{display:flex;justify-content:space-between;align-items:center;padding-block:44px 0;position:relative;z-index:2}
-.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700;font-size:20px;text-decoration:none;color:var(--gold)}
-.brand img{width:34px;height:34px;border-radius:8px}
-.bar nav{display:flex;gap:28px;font-size:15px}
-.bar nav a{text-decoration:none;color:rgba(244,236,217,.75)}
-.bar nav a:hover{color:var(--gold)}
-.word{font-family:var(--serif);font-weight:900;color:var(--gold);font-size:clamp(120px,30vw,420px);line-height:1.02;letter-spacing:-.01em;margin:10px 0 0;animation:in 1s cubic-bezier(.2,.7,.2,1) backwards}
-@keyframes in{from{opacity:0;transform:translateY(24px)}}
-.under{display:flex;align-items:baseline;gap:20px;margin-top:-.2em;font-family:var(--serif);font-size:clamp(26px,5vw,60px);font-weight:300}
-.under i{flex:1;height:1px;background:rgba(232,192,112,.5);align-self:center}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding-block:44px 0;align-items:end}
-.hero-grid > *{min-width:0}
-.lead{font-size:clamp(18px,2vw,22px);color:rgba(244,236,217,.85);max-width:27em;margin:0 0 28px}
-.stores{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px}
-.btn{display:inline-flex;align-items:center;gap:12px;padding:12px 22px;text-decoration:none;background:var(--gold);color:var(--navy);border:2px solid var(--gold);transition:background .2s,color .2s}
-.btn:hover{background:transparent;color:var(--gold)}
-.btn svg{width:24px;height:24px;flex:none}
-.btn small{display:block;font-size:11.5px;line-height:1.15;font-weight:500}
-.btn b{display:block;font-size:17px;line-height:1.25;font-weight:700}
-.devices{display:flex;align-items:flex-end;justify-content:center;gap:clamp(8px,1.6vw,18px);margin-bottom:-60px;position:relative;z-index:3}
-.dev{background:#000;padding:clamp(5px,.8vw,9px);box-shadow:0 0 0 1.5px rgba(232,192,112,.5),0 22px 40px -20px rgba(0,0,0,.7)}
+.hero{text-align:center;padding-top:132px;overflow:hidden}
+.eyebrow{font-size:clamp(19px,2.2vw,24px);font-weight:600;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:clamp(46px,9.4vw,116px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.hero h1 span{display:block;animation:up 1s cubic-bezier(.2,.75,.2,1) backwards}
+.hero h1 span+span{animation-delay:.12s}
+@keyframes up{from{opacity:0;transform:translateY(34px)}}
+.hero .sub{font-size:clamp(19px,2.3vw,28px);font-weight:400;color:var(--muted);max-width:27em;margin:26px auto 0;animation:up 1s .25s cubic-bezier(.2,.75,.2,1) backwards}
+.cta{display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:30px;animation:up 1s .35s cubic-bezier(.2,.75,.2,1) backwards}
+.availability{margin-top:16px;font-size:14px;color:var(--muted);animation:up 1s .4s backwards}
+.availability a{color:var(--ink);text-decoration:none;font-weight:500;white-space:nowrap}
+.availability a:hover{text-decoration:underline}
+.stage-hero{position:relative;margin-top:64px;height:clamp(300px,52vw,560px);animation:up 1.2s .45s cubic-bezier(.2,.75,.2,1) backwards}
+.stage-hero .dev{position:absolute;bottom:-14%}
+.stage-hero .a{width:clamp(130px,23vw,270px);inset-inline-start:calc(50% - clamp(260px,40vw,500px));bottom:4%}
+.stage-hero .b{width:clamp(190px,31vw,370px);inset-inline-start:calc(50% - clamp(95px,15.5vw,185px));bottom:-3%}
+.stage-hero .c{width:clamp(130px,23vw,270px);inset-inline-start:calc(50% + clamp(130px,17vw,230px));bottom:7%}
+
+/* watch hardware */
+.dev{position:relative;background:#000;padding:clamp(5px,.9vw,10px);
+  box-shadow:0 0 0 2px #35353a,0 0 0 clamp(4px,.55vw,7px) #17171a,0 0 0 clamp(5px,.65vw,8px) #55555c,0 30px 60px -22px rgba(0,0,0,.55)}
+.dev::after{content:"";position:absolute;inset-inline-end:-3.2%;top:30%;width:4%;height:20%;border-radius:4px;background:linear-gradient(90deg,#2a2a2e,#6b6b72,#2a2a2e)}
 .dev img{display:block;width:100%;height:100%;object-fit:cover}
 .dev.round,.dev.round img{border-radius:50%}
 .dev.round{aspect-ratio:1}
-.dev.sq,.dev.sq img{border-radius:22%}
+.dev.sq,.dev.sq img{border-radius:24%}
 .dev.sq{aspect-ratio:.84}
-.devices .a{width:29%;margin-bottom:10%}.devices .b{width:39%}.devices .c{width:29%;margin-bottom:16%}
 
-/* contents */
-.toc{padding-block:140px 90px}
-.split{display:grid;grid-template-columns:.7fr 1.3fr;gap:64px}
-.split > *{min-width:0}
-h2{font-size:clamp(38px,5.4vw,72px)}
-.side p{margin:18px 0 0;max-width:20em;color:rgba(16,26,58,.75)}
-.index{list-style:none;margin:0;padding:0}
-.index li{display:flex;align-items:baseline;gap:14px;padding:11px 0}
-.index b{font-family:var(--serif);font-size:clamp(24px,3.2vw,38px);font-weight:700;white-space:nowrap}
-.index .lead-dots{flex:1;border-bottom:2px dotted rgba(16,26,58,.35);transform:translateY(-.3em);min-width:20px}
-.index span{font-size:15px;color:rgba(16,26,58,.7);text-align:left;max-width:15em;line-height:1.35}
-.nusach{margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
-.nusach b{font-size:14px;letter-spacing:.14em}
-.nusach span{font-family:var(--serif);font-weight:700;font-size:22px;border:2px solid var(--navy);padding:2px 20px}
+/* sections */
+.sec{padding-block:clamp(80px,12vw,150px)}
+.center{text-align:center}
+.sec h2{font-size:clamp(40px,7vw,84px)}
+.sec .lede{font-size:clamp(19px,2.4vw,28px);color:var(--muted);font-weight:400;max-width:28em;margin:22px auto 0}
 
-/* the day's insertions */
-.luach{background:var(--blue);color:var(--paper);padding-block:96px}
-.luach .kicker{color:var(--gold)}
-.luach .side p{color:rgba(244,236,217,.85)}
-.rows{border-top:1px solid rgba(244,236,217,.35)}
-.r{display:grid;grid-template-columns:9em 1fr;gap:24px;padding:18px 0;border-bottom:1px solid rgba(244,236,217,.35);align-items:baseline}
-.r b{font-family:var(--serif);font-size:26px;color:var(--gold)}
-.r span{font-size:17px}
-.note{margin:26px 0 0;font-size:16px;color:rgba(244,236,217,.8);max-width:36em}
+/* sticky story (dark) */
+.story{background:var(--night);color:var(--night-ink);height:520vh;position:relative}
+.stage{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;max-width:1080px;margin-inline:auto;padding-inline:22px;--h:min(58vh,440px)}
+.steps{position:relative;height:min(62vh,500px)}
+.step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:18px;opacity:0;transform:translateY(34px);transition:opacity .6s,transform .8s cubic-bezier(.2,.75,.2,1);pointer-events:none}
+.step.on{opacity:1;transform:none;pointer-events:auto}
+.step .tag{font-size:clamp(17px,1.8vw,21px);font-weight:700;color:var(--gold)}
+.step h2{font-size:clamp(42px,6.4vw,82px)}
+.step p{color:var(--night-muted);font-size:clamp(18px,1.9vw,23px);max-width:22em}
+.dots{position:absolute;inset-inline-start:0;bottom:-34px;display:flex;gap:7px}
+.dots i{width:7px;height:7px;border-radius:50%;background:#3a3a3c;transition:background .3s,width .3s}
+.dots i.on{background:#f5f5f7;width:26px;border-radius:4px}
+.zone{display:flex;justify-content:center;align-items:center;height:100%}
+.case{position:relative;width:var(--h);height:var(--h);background:#000;border-radius:50%;padding:calc(var(--h)*.032);
+  box-shadow:0 0 0 2px #3a3a3f,0 0 0 calc(var(--h)*.016) #151518,0 0 0 calc(var(--h)*.02) #5d5d65,0 0 90px 10px rgba(232,192,112,.12);
+  transition:width .9s cubic-bezier(.7,0,.2,1),border-radius .9s cubic-bezier(.7,0,.2,1)}
+.case::after{content:"";position:absolute;inset-inline-end:-4%;top:30%;width:4%;height:20%;border-radius:5px;background:linear-gradient(90deg,#2a2a2e,#76767e,#2a2a2e)}
+.case.rect{width:calc(var(--h)*.84);border-radius:calc(var(--h)*.22)}
+.case .scr{position:relative;width:100%;height:100%;border-radius:inherit;overflow:hidden}
+.case .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .6s,transform .9s cubic-bezier(.2,.75,.2,1)}
+.case .scr img.on{opacity:1;transform:none}
 
-/* reading */
-.read{background:var(--gold);color:var(--navy);padding-block:96px 100px}
-.read .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.read .grid > *{min-width:0}
-.read p{max-width:24em;margin:18px 0 0}
-.read .devices{margin-bottom:0}
-.read .dev{box-shadow:0 22px 40px -22px rgba(16,26,58,.8)}
-.read ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:6px}
-.read li{border-top:1.5px solid var(--navy);padding-top:6px;font-weight:500}
+/* bento */
+.gray{background:var(--gray)}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin-top:64px;text-align:start}
+.card{border-radius:30px;padding:clamp(28px,4vw,48px);background:#fff;overflow:hidden;position:relative;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:26px;min-height:340px}
+.card .k{font-size:17px;font-weight:700;color:var(--muted)}
+.card h3{font-size:clamp(30px,3.8vw,48px)}
+.card p{color:var(--muted);font-size:19px;max-width:24em}
+.c1{grid-column:span 4}.c2{grid-column:span 2;background:var(--night);color:var(--night-ink)}
+.c3{grid-column:span 2;background:var(--brand);color:#fff}.c4{grid-column:span 4}
+.c5{grid-column:span 3}.c6{grid-column:span 3;background:linear-gradient(135deg,#f3dba0,#e8c070);color:#2a1f08}
+.c1 .flow{font-size:clamp(28px,3.9vw,50px);font-weight:700;line-height:1.18;letter-spacing:-.02em;color:#b0b0b5}
+.c1 .flow b{color:var(--ink);font-weight:800}
+.c2 .k,.c3 .k{color:rgba(255,255,255,.65)}
+.c2 .big{font-size:clamp(40px,5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.c2 .big span{display:block}
+.c2 .big span:nth-child(1){color:#f5f5f7}.c2 .big span:nth-child(2){color:#c9a45a}.c2 .big span:nth-child(3){color:#8a7340}
+.c3 .num{font-size:clamp(110px,15vw,190px);font-weight:800;line-height:.9;letter-spacing:-.04em}
+.c3 p,.c6 p{color:inherit;opacity:.85}
+.c4 ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.c4 li{background:var(--gray);padding:9px 20px;border-radius:980px;font-size:19px;font-weight:600}
+.c5 .big,.c6 .big{font-size:clamp(34px,4.6vw,58px);font-weight:800;line-height:1.05;letter-spacing:-.025em}
+.c6 .k{color:rgba(42,31,8,.6)}
+
+/* specs table */
+.specs{max-width:880px;margin:64px auto 0;text-align:start;border-top:1px solid var(--line)}
+.spec{display:grid;grid-template-columns:11em 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
+.spec b{font-size:21px;font-weight:700}
+.spec span{color:var(--muted);font-size:19px}
+.fine{max-width:880px;margin:28px auto 0;color:var(--muted);font-size:17px;text-align:start}
 
 /* download */
-.dl{padding-block:96px}
-.panels{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border:2px solid var(--navy)}
-.panel{padding:30px;display:flex;flex-direction:column;gap:18px;min-width:0}
-.panel + .panel{border-inline-start:2px solid var(--navy)}
-.panel h3{font-size:36px}
-.panel p{margin:0;font-size:15.5px;opacity:.8;flex:1}
-.panel .dev{width:52%;align-self:center;box-shadow:0 18px 30px -18px rgba(0,0,0,.6)}
-.panel.p1{background:var(--navy);color:var(--paper)}
-.panel.p2{background:var(--blue);color:var(--paper)}
-.panel.p3{background:var(--paper)}
-.panel.p3 .btn{background:var(--navy);color:var(--gold);border-color:var(--navy)}
-.panel.p3 .btn:hover{background:transparent;color:var(--navy)}
-.panel .btn{justify-content:center}
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.tile{background:#fff;border-radius:30px;padding:44px 28px 40px;display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+.tile .imgbox{height:230px;width:100%;display:flex;align-items:center;justify-content:center}
+.tile .dev{width:150px}
+.tile .dev.sq{width:132px}
+.tile h3{font-size:36px}
+.tile p{color:var(--muted);font-size:17px;min-height:3.2em;max-width:17em}
+.tile .pill{margin-top:8px}
 
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:72px;border-top:2px solid var(--navy);padding-top:28px}
-.facts h3{font-size:26px;margin-bottom:8px}
-.facts p{margin:0;font-size:16px;color:rgba(16,26,58,.78)}
-
-footer{background:var(--navy);color:rgba(244,236,217,.75);padding-block:48px 64px;font-size:15px}
+footer{background:var(--gray);color:var(--muted);font-size:13px;line-height:1.6;padding-block:34px 44px}
 footer .wrap{display:grid;gap:12px}
-footer a{color:var(--gold)}
-footer .mem{font-family:var(--serif);font-size:24px;color:var(--gold);font-weight:500;margin-top:10px}
-.en{direction:ltr;text-align:left;font-size:13.5px;opacity:.85}
-#support{scroll-margin-top:0}
+footer a{color:var(--blue);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .mem{color:var(--ink);font-size:15px;font-weight:500;padding-top:12px;border-top:1px solid var(--line)}
+.en{direction:ltr;text-align:left}
+
+.js .rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform 1s cubic-bezier(.2,.75,.2,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
 
 @media (max-width:860px){
-  body{font-size:17px}
-  .bar nav{display:none}
-  .hero-grid{grid-template-columns:1fr;gap:36px}
-  .stores{margin-bottom:24px}
-  .devices{margin-bottom:-40px}
-  .toc{padding-block:100px 64px}
-  .split,.read .grid{grid-template-columns:1fr;gap:32px}
-  .luach,.read,.dl{padding-block:64px}
-  .r{grid-template-columns:7em 1fr;gap:14px}
-  .index span{display:none}
-  .panels{grid-template-columns:1fr}
-  .panel + .panel{border-inline-start:0;border-top:2px solid var(--navy)}
-  .facts{grid-template-columns:1fr;gap:28px}
-  .btn{flex:1 1 200px;justify-content:center}
+  body{font-size:18px}
+  .nav ul{display:none}
+  .hero{padding-top:104px}
+  .stage-hero{margin-top:44px}
+  .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:0;align-content:center;--h:min(36vh,290px);padding-top:56px}
+  .zone{order:-1;height:auto}
+  .steps{height:min(42vh,340px)}
+  .step{gap:12px}
+  .dots{bottom:-26px}
+  .bento{grid-template-columns:1fr;gap:14px}
+  .card,.c1,.c2,.c3,.c4,.c5,.c6{grid-column:auto;min-height:0}
+  .spec{grid-template-columns:1fr;gap:4px;padding:18px 0}
+  .pick{grid-template-columns:1fr}
+  .tile p{min-height:0}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01s!important}
+  .js .rv{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js')</script>
 
-<header class="hero" id="top">
+<nav class="nav"><div class="in">
+  <a class="brand" href="#top"><img src="assets/icon.png" alt="">ברכון לשעון</a>
+  <ul><li><a href="#story">סקירה</a></li><li><a href="#inside">מה בפנים</a></li><li><a href="#today">התוספות</a></li><li><a href="#support">תמיכה</a></li></ul>
+  <a class="pill" href="#download">הורדה</a>
+</div></nav>
+
+<main id="top">
+<header class="hero">
   <div class="wrap">
-    <div class="bar">
-      <a class="brand" href="#top"><img src="assets/icon.png" alt="">ברכון לשעון</a>
-      <nav><a href="#inside">מה בפנים</a><a href="#today">התוספות</a><a href="#download">הורדה</a><a href="#support">תמיכה</a></nav>
-    </div>
-    <h1 class="word">בִּרְכוֹן</h1>
-    <div class="under"><span>סידור וברכון על השעון</span><i></i></div>
-    <div class="hero-grid">
-      <div>
-        <p class="lead">מנחה, ערבית, ברכת המזון, קריאת שמע שעל המיטה ועוד, בנוסח שלכם ועם כל התוספות של היום. הכול על השעון עצמו, בלי טלפון ובלי אינטרנט.</p>
-        <div class="stores">
-          <a class="btn" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.15-2.8.85-3.5.85s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.35 1.2-.05 1.6-.75 3-.75s1.8.75 3 .72c1.25-.02 2.05-1.15 2.8-2.28.9-1.3 1.25-2.55 1.27-2.62-.03-.01-2.45-.94-2.47-3.7ZM14.1 5.8c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.05-.52 2.69-1.27Z"/></svg>
-            <span><small>הורדה ב־</small><b>App Store</b></span></a>
-          <a class="btn" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l.1.1 9.3-9.3v-.2L3.7 2.2l-.1.1Zm12.4 12.5-3.1-3.1v-.2l3.1-3.1 3.7 2.1c1 .6 1 1.5 0 2.1l-3.7 2.2Zm.1-.1-3.2-3.2-9.2 9.2c.3.4.9.4 1.5.1l10.9-6.1Zm0-5.4L5.2 3.2c-.6-.3-1.2-.3-1.5.1l9.2 9.2 3.2-3.2Z"/></svg>
-            <span><small>זמין ב־</small><b>Google Play</b></span></a>
-          <a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6.5 17.5 12 12 17.5 6.5 12Z" fill="currentColor"/></svg>
-            <span><small>הורדה מ־</small><b>Connect IQ</b></span></a>
-        </div>
-      </div>
-      <div class="devices" role="img" aria-label="הברכון על Wear OS, Apple Watch ו־Garmin">
-        <div class="dev round a"><img src="assets/wear-home.jpg" alt="" width="520" height="520"></div>
-        <div class="dev sq b"><img src="assets/apple-maariv.jpg" alt="" width="520" height="620"></div>
-        <div class="dev round c"><img src="assets/garmin-mincha.jpg" alt="" width="520" height="520"></div>
-      </div>
-    </div>
+    <div class="eyebrow">ברכון לשעון</div>
+    <h1><span>התפילה והברכה.</span><span class="grad-blue">תמיד על היד.</span></h1>
+    <p class="sub">מנחה, ערבית, ברכת המזון ועוד, בנוסח שלכם ועם כל התוספות של היום. על השעון עצמו, בלי טלפון ובלי אינטרנט.</p>
+    <div class="cta"><a class="pill" href="#download">הורדה</a><a class="more" href="#story">איך זה נראה</a></div>
+    <div class="availability">זמין ב־<a href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><bdi>App Store</bdi></a> · <a href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><bdi>Google Play</bdi></a> · <a href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><bdi>Garmin Connect IQ</bdi></a></div>
+  </div>
+  <div class="stage-hero" role="img" aria-label="הברכון על Wear OS, Apple Watch ו־Garmin">
+    <div class="dev round a"><img src="assets/wear-home.jpg" alt="" width="520" height="520"></div>
+    <div class="dev round c"><img src="assets/garmin-mincha.jpg" alt="" width="520" height="520"></div>
+    <div class="dev sq b"><img src="assets/apple-maariv.jpg" alt="" width="520" height="620"></div>
   </div>
 </header>
 
-<main>
-<section class="toc" id="inside">
-  <div class="wrap split">
-    <div class="side">
-      <div class="kicker">תוכן העניינים</div>
-      <h2>מה בפנים</h2>
-      <p>כל מה שצריך במהלך היום, מסודר כך שמוצאים הכול בשתי נגיעות.</p>
+<section class="story" id="story" aria-label="סקירה">
+  <div class="stage">
+    <div class="steps" id="steps">
+      <div class="step on"><span class="tag">היום כולו</span><h2 class="grad-gold">הכול ביד אחת</h2><p>מנחה, ערבית, ברכת המזון, מעין שלוש, בורא נפשות, אשר יצר ותפילת הדרך. מוצאים הכול בשתי נגיעות.</p></div>
+      <div class="step"><span class="tag">מנחה</span><h2 class="grad-gold">מנחה בעבודה</h2><p>עם קרבנות ופטום הקטורת כאפשרות. החלקים שנאמרים רק בחזרת הש״ץ מסומנים, כך שברור איפה ממשיכים.</p></div>
+      <div class="step"><span class="tag">ערבית</span><h2 class="grad-gold">ערבית בדרך הביתה</h2><p>מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. הברכון יודע לפי שעת השקיעה במיקום שלכם.</p></div>
+      <div class="step"><span class="tag">ברכת המזון</span><h2 class="grad-gold">אחרי הארוחה</h2><p>עם אפשרות זימון, ו״ברכה מעין שלוש״: בוחרים מה אכלתם, והנוסח מתאים את עצמו.</p></div>
+      <div class="step"><span class="tag">קריאת שמע</span><h2 class="grad-gold">לפני השינה</h2><p>קריאת שמע שעל המיטה, בניקוד מלא, על רקע שחור שלא מסנוור בחושך.</p></div>
+      <div class="step"><span class="tag">נוחות</span><h2 class="grad-gold">גלילה שאתם קובעים</h2><p>בכפתורים או במגע, שלושה גדלי טקסט, וגלילה אוטומטית במהירות מ־1 עד 10. לחיצה עוצרת אותה לרגע.</p></div>
+      <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
     </div>
-    <div>
-      <ul class="index">
-        <li><b>מנחה</b><i class="lead-dots"></i><span>עם קרבנות ופטום הקטורת כאפשרות</span></li>
-        <li><b>ערבית</b><i class="lead-dots"></i><span>עם ספירת העומר של אותו לילה</span></li>
-        <li><b>ברכת המזון</b><i class="lead-dots"></i><span>עם אפשרות זימון</span></li>
-        <li><b>ברכה מעין שלוש</b><i class="lead-dots"></i><span>בוחרים מה אכלתם והנוסח מתאים את עצמו</span></li>
-        <li><b>בורא נפשות</b><i class="lead-dots"></i><span></span></li>
-        <li><b>אשר יצר</b><i class="lead-dots"></i><span></span></li>
-        <li><b>תפילת הדרך</b><i class="lead-dots"></i><span></span></li>
-        <li><b>קריאת שמע שעל המיטה</b><i class="lead-dots"></i><span></span></li>
-        <li><b>הושענות</b><i class="lead-dots"></i><span>בסוכות, לפי הסדר של אותו יום</span></li>
-      </ul>
-      <div class="nusach"><b>שלושה נוסחים</b><span>ספרד</span><span>אשכנז</span><span>עדות המזרח</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="luach" id="today">
-  <div class="wrap split">
-    <div class="side">
-      <div class="kicker">לוח השנה</div>
-      <h2>התוספות נכנסות לבד</h2>
-      <p>הברכון מחשב את התאריך העברי ואת שעת השקיעה, ומכניס את מה שאומרים היום. כל תוספת מסומנת, כך שרואים מיד מה נוסף.</p>
-    </div>
-    <div>
-      <div class="rows">
-        <div class="r"><b>מועדים</b><span>יעלה ויבוא בראש חודש ובחול המועד, ועל הניסים בחנוכה ובפורים</span></div>
-        <div class="r"><b>עונות</b><span>משיב הרוח או מוריד הטל, ותן טל ומטר לברכה בזמנו, בארץ ישראל ובחו״ל</span></div>
-        <div class="r"><b>תעניות</b><span>עננו ואבינו מלכנו, ונחם בתשעה באב</span></div>
-        <div class="r"><b>ימי תשובה</b><span>כל התוספות של עשרת ימי תשובה</span></div>
-        <div class="r"><b>מוצאי שבת</b><span>אתה חוננתנו ו״ויהי נועם״</span></div>
-        <div class="r"><b>עומר</b><span>הספירה של אותו לילה</span></div>
-        <div class="r"><b>ברכת המזון</b><span>רצה והרחמן לשבת, לראש חודש ולחגים, ו״מגדיל״ או ״מגדול״</span></div>
-        <div class="r"><b>תחנון</b><span>רק בימים שאומרים אותו</span></div>
-      </div>
-      <p class="note">מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. אפשר לבחור מיקום: ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי מיקום השעון. התחלתם לאכול לפני השקיעה? נוגעים בשורת התאריך ועוברים ליום הקודם או הבא.</p>
+    <div class="zone">
+      <div class="case" id="case"><div class="scr">
+        <img class="on" src="assets/wear-home.jpg" alt="מסך הבית של הברכון" width="520" height="520">
+        <img src="assets/garmin-mincha.jpg" alt="מנחה" width="520" height="520" loading="lazy">
+        <img src="assets/apple-maariv.jpg" alt="ערבית על Apple Watch" width="520" height="620" loading="lazy">
+        <img src="assets/garmin-bhm.jpg" alt="ברכת המזון" width="520" height="520" loading="lazy">
+        <img src="assets/wear-shema.jpg" alt="קריאת שמע שעל המיטה" width="520" height="520" loading="lazy">
+        <img src="assets/garmin-options.jpg" alt="אפשרויות קריאה" width="520" height="520" loading="lazy">
+      </div></div>
     </div>
   </div>
 </section>
 
-<section class="read">
-  <div class="wrap grid">
-    <div>
-      <div class="kicker">קריאה</div>
-      <h2>נוח לקריאה על מסך קטן</h2>
-      <p>רקע שחור וטקסט בהיר, מותאם למסכים עגולים ומרובעים, בניקוד מלא ובגופן עברי ברור.</p>
-      <ul>
-        <li>גלילה בכפתורים או במגע</li>
-        <li>שלושה גדלי טקסט</li>
-        <li>גלילה אוטומטית במהירות מ־1 עד 10, וכל לחיצה עוצרת אותה לרגע</li>
-      </ul>
-    </div>
-    <div class="devices" role="img" aria-label="ברכת המזון וקריאת שמע על שעונים">
-      <div class="dev round a"><img src="assets/garmin-bhm.jpg" alt="" loading="lazy"></div>
-      <div class="dev round b"><img src="assets/wear-shema.jpg" alt="" loading="lazy"></div>
-      <div class="dev round c"><img src="assets/garmin-options.jpg" alt="" loading="lazy"></div>
-    </div>
-  </div>
-</section>
-
-<section class="dl" id="download">
+<section class="sec gray center" id="inside">
   <div class="wrap">
-    <div class="kicker">הורדה</div>
-    <h2>בחרו את השעון שלכם</h2>
-    <div class="panels">
-      <div class="panel p1">
-        <h3>Apple Watch</h3>
-        <div class="dev sq"><img src="assets/apple-maariv.jpg" alt="ברכון על Apple Watch" loading="lazy"></div>
-        <p>בחינם ב־<bdi>App Store</bdi></p>
-        <a class="btn" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><span><small>הורדה ב־</small><b>App Store</b></span></a>
+    <h2 class="rv">מה בפנים.</h2>
+    <p class="lede rv">כל מה שצריך במהלך היום, בשלושה נוסחים ובניקוד מלא.</p>
+    <div class="bento">
+      <div class="card c1 rv">
+        <span class="k">תפילות וברכות</span>
+        <div class="flow"><b>מנחה. ערבית. ברכת המזון.</b> ברכה מעין שלוש. בורא נפשות. אשר יצר. תפילת הדרך. קריאת שמע שעל המיטה. הושענות.</div>
       </div>
-      <div class="panel p2">
-        <h3>Wear OS</h3>
-        <div class="dev round"><img src="assets/wear-shema.jpg" alt="ברכון על Wear OS" loading="lazy"></div>
-        <p>בחינם ב־<bdi>Google Play</bdi></p>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><span><small>זמין ב־</small><b>Google Play</b></span></a>
+      <div class="card c2 rv" style="--d:.08s">
+        <span class="k">נוסחים</span>
+        <div class="big"><span>ספרד</span><span>אשכנז</span><span>עדות המזרח</span></div>
       </div>
-      <div class="panel p3">
-        <h3>Garmin</h3>
-        <div class="dev round"><img src="assets/garmin-bhm.jpg" alt="ברכון על Garmin" loading="lazy"></div>
-        <p>מתאים ל־<bdi>Connect IQ 3.2</bdi> ומעלה<br><bdi dir="ltr">fēnix · epix · Forerunner · Venu · vívoactive · MARQ · Enduro</bdi> ועוד</p>
-        <a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><span><small>הורדה מ־</small><b>Connect IQ</b></span></a>
+      <div class="card c3 rv">
+        <span class="k">גלילה אוטומטית</span>
+        <div class="num">10</div>
+        <p>מהירויות לבחירה. לחיצה עוצרת לרגע.</p>
+      </div>
+      <div class="card c4 rv" style="--d:.08s">
+        <span class="k">התוספות של היום</span>
+        <h3>נכנסות לבד, ומסומנות.</h3>
+        <ul><li>יעלה ויבוא</li><li>על הניסים</li><li>משיב הרוח</li><li>ותן טל ומטר</li><li>עננו</li><li>ויהי נועם</li><li>ספירת העומר</li><li>מגדיל או מגדול</li></ul>
+      </div>
+      <div class="card c5 rv">
+        <span class="k">עצמאי</span>
+        <div class="big">בלי טלפון.<br>בלי אינטרנט.</div>
+        <p>הכול על השעון עצמו, בטיול, בעבודה ובדרך.</p>
+      </div>
+      <div class="card c6 rv" style="--d:.08s">
+        <span class="k">פרטיות</span>
+        <div class="big">שום מידע לא נאסף.</div>
+        <p>המיקום האחרון של השעון משמש רק לחישוב השקיעה, על השעון.</p>
       </div>
     </div>
-    <div class="facts">
-      <div><h3>בלי טלפון, בלי רשת</h3><p>הכול על השעון עצמו, בטיול, בעבודה ובדרך.</p></div>
-      <div><h3>פרטיות</h3><p>הברכון לא אוסף שום מידע ולא מתחבר לאינטרנט. המיקום האחרון של השעון משמש רק לחישוב השקיעה, על השעון.</p></div>
-      <div><h3>בחינם</h3><p>בלי פרסומות ובלי מנוי.</p></div>
+  </div>
+</section>
+
+<section class="sec center" id="today">
+  <div class="wrap">
+    <h2 class="rv">יודע איזה יום היום.</h2>
+    <p class="lede rv">הברכון מחשב את התאריך העברי ואת שעת השקיעה, ומכניס את מה שאומרים היום.</p>
+    <div class="specs rv">
+      <div class="spec"><b>מועדים</b><span>יעלה ויבוא בראש חודש ובחול המועד, ועל הניסים בחנוכה ובפורים</span></div>
+      <div class="spec"><b>עונות</b><span>משיב הרוח או מוריד הטל, ותן טל ומטר לברכה בזמנו, בארץ ישראל ובחו״ל</span></div>
+      <div class="spec"><b>תעניות</b><span>עננו ואבינו מלכנו, ונחם בתשעה באב</span></div>
+      <div class="spec"><b>ימי תשובה</b><span>כל התוספות של עשרת ימי תשובה</span></div>
+      <div class="spec"><b>מוצאי שבת</b><span>אתה חוננתנו ו״ויהי נועם״</span></div>
+      <div class="spec"><b>עומר</b><span>הספירה של אותו לילה</span></div>
+      <div class="spec"><b>ברכת המזון</b><span>רצה והרחמן לשבת, לראש חודש ולחגים, ו״מגדיל״ או ״מגדול״</span></div>
+      <div class="spec"><b>תחנון</b><span>רק בימים שאומרים אותו</span></div>
+    </div>
+    <p class="fine rv">כל תוספת מסומנת, כך שרואים מיד מה נוסף. אפשר לבחור מיקום: ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי מיקום השעון. התחלתם לאכול לפני השקיעה? נוגעים בשורת התאריך ועוברים ליום הקודם או הבא.</p>
+  </div>
+</section>
+
+<section class="sec gray center" id="download">
+  <div class="wrap">
+    <h2 class="rv">בחרו את השעון שלכם.</h2>
+    <p class="lede rv">בחינם, בלי פרסומות ובלי מנוי.</p>
+    <div class="pick">
+      <div class="tile rv">
+        <div class="imgbox"><div class="dev sq"><img src="assets/apple-maariv.jpg" alt="ברכון על Apple Watch" loading="lazy"></div></div>
+        <h3>Apple Watch</h3><p>זמין ב־<bdi>App Store</bdi></p>
+        <a class="pill" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener">הורדה</a>
+      </div>
+      <div class="tile rv" style="--d:.08s">
+        <div class="imgbox"><div class="dev round"><img src="assets/wear-shema.jpg" alt="ברכון על Wear OS" loading="lazy"></div></div>
+        <h3>Wear OS</h3><p>זמין ב־<bdi>Google Play</bdi></p>
+        <a class="pill" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener">הורדה</a>
+      </div>
+      <div class="tile rv" style="--d:.16s">
+        <div class="imgbox"><div class="dev round"><img src="assets/garmin-bhm.jpg" alt="ברכון על Garmin" loading="lazy"></div></div>
+        <h3>Garmin</h3><p>זמין ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה.<br><bdi dir="ltr">fēnix · epix · Forerunner · Venu · vívoactive · MARQ · Enduro</bdi></p>
+        <a class="pill" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener">הורדה</a>
+      </div>
     </div>
   </div>
 </section>
@@ -284,5 +312,30 @@ footer .mem{font-family:var(--serif);font-size:24px;color:var(--gold);font-weigh
     <div class="mem">לעילוי נשמת ירחמיאל חיים בן אליהו אליעזר ז״ל</div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+  var story=document.getElementById('story'),steps=[].slice.call(document.querySelectorAll('.step')),
+      imgs=[].slice.call(document.querySelectorAll('.scr img')),dots=[].slice.call(document.querySelectorAll('#dots i')),
+      kase=document.getElementById('case'),cur=-1,tick=false;
+  function setStep(n){
+    if(n===cur)return;cur=n;
+    steps.forEach(function(s,i){s.classList.toggle('on',i===n)});
+    imgs.forEach(function(s,i){s.classList.toggle('on',i===n)});
+    dots.forEach(function(s,i){s.classList.toggle('on',i===n)});
+    kase.classList.toggle('rect',n===2);
+  }
+  function frame(){
+    tick=false;
+    var r=story.getBoundingClientRect(),p=clamp(-r.top/(r.height-innerHeight),0,.9999);
+    setStep(Math.floor(p*steps.length));
+  }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});
+  addEventListener('resize',frame);frame();
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  [].forEach.call(document.querySelectorAll('.rv'),function(el){io.observe(el)});
+})();
+</script>
 </body>
 </html>
