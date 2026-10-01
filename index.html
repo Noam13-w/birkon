@@ -70,7 +70,7 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.08;letter-spacin
 @keyframes drift{to{transform:translate3d(-4%,3%,0) scale(1.08)}}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.7);border:1px solid var(--hair);font-size:14px;font-weight:500;color:var(--muted)}
 .badge b{color:var(--mint-d);font-weight:700}
-.hero h1{margin-top:18px;font-weight:800;font-size:clamp(50px,15vw,112px);line-height:1;letter-spacing:-.02em}
+.hero h1{margin-top:18px;font-weight:800;font-size:clamp(50px,15vw,112px);line-height:1;letter-spacing:-.01em}
 .hero .tag{margin-top:12px;font-weight:700;font-size:clamp(22px,6vw,34px);line-height:1.2;letter-spacing:-.015em;
   background:linear-gradient(90deg,#c46a3a,#c24d7a 35%,#6c5fd6 70%,#3a6fc4);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
 .hero .lede{max-width:34em;margin:18px auto 0;color:var(--muted);font-size:18px;text-wrap:pretty}
@@ -233,7 +233,9 @@ section{padding-block:80px}
 .skip{position:absolute;top:-60px;right:12px;z-index:99;padding:10px 16px;border-radius:12px;background:var(--ink);color:#fff;font-weight:600}
 .skip:focus{top:12px}
 .dl .card p.models{color:#56565b;font-size:13px;margin-top:8px;direction:ltr;text-wrap:balance}
-.dl .appic{display:none}
+.dl .card .dev{display:none}
+.dl .appic{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:#fff;color:var(--ink);margin-bottom:14px}
+.dl .appic svg{width:28px;height:28px}
 
 footer{padding:48px 0 calc(88px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--hair);font-size:13.5px;color:var(--muted);line-height:1.7}
 footer .wrap{display:grid;gap:12px}
@@ -363,7 +365,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   .dl{gap:10px}
   .dl .card{flex-direction:row;flex-wrap:wrap;align-items:center;text-align:start;padding:16px 18px;gap:0 14px}
   .dl .card .dev{display:none}
-  .dl .appic{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#fff;color:var(--ink)}
+  .dl .appic{width:48px;height:48px;border-radius:14px;margin:0}
   .dl .appic svg{width:24px;height:24px}
   .dl .card .dev::after{display:none}
   .dl .card>h3{font-size:21px;flex:1}
@@ -446,7 +448,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <a class="store" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span><b>גרמין</b><small>Garmin</small></span></a>
     </div>
     <div class="trio">
-      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-shema.webp" alt="" width="403" height="480"></div><span class="cap">Apple Watch</span></div>
+      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-shema.webp" alt="" width="403" height="480" loading="lazy"></div><span class="cap">Apple Watch</span></div>
       <div class="w live-w">
         <div class="live">
           <div class="lscr" id="lscr" role="img" aria-label="שעון חי: התאריך העברי של היום וברכת המזון בגלילה אוטומטית">
@@ -467,7 +469,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
         </div>
         <span class="cap live-cap" id="lcap"><span class="dot"></span>חי · סובבו את הכתר</span>
       </div>
-      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" width="454" height="454"></div><span class="cap">Garmin</span></div>
+      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" width="454" height="454" loading="lazy"></div><span class="cap">Garmin</span></div>
     </div>
   </div>
 </header>
@@ -525,7 +527,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     </div>
     <div class="groups rv">
       <div class="grp"><h3>בברכת המזון</h3><ul class="chips"><li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחול המועד</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li data-k="הרחמן">הרחמן <span>לראש חודש ולסוכות</span></li><li>מגדיל <span>או מגדול</span></li></ul></div>
-      <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li data-k="יעלה ויבוא">יעלה ויבוא</li><li data-k="על הניסים">על הניסים</li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
+      <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li data-k="יעלה ויבוא">יעלה ויבוא <span>כמו בברכת המזון</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
       <div class="grp"><h3>אחרי העמידה</h3><ul class="chips"><li>תחנון <span>רק כשאומרים</span></li><li>אבינו מלכנו</li><li>ויהי נועם</li><li>ספירת העומר</li></ul></div>
     </div>
     <p class="fine rv" style="text-wrap:pretty">מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. בשעון אפשר לבחור ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי המיקום.</p>
@@ -731,7 +733,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(ch>=1&&ch<=8){lab.push('חנוכה, נר '+gem(ch));if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===14){lab.push('פורים');if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===15)lab.push('שושן פורים');
-      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:shab,rest:rest,head:head,bye:bye,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il&&!night?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
+      return {date:(night||hr<su.rise?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:shab,rest:rest,head:head,bye:bye,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il&&!night?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
     }
     if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;
       var face=TODAY.lab.filter(function(l){return l!=='שבת'});
@@ -752,7 +754,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     }
     if(!resting&&matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
-    clock();setInterval(clock,10000);
+    clock();(function t(){setTimeout(function(){clock();t()},60000-Date.now()%60000+50)})();
     /* the page follows the clock: a quiet reload when the date, the rest state or the prayer of the hour changes,
        deferred while the reader is busy; the sunset countdown ticks in place */
     var lastInput=0,pending=false;
@@ -761,7 +763,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     document.addEventListener('visibilitychange',function(){if(pending&&document.hidden)location.reload()});
     if(TODAY&&F)setInterval(function(){
       var t=today(new Date());
-      if(t.rest&&!TODAY.rest){held=true;lroll.innerHTML='<p class="rest">'+t.head+'</p><p class="rest2">'+t.bye+'</p>';lroll.classList.add('resting');lroll.style.transform='';$('#lday').textContent='';crown.disabled=true;$('.hero').classList.add('resting');$('#lcap').textContent='השעון נח';TODAY=t;return reloadSoon()}
+      if(t.rest&&!TODAY.rest){held=true;lroll.innerHTML='<p class="rest">'+t.head+'</p><p class="rest2">'+t.bye+'</p>';lroll.classList.add('resting');lroll.style.transform='';$('#lday').textContent='';crown.disabled=true;crown.setAttribute('aria-hidden','true');var ls=$('#lscr');ls.removeAttribute('role');ls.removeAttribute('aria-pressed');ls.tabIndex=-1;ls.setAttribute('aria-label','השעון נח');$('.hero').classList.add('resting');$('#lcap').textContent='השעון נח';var tbi=$('#todaybar .tbi');if(tbi)tbi.hidden=true;$('.today .panel .page').hidden=true;$('.days').hidden=true;$$('.chips li.today').forEach(function(li){li.classList.remove('today')});TODAY=t;return reloadSoon()}
       if(t.rest!==TODAY.rest||t.date!==TODAY.date)return reloadSoon();
       if(!TODAY.rest){var k2=hourKey();if(k2!==HK){HK=k2;setPrayer(k2);lroll.innerHTML+=lroll.innerHTML;y=0;move(0)}}
       var soon=$('#todaybar .soon');if(soon&&t.toSet>0)soon.textContent=' · עוד '+t.toSet+' דק׳ לשקיעה';
@@ -775,6 +777,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     var BHM=lroll.innerHTML;
     function setPrayer(k){
       if(resting)return;
+      var side=$('.trio .w:first-child img');if(side)side.src=k==='shema'?'assets/apple-maariv.webp':'assets/apple-shema.webp';
       if(!k){lroll.innerHTML=BHM}else{var x=TX[k];lroll.innerHTML='<p class="lt">'+x.t+'</p>'+x.p.map(function(t){return '<p>'+t+'</p>'}).join('')}
       $('#lscr').setAttribute('aria-label','שעון חי: '+lroll.querySelector('.lt').textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
     }
@@ -835,7 +838,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 
   /* screens rail dots */
   var rail=$('#rail'),slides=$$('.slide'),dots=$('#dots');
-  slides.forEach(function(s,i){var b=document.createElement('button');b.setAttribute('aria-label','מסך '+(i+1));b.addEventListener('click',function(){s.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest',inline:'start'})});dots.appendChild(b)});
+  slides.forEach(function(s,i){var b=document.createElement('button');b.setAttribute('aria-label',s.querySelector('.lbl').textContent+': '+s.querySelector('h3').textContent);b.addEventListener('click',function(){s.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest',inline:'start'})});dots.appendChild(b)});
   var db=$$('#dots button');
   function mark(){
     var st=slides[0].getBoundingClientRect().width+12,best=Math.max(0,Math.min(slides.length-1,Math.round(Math.abs(rail.scrollLeft)/st)));
