@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400..800&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
 <style>
 :root{
   --bg:#fbfbfd; --ink:#1d1d1f; --muted:#6e6e73; --hair:rgba(0,0,0,.08);
@@ -68,9 +68,9 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.06;letter-spacin
 .store b{display:block;font-size:15.5px;font-weight:700;line-height:1.15}
 .store small{display:block;font-size:11.5px;opacity:.7;line-height:1.1}
 .store:active{transform:scale(.97)}
-.trio{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:1.5vw;margin-top:44px;padding-bottom:40px}
+.trio{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:3.5vw;margin-top:44px;padding-bottom:40px}
 .trio .w{--s:27vw;width:var(--s);animation:float 7s ease-in-out infinite}
-.trio .w:nth-child(1),.trio .w:nth-child(3){--s:19vw;margin-bottom:30px}
+.trio .w:nth-child(1),.trio .w:nth-child(3){--s:17vw;margin-bottom:30px}
 .trio .live-w{--s:54vw;animation:none;margin-bottom:6px}
 /* the live watch */
 .live{position:relative;width:100%;aspect-ratio:1;border-radius:50%;background:#000;padding:4.5%;
@@ -87,17 +87,17 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.06;letter-spacin
 .lroll .lt{font:700 5.2cqw var(--sans);color:#b9b2ff;letter-spacing:.04em}
 .crown{position:absolute;right:-6%;top:33%;width:6.5%;height:21%;border-radius:5px;cursor:ns-resize;touch-action:none;
   background:linear-gradient(90deg,#2c2c2e,#a5a5ab 50%,#2c2c2e);overflow:visible}
-.crown::before{content:"";position:absolute;inset:-40% -260%}
+.crown::before{content:"";position:absolute;inset:-30% -120%}
 .crown i{position:absolute;inset:8% 0;border-radius:3px;background:repeating-linear-gradient(0deg,rgba(0,0,0,.5) 0 2px,transparent 2px 5px);background-position:0 var(--cy,0px)}
 .crown.nudge{animation:nudge 2.4s ease-in-out 3}
 @keyframes nudge{25%{transform:translateX(18%)}40%{transform:none}55%{transform:translateX(18%)}70%{transform:none}}
-.trio .live-cap{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
 .live-cap .dot{width:7px;height:7px;border-radius:50%;background:#34c759;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,199,89,.6)}70%,100%{box-shadow:0 0 0 7px rgba(52,199,89,0)}}
 
 .trio .w:nth-child(3){animation-delay:-4.6s}
 @keyframes float{50%{transform:translateY(-10px)}}
 .trio .cap{display:block;white-space:nowrap;margin-top:14px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.trio .cap.live-cap{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
 
 /* watch hardware */
 .dev{position:relative;background:#000;padding:5%;border-radius:50%;aspect-ratio:1;
@@ -125,6 +125,7 @@ section{padding-block:80px}
 .card .dev{width:62%;max-width:250px;margin:26px auto -28%;transition:transform .8s var(--ease)}
 .card .dev.sq{width:54%}
 .card.has-dev{padding-bottom:0}
+.card:not(.has-dev){min-height:0}
 .big-n{font-weight:800;font-size:clamp(84px,24vw,140px);line-height:.9;letter-spacing:-.05em;margin-top:6px;
   background:linear-gradient(160deg,#6c5fd6,#c24d7a);-webkit-background-clip:text;background-clip:text;color:transparent}
 .nus{display:flex;flex-direction:column;gap:2px;margin-top:14px;font-weight:800;font-size:clamp(30px,8.5vw,44px);line-height:1.15;letter-spacing:-.02em}
@@ -155,7 +156,7 @@ section{padding-block:80px}
 .ins.rc .body{background:var(--mint)}
 .ins .l{display:block;font:700 13px var(--sans);color:var(--lav-d);margin-bottom:2px}
 .ins.rc .l{color:var(--mint-d)}
-.ins.none .body{background:#f5f5f7;color:#86868b;font:500 15px/1.5 var(--sans);display:flex;align-items:center;justify-content:center;text-align:center}
+.ins.none .body{background:none;border:1px dashed rgba(0,0,0,.14);color:#6e6e73;font:500 15px/1.5 var(--sans);display:flex;align-items:center;justify-content:center;text-align:center}
 .now{margin:0 auto 18px;max-width:40em;text-align:center;font-size:16px;color:#56565b}
 .now b{color:var(--ink);font-weight:600}
 .chips li.today{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -171,7 +172,7 @@ section{padding-block:80px}
 .rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px var(--g) 10px;scroll-padding-inline:var(--g);scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
 .slide{flex:none;width:76vw;max-width:340px;scroll-snap-align:start;border-radius:var(--r);padding:26px 22px 0;overflow:hidden;display:flex;flex-direction:column;min-height:440px}
-.slide .lbl{font-weight:700;font-size:14px;color:var(--muted)}
+.slide .lbl{font-weight:700;font-size:14px;color:#56565b}
 .slide h3{font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.1;margin-top:4px}
 .slide p{color:#56565b;font-size:15.5px;margin-top:6px}
 .slide .dev{width:78%;margin:auto auto -16%}
@@ -254,7 +255,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   .trio .live-w{--s:min(32vw,360px)}
   .bento{grid-template-columns:repeat(6,1fr)}
   .bento .c2{grid-column:span 2}.bento .c3{grid-column:span 3}.bento .c4{grid-column:span 4}
-  .card{padding:36px 34px;min-height:300px}
+  .card,.card:not(.has-dev){padding:36px 34px;min-height:300px}
   .card.has-dev{padding-bottom:0}
   .today .panel{padding:44px}
   .page{max-width:680px;margin-inline:auto;padding:30px 36px;font-size:21px}
@@ -304,7 +305,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <a class="store" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span><b>גרמין</b><small>Garmin</small></span></a>
     </div>
     <div class="trio">
-      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" width="403" height="480"></div><span class="cap">Apple Watch</span></div>
+      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" width="403" height="480" fetchpriority="high"></div><span class="cap">Apple Watch</span></div>
       <div class="w live-w">
         <div class="live">
           <div class="lscr" id="lscr" role="img" aria-label="שעון חי: התאריך העברי של היום וברכת המזון בגלילה אוטומטית">
@@ -324,7 +325,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
         </div>
         <span class="cap live-cap" id="lcap"><span class="dot"></span>חי · סובבו את הכתר</span>
       </div>
-      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-mincha.webp" alt="" width="454" height="454"></div><span class="cap">Garmin</span></div>
+      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-mincha.webp" alt="" width="454" height="454" fetchpriority="high"></div><span class="cap">Garmin</span></div>
     </div>
   </div>
 </header>
@@ -356,14 +357,14 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     <div class="panel rv">
       <p class="now" id="now" hidden></p>
       <div class="days" role="group" aria-label="בחרו יום">
-        <button data-day="weekday" aria-pressed="false">יום חול</button><button data-day="shabbat" aria-pressed="true">שבת</button><button data-day="rc" id="rc-btn" aria-pressed="false">ראש חודש</button>
+        <button data-day="weekday" id="wd-btn" aria-pressed="false">יום חול</button><button data-day="shabbat" aria-pressed="true">שבת</button><button data-day="rc" id="rc-btn" aria-pressed="false">ראש חודש</button>
       </div>
       <div class="page">
         <p><span class="dim">…</span>שֶׁלֹּא נֵבוֹשׁ וְלֹא נִכָּלֵם לְעוֹלָם וָעֶד.</p>
         <div class="slot">
         <div class="ins on" data-for="shabbat"><div><p class="body"><span class="l">בְּשַׁבָּת</span>רְצֵה וְהַחֲלִיצֵנוּ יְיָ אֱלֹהֵינוּ בְּמִצְוֹתֶיךָ, וּבְמִצְוַת יוֹם הַשְּׁבִיעִי הַשַּׁבָּת הַגָּדוֹל וְהַקָּדוֹשׁ הַזֶּה<span class="dim">…</span></p></div></div>
         <div class="ins rc" data-for="rc"><div><p class="body"><span class="l" id="rc-lbl">בְּרֹאשׁ חֹדֶשׁ</span>אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ, יַעֲלֶה וְיָבֹא<span class="dim">…</span> בְּיוֹם <span id="yv-word">רֹאשׁ הַחֹדֶשׁ</span> הַזֶּה<span class="dim">…</span></p></div></div>
-        <div class="ins none" data-for="weekday"><div><p class="body">ביום חול אין כאן תוספת, וממשיכים ישר ל״וּבְנֵה יְרוּשָׁלַיִם״.</p></div></div>
+        <div class="ins none" data-for="weekday"><div><p class="body" id="wd-text">ביום חול אין כאן תוספת, וממשיכים ישר ל״וּבְנֵה יְרוּשָׁלַיִם״.</p></div></div>
         </div>
         <p>וּבְנֵה יְרוּשָׁלַיִם עִיר הַקֹּדֶשׁ בִּמְהֵרָה בְיָמֵינוּ.</p>
       </div>
@@ -430,7 +431,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     <div class="dl">
       <div class="card mint rv"><div class="dev"><img src="assets/wear-shema.webp" alt="" loading="lazy" width="466" height="466"></div><h3>Wear OS</h3><p>אנדרואיד, ב־<bdi>Google Play</bdi></p><a class="btn" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>להורדה</a></div>
       <div class="card lav rv" style="--d:.08s"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" loading="lazy" width="403" height="480"></div><h3>Apple Watch</h3><p>ב־<bdi>App Store</bdi></p><a class="btn" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><svg class="i"><use href="#i-apple"/></svg>להורדה</a></div>
-      <div class="card peach rv" style="--d:.16s"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" loading="lazy" width="454" height="454"></div><h3>Garmin</h3><p>ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה</p><p class="models">fēnix · epix · Forerunner · Venu · vívoactive · MARQ · Enduro</p><a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg>להורדה</a></div>
+      <div class="card peach rv" style="--d:.16s"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" loading="lazy" width="454" height="454"></div><h3>Garmin</h3><p>ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה</p><p class="models">fēnix&nbsp;· epix&nbsp;· Forerunner&nbsp;· Venu&nbsp;· vívoactive&nbsp;· MARQ&nbsp;· Enduro</p><a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg>להורדה</a></div>
     </div>
   </div>
 </section>
@@ -499,9 +500,13 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     /* a rough local sunset (hours): Israel-like latitude, standard time, plus an hour when the clock is on summer time.
        The Hebrew day starts at sunset, so after it the date and the day's insertions are tomorrow's. */
     function sunset(d){
-      var y0=new Date(d.getFullYear(),0,1),doy=(d-y0)/864e5,jan=y0.getTimezoneOffset(),jul=new Date(d.getFullYear(),6,1).getTimezoneOffset();
-      var dst=d.getTimezoneOffset()<Math.max(jan,jul)?1:0;
-      return 17.73+1.07*Math.sin(2*Math.PI*(doy-80)/365)+dst;
+      var off=-d.getTimezoneOffset(),jan=-new Date(d.getFullYear(),0,1).getTimezoneOffset(),jul=-new Date(d.getFullYear(),6,1).getTimezoneOffset();
+      var std=Math.min(jan,jul),il=std===120,lat=(il?31.78:40)*Math.PI/180,lon=il?35.22:std/4;
+      var doy=(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-Date.UTC(d.getFullYear(),0,1))/864e5,g=2*Math.PI/365*doy;
+      var eq=229.18*(.000075+.001868*Math.cos(g)-.032077*Math.sin(g)-.014615*Math.cos(2*g)-.040849*Math.sin(2*g));
+      var de=.006918-.399912*Math.cos(g)+.070257*Math.sin(g)-.006758*Math.cos(2*g)+.000907*Math.sin(2*g)-.002697*Math.cos(3*g)+.00148*Math.sin(3*g);
+      var ha=Math.acos(Math.cos(90.833*Math.PI/180)/(Math.cos(lat)*Math.cos(de))-Math.tan(lat)*Math.tan(de))*180/Math.PI;
+      return (720-4*(lon-ha)-eq+off)/60;
     }
     function today(now){
       var night=now.getHours()+now.getMinutes()/60>=sunset(now),d=night?addDays(now,1):now;
@@ -520,13 +525,15 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(h.m==='Sivan'&&h.d===6){lab.push('שבועות');yv='חַג הַשָּׁבֻעוֹת'}
       if((h.d===1&&h.m!=='Tishri')||h.d===30){lab.push('ראש חודש');yv=yv||'רֹאשׁ הַחֹדֶשׁ'}
       if(yv)add(ins,'יעלה ויבוא');
+      var P={'ראש השנה':'בְּרֹאשׁ הַשָּׁנָה','סוכות':'בְּסֻכּוֹת','חול המועד סוכות':'בְּחֹל הַמּוֹעֵד','הושענא רבה':'בְּהוֹשַׁעְנָא רַבָּה','שמיני עצרת':'בִּשְׁמִינִי עֲצֶרֶת','פסח':'בְּפֶסַח','חול המועד פסח':'בְּחֹל הַמּוֹעֵד','שביעי של פסח':'בִּשְׁבִיעִי שֶׁל פֶּסַח','שבועות':'בְּשָׁבוּעוֹת','ראש חודש':'בְּרֹאשׁ חֹדֶשׁ'},yvLab='',yvP='';
+      lab.forEach(function(l){if(!yvLab&&P[l]){yvLab=l;yvP=P[l]}});
       var ch=0;
       if(h.m==='Kislev'&&h.d>=25)ch=h.d-24;
       if(h.m==='Tevet'&&h.d<=3)ch=heb(addDays(d,-h.d)).d-24+h.d;
       if(ch>=1&&ch<=8){lab.push('חנוכה, נר '+gem(ch));add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===14){lab.push('פורים');add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===15)lab.push('שושן פורים');
-      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,shabbat:dow===6,night:night};
+      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:dow===6,night:night};
     }
     if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;$('#lday').textContent=TODAY.lab.length?TODAY.lab.join(' · '):'יום חול'}catch(e){TODAY=null}}
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
@@ -534,10 +541,11 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 
     /* auto-scroll with the app's rules: manual input pauses it, it resumes 1.5 s after the last input */
     lroll.innerHTML+=lroll.innerHTML;
-    var y=0,resume=0,held=false,cy=0,touched=false,engaged=0,over=hovering($('.live'));
+    var y=0,resume=0,held=false,cy=0,touched=false,engaged=0,focus=false;
+    crown.addEventListener('focus',function(){focus=true});crown.addEventListener('blur',function(){focus=false});
     function half(){return lroll.scrollHeight/2}
     function move(dy){var hh=half();y=((y+dy)%hh+hh)%hh;lroll.style.transform='translateY('+(-y).toFixed(2)+'px)'}
-    if(!reduce)runner(lscr,function(dt){move(lroll.clientWidth*.055*dt)},function(){return held||over()||performance.now()<resume});
+    if(!reduce)runner(lscr,function(dt){move(lroll.clientWidth*.055*dt)},function(){return held||focus||performance.now()<resume});
     function input(dy){
       if(!touched){touched=true;crown.classList.remove('nudge')}
       move(dy);cy+=dy;crown.style.setProperty('--cy',(cy*.6).toFixed(1)+'px');resume=performance.now()+1500;engaged=performance.now()+2500;
@@ -559,10 +567,11 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   /* ---------- insertions: today's real insertion first, then a short tour; a click takes over ---------- */
   var days=$$('.days button'),ins=$$('.ins'),order=['shabbat','rc','weekday'],auto=true,timer=null,steps=0;
   if(TODAY){
-    if(TODAY.yv){$('#yv-word').textContent=TODAY.yv;$('#rc-btn').textContent=TODAY.lab.filter(function(l){return l!=='שבת'})[0]||'ראש חודש';$('#rc-lbl').textContent=TODAY.lab.filter(function(l){return l!=='שבת'})[0]||'בְּרֹאשׁ חֹדֶשׁ'}
+    if(TODAY.yv){$('#yv-word').textContent=TODAY.yv;$('#rc-btn').textContent=TODAY.yvLab;$('#rc-lbl').textContent=TODAY.yvP}
+    if(!TODAY.yv&&TODAY.ins.indexOf('על הניסים')>=0){var hol=TODAY.lab.filter(function(l){return /חנוכה|פורים/.test(l)})[0].replace(/,.*/,'');$('#wd-btn').textContent=hol;$('#wd-text').textContent='ב'+hol+' אין כאן תוספת: ״על הניסים״ נאמר קודם, בברכת ״נודה לך״.'}
     var first=TODAY.yv?'rc':TODAY.shabbat?'shabbat':'weekday';
     order=[first].concat(order.filter(function(x){return x!==first}));
-    var said=TODAY.ins.length?'בברכת המזון אומרים '+TODAY.ins.join(' ו')+'.':'אין תוספות מיוחדות בברכת המזון.';
+    var said=TODAY.ins.length?'בברכת המזון אומרים '+TODAY.ins.map(function(x){return '״'+x+'״'}).join(' ו')+'.':'אין תוספות מיוחדות בברכת המזון.';
     $('#now').innerHTML='<b>היום, '+TODAY.short+(TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+'.</b> '+said;
     $('#now').hidden=false;
     $$('.chips li').forEach(function(li){var k=li.dataset.k;if(k&&TODAY.ins.indexOf(k)>=0)li.classList.add('today')});
