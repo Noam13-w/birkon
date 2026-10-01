@@ -9,13 +9,20 @@
 <meta property="og:description" content="ברכון וסידור ישירות על השעון החכם. Apple Watch, Wear OS ו־Garmin.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://noam13-w.github.io/birkon/assets/og.jpg">
-<meta name="theme-color" content="#fbfbfd">
+<meta name="theme-color" content="#fbfbfd" id="themecolor">
 <link rel="icon" href="assets/icon-96.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400..800&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
+<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/frankruhl-hebrew.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/frankruhl-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/frankruhl-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/frankruhl-hebrew.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/frankruhl-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/frankruhl-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/heebo-hebrew.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/heebo-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(assets/fonts/heebo-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 :root{
   --bg:#fbfbfd; --ink:#1d1d1f; --muted:#6e6e73; --hair:rgba(0,0,0,.08);
   --lav:#eeebfc; --lav-d:#5a4cc4; --mint:#e4f5ec; --mint-d:#246e4b; --peach:#fdefe6; --peach-d:#a4532a;
@@ -163,8 +170,10 @@ section{padding-block:80px}
 .chips li.today span{color:rgba(255,255,255,.75)}
 .ins.on .body{opacity:1;transform:none;transition-delay:.2s}
 .note{margin-top:12px;text-align:center;font-size:14px;color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:36px}
-.chips li{padding:9px 16px;border-radius:99px;background:#fff;border:1px solid var(--hair);font-size:15px;font-weight:500}
+.groups{display:grid;gap:26px;margin-top:40px}
+.grp h3{font-size:15px;font-weight:700;color:#56565b;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips li{padding:8px 14px;border-radius:99px;background:#fff;border:1px solid var(--hair);font-size:15px;font-weight:500}
 .chips li span{color:var(--muted);font-weight:400}
 .fine{margin:24px auto 0;max-width:36em;text-align:center;color:var(--muted);font-size:16px}
 
@@ -187,7 +196,7 @@ section{padding-block:80px}
 /* ---------- privacy ---------- */
 .privacy{text-align:center}
 .privacy .row{display:grid;gap:12px;margin-top:40px}
-.privacy .card{min-height:0;text-align:center;padding:32px 22px}
+.privacy .row .card,.privacy .card{min-height:0;text-align:center;padding:32px 22px}
 .privacy .card p{margin-inline:auto}
 .privacy .ico{width:52px;height:52px;border-radius:16px;margin:0 auto 14px;display:grid;place-items:center;background:#fff}
 .privacy .ico svg{width:26px;height:26px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -218,6 +227,7 @@ section{padding-block:80px}
 .dl .btn{margin-top:18px;display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:99px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;transition:transform .3s var(--ease)}
 .dl .btn svg{width:18px;height:18px}
 .dl .card p.models{font-size:13px;margin-top:8px;direction:ltr;text-wrap:balance}
+.dl .appic{display:none}
 
 footer{padding:48px 0 120px;border-top:1px solid var(--hair);font-size:13.5px;color:var(--muted);line-height:1.7}
 footer .wrap{display:grid;gap:12px}
@@ -283,7 +293,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .todaybar b{font-weight:700;color:var(--ink)}
 .todaybar i{font-style:normal;color:var(--lav-d);font-weight:600}
 /* the hero after sunset */
-.hero.night{background:linear-gradient(#0c0d1f calc(100% - 140px),var(--bg));color:#f2f1fa}
+.hero.night{background:linear-gradient(#0c0d1f calc(100% - 56px),var(--bg));color:#f2f1fa}
+.hero.night .trio{padding-bottom:72px}
 .hero.night::before{background:radial-gradient(40% 35% at 25% 30%,#2b2466 0%,transparent 70%),radial-gradient(38% 32% at 78% 22%,#3d1f4f 0%,transparent 70%),radial-gradient(45% 35% at 55% 75%,#12324a 0%,transparent 70%),radial-gradient(35% 30% at 15% 80%,#1d2a5e 0%,transparent 70%)}
 .hero.night::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;
   background-image:radial-gradient(1px 1px at 12% 18%,#fff 50%,transparent),radial-gradient(1px 1px at 72% 12%,#fff 50%,transparent),radial-gradient(1.5px 1.5px at 86% 34%,#fff 50%,transparent),radial-gradient(1px 1px at 30% 8%,#fff 50%,transparent),radial-gradient(1px 1px at 55% 26%,#fff 50%,transparent),radial-gradient(1.5px 1.5px at 6% 42%,#fff 50%,transparent),radial-gradient(1px 1px at 92% 8%,#fff 50%,transparent),radial-gradient(1px 1px at 44% 14%,#fff 50%,transparent);
@@ -297,7 +308,13 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .hero.night .trio .cap{color:#a9a8c4}
 .hero.night .trio .cap.live-cap{color:#f2f1fa}
 .hero.night .dev,.hero.night .live{box-shadow:0 0 0 1.5px #4a4a52,0 0 0 4px #1c1c1e,0 0 0 5px #8e8e93,0 30px 60px -20px rgba(120,100,255,.35)}
-.nav.night-top:not(.lined){background:rgba(12,13,31,.7);color:#fff}
+.nav.night-top:not(.lined){background:#0c0d1f;color:#fff;border-bottom-color:rgba(255,255,255,.06)}
+.nav.night-top:not(.lined) ul{color:rgba(255,255,255,.72)}
+.nav.night-top:not(.lined) ul a:hover{color:#fff}
+.todaybar.night{background:#0c0d1f;color:#c9c7e0;border-color:rgba(255,255,255,.08)}
+.todaybar.night b{color:#fff}
+.todaybar.night i{color:#b9b2ff}
+.todaybar{cursor:pointer}
 .nav.night-top:not(.lined) .get{background:#fff;color:var(--ink)}
 /* bento: devices sit at the bottom of their card */
 .card.has-dev{display:flex;flex-direction:column}
@@ -306,8 +323,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .card .lbl{margin-bottom:6px}
 /* speed control */
 .speed{gap:5px}
-.speed button{flex:1;height:22px;padding:8px 0;background:none;position:relative}
-.speed button::after{content:"";position:absolute;inset:8px 0;border-radius:3px;background:rgba(47,95,174,.2);transition:background .3s}
+.speed button{flex:1;height:32px;padding:0;background:none;position:relative}
+.speed button::after{content:"";position:absolute;inset:13px 0;border-radius:3px;background:rgba(47,95,174,.2);transition:background .3s}
 .speed button.on::after{background:var(--sky-d)}
 .speedv{font-size:14px!important;margin-top:4px!important}
 .speedv span{font-weight:700;color:var(--sky-d)}
@@ -315,7 +332,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .mini .paused{position:absolute;inset:auto 0 22%;margin:auto;width:max-content;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.9);color:var(--ink);font:600 12px var(--sans);opacity:0;transition:opacity .25s}
 .mini.stopped .paused{opacity:1}
 /* nine prayers as the watch's own menu */
-.wmenu{display:flex;flex-direction:column;gap:6px;margin-top:16px;padding:14px;border-radius:22px;background:#0b0b0d;max-width:320px}
+.wscr{margin-top:16px;height:296px;border-radius:26px;background:#0b0b0d;overflow:hidden;max-width:320px;position:relative;-webkit-mask-image:linear-gradient(#0000,#000 12%,#000 82%,#0000);mask-image:linear-gradient(#0000,#000 12%,#000 82%,#0000)}
+.wmenu{display:flex;flex-direction:column;gap:6px;padding:14px;will-change:transform}
 .wmenu li{padding:9px 14px;border-radius:14px;background:#1f1f22;color:#f2f2f7;font-size:15px;font-weight:600;line-height:1.25}
 .wmenu li small{color:#e9c46a;font-weight:500;font-size:12.5px;margin-inline-start:6px}
 /* nusach switcher */
@@ -350,7 +368,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   /* download: rows, not tall cards */
   .dl{gap:10px}
   .dl .card{flex-direction:row;flex-wrap:wrap;align-items:center;text-align:start;padding:16px 18px;gap:0 14px}
-  .dl .card .dev{width:64px;margin:0}.dl .card .dev.sq{width:56px}
+  .dl .card .dev{display:none}
+  .dl .appic{display:block;width:48px;height:48px;border-radius:12px}
   .dl .card .dev::after{display:none}
   .dl .card>h3{font-size:21px;flex:1}
   .dl .card>p{flex-basis:100%;order:3;margin:6px 0 0!important;font-size:14.5px}
@@ -360,6 +379,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 }
 @media (min-width:740px){
   .bento .c6{grid-column:span 6}
+  .bento .c2.has-dev>.dev,.bento .c2.has-dev>.mini{width:80%;max-width:none;margin-bottom:-22%}
+  .wscr{height:250px}
+  .groups{grid-template-columns:repeat(3,1fr);gap:32px}
   .card.wide{grid-template-columns:1fr 1.3fr;align-items:center;min-height:0}
 }
 </style>
@@ -428,23 +450,23 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <article class="card sky has-dev c2 rv" style="--d:.08s"><span class="lbl">גלילה אוטומטית</span><h3>קוראים בלי לגעת.</h3>
         <div class="speed" id="speed" role="group" aria-label="מהירות הגלילה"><button aria-label="מהירות 1"></button><button aria-label="מהירות 2"></button><button aria-label="מהירות 3"></button><button aria-label="מהירות 4"></button><button aria-label="מהירות 5"></button><button aria-label="מהירות 6"></button><button aria-label="מהירות 7"></button><button aria-label="מהירות 8"></button><button aria-label="מהירות 9"></button><button aria-label="מהירות 10"></button></div>
         <p class="speedv"><span id="speedv">מהירות 3</span> · נגיעה בשעון עוצרת</p>
-        <div class="mini" id="mini" role="img" aria-label="ברכת המזון בגלילה אוטומטית"><div class="scr"><div class="roll" id="roll">
+        <div class="mini" id="mini" role="button" tabindex="0" aria-pressed="false" aria-label="עצירה והמשך של הגלילה"><div class="scr"><div class="roll" id="roll">
           <p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, הַזָּן אֶת הָעוֹלָם כֻּלּוֹ בְּטוּבוֹ, בְּחֵן בְּחֶסֶד וּבְרַחֲמִים, הוּא נוֹתֵן לֶחֶם לְכָל בָּשָׂר, כִּי לְעוֹלָם חַסְדּוֹ.</p>
           <p>וּבְטוּבוֹ הַגָּדוֹל תָּמִיד לֹא חָסַר לָנוּ, וְאַל יֶחְסַר לָנוּ מָזוֹן לְעוֹלָם וָעֶד, בַּעֲבוּר שְׁמוֹ הַגָּדוֹל.</p>
           <p>כִּי הוּא אֵל זָן וּמְפַרְנֵס לַכֹּל וּמֵטִיב לַכֹּל, וּמֵכִין מָזוֹן לְכָל בְּרִיּוֹתָיו אֲשֶׁר בָּרָא.</p>
           <p>בָּרוּךְ אַתָּה יְיָ, הַזָּן אֶת הַכֹּל.</p>
         </div></div><span class="paused" aria-hidden="true">עצרה</span></div></article>
       <article class="card mint c2 rv" style="--d:.16s"><span class="lbl">מה בפנים</span><h3>תשע תפילות וברכות.</h3>
-        <ul class="wmenu" aria-label="התפילות בברכון"><li>מנחה</li><li>ערבית</li><li>ברכת המזון</li><li>ברכה מעין שלוש</li><li>בורא נפשות</li><li>אשר יצר</li><li>תפילת הדרך</li><li>קריאת שמע שעל המיטה</li><li>הושענות <small>בסוכות</small></li></ul></article>
-      <article class="card butter wide c6 rv"><div class="nhead"><span class="lbl">נוסחים</span><h3>הנוסח שלכם, מילה במילה.</h3><p>ספרד, אשכנז ועדות המזרח, בניקוד מלא. בחרו נוסח, והמילים שבהן הוא שונה מסומנות.</p></div>
+        <div class="wscr"><ul class="wmenu" id="wmenu" aria-label="התפילות בברכון"><li>מנחה</li><li>ערבית</li><li>ברכת המזון</li><li>ברכה מעין שלוש</li><li>בורא נפשות</li><li>אשר יצר</li><li>תפילת הדרך</li><li>קריאת שמע שעל המיטה</li><li>הושענות <small>בסוכות</small></li></ul></div></article>
+      <article class="card butter wide c6 rv"><div class="nhead"><span class="lbl">נוסחים</span><h3>הנוסח שלכם, מילה במילה.</h3><p>ספרד, אשכנז ועדות המזרח, בניקוד מלא. בחרו נוסח, והמילים שמשתנות מסומנות.</p></div>
         <div class="nbox">
           <div class="nseg" role="group" aria-label="בחירת נוסח"><button data-n="s" aria-pressed="true">ספרד</button><button data-n="a" aria-pressed="false">אשכנז</button><button data-n="e" aria-pressed="false">עדות המזרח</button></div>
-          <div class="nline" aria-live="polite">
-            <p data-n="s" class="on"><mark>אֱלֹהֵינוּ</mark> אָבִינוּ, רְעֵנוּ זוּנֵנוּ פַּרְנְסֵנוּ <mark>וְכַלְכְּלֵנוּ</mark> <mark>וְהַרְוִיחֵנוּ,</mark> <mark>וְהַרְוַח</mark> לָנוּ <mark>יְיָ</mark> <mark>אֱלֹהֵינוּ</mark> מְהֵרָה מִכָּל צָרוֹתֵינוּ.</p>
-            <p data-n="a"><mark>אֱלֹהֵינוּ,</mark> אָבִינוּ, רְעֵנוּ, זוּנֵנוּ, פַּרְנְסֵנוּ <mark>וְכַלְכְּלֵנוּ</mark> <mark>וְהַרְוִיחֵנוּ,</mark> <mark>וְהַרְוַח</mark> לָנוּ <mark>יְיָ</mark> <mark>אֱלֹהֵינוּ</mark> מְהֵרָה מִכָּל צָרוֹתֵינוּ.</p>
-            <p data-n="e">אָבִינוּ, רְעֵנוּ, זוּנֵנוּ, פַּרְנְסֵנוּ, <mark>כַּלְכְּלֵנוּ,</mark> <mark>הַרְוִיחֵנוּ,</mark> <mark>הַרְוַח</mark> לָנוּ מְהֵרָה מִכָּל צָרוֹתֵינוּ.</p>
+          <div class="nline">
+            <p data-n="s" class="on">רַחֵם יְיָ אֱלֹהֵינוּ עַל יִשְׂרָאֵל עַמֶּךָ, וְעַל יְרוּשָׁלַיִם עִירֶךָ, וְעַל צִיּוֹן מִשְׁכַּן כְּבוֹדֶךָ…</p>
+            <p data-n="a" aria-hidden="true">רַחֵם נָא יְיָ אֱלֹהֵינוּ, עַל יִשְׂרָאֵל עַמֶּךָ, וְעַל יְרוּשָׁלַיִם עִירֶךָ, וְעַל צִיּוֹן מִשְׁכַּן כְּבוֹדֶךָ…</p>
+            <p data-n="e" aria-hidden="true">רַחֵם יְיָ אֱלֹהֵינוּ עָלֵינוּ וְעַל יִשְׂרָאֵל עַמָּךְ, וְעַל יְרוּשָׁלַיִם עִירָךְ, וְעַל הַר צִיּוֹן מִשְׁכַּן כְּבוֹדָךְ…</p>
           </div>
-          <p class="nsrc">מתוך ברכת המזון, ברכת ״בונה ירושלים״</p>
+          <p class="nsrc">מתוך ברכת המזון, ברכת ״רחם״. מסומן מה שהשתנה מהנוסח הקודם.</p>
         </div>
       </article>
     </div>
@@ -470,20 +492,12 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       </div>
       <p class="note">מתוך ברכת המזון, נוסח ספרד</p>
     </div>
-    <ul class="chips rv">
-      <li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחול המועד</span></li>
-      <li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li>
-      <li>משיב הרוח <span>או מוריד הטל</span></li>
-      <li>טל ומטר <span>בארץ ובחו״ל</span></li>
-      <li>עננו <span>ואבינו מלכנו</span></li>
-      <li>עשרת ימי תשובה</li>
-      <li>אתה חוננתנו <span>וויהי נועם</span></li>
-      <li>ספירת העומר</li>
-      <li data-k="רצה">רצה והרחמן <span>שבת וחגים</span></li>
-      <li>מגדיל <span>או מגדול</span></li>
-      <li>תחנון <span>רק כשאומרים</span></li>
-    </ul>
-    <p class="fine rv">מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. אפשר לבחור ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי מיקום השעון.</p>
+    <div class="groups rv">
+      <div class="grp"><h3>בברכת המזון</h3><ul class="chips"><li data-k="רצה">רצה <span>בשבת</span></li><li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחגים</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li>הרחמן <span>לשבת ולחגים</span></li><li>מגדיל <span>או מגדול</span></li></ul></div>
+      <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li>יעלה ויבוא</li><li>על הניסים</li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
+      <div class="grp"><h3>אחרי העמידה</h3><ul class="chips"><li>תחנון <span>רק כשאומרים</span></li><li>אבינו מלכנו</li><li>ויהי נועם</li><li>ספירת העומר</li></ul></div>
+    </div>
+    <p class="fine rv" style="text-wrap:pretty">מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. אפשר לבחור ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי מיקום השעון.</p>
   </div>
 </section>
 
@@ -529,9 +543,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   <div class="wrap">
     <div class="center rv"><h2>בחרו את השעון שלכם.</h2><p class="sub">בחינם, בחנות של השעון.</p></div>
     <div class="dl">
-      <div class="card mint rv"><div class="dev"><img src="assets/wear-shema.webp" alt="" loading="lazy" width="466" height="466"></div><h3>Wear OS</h3><p>אנדרואיד, ב־<bdi>Google Play</bdi></p><a class="btn" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>להורדה</a></div>
-      <div class="card lav rv" style="--d:.08s"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" loading="lazy" width="403" height="480"></div><h3>Apple Watch</h3><p>ב־<bdi>App Store</bdi></p><a class="btn" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><svg class="i"><use href="#i-apple"/></svg>להורדה</a></div>
-      <div class="card peach rv" style="--d:.16s"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" loading="lazy" width="454" height="454"></div><h3>Garmin</h3><p>ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה</p><p class="models">fēnix&nbsp;· epix&nbsp;· Forerunner&nbsp;· Venu&nbsp;· vívoactive&nbsp;· MARQ&nbsp;· Enduro</p><a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg>להורדה</a></div>
+      <div class="card mint rv"><img class="appic" src="assets/icon-96.png" alt="" width="48" height="48" loading="lazy"><div class="dev"><img src="assets/wear-shema.webp" alt="" loading="lazy" width="466" height="466"></div><h3>Wear OS</h3><p>אנדרואיד, ב־<bdi>Google Play</bdi></p><a class="btn" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>להורדה</a></div>
+      <div class="card lav rv" style="--d:.08s"><img class="appic" src="assets/icon-96.png" alt="" width="48" height="48" loading="lazy"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" loading="lazy" width="403" height="480"></div><h3>Apple Watch</h3><p>ב־<bdi>App Store</bdi></p><a class="btn" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><svg class="i"><use href="#i-apple"/></svg>להורדה</a></div>
+      <div class="card peach rv" style="--d:.16s"><img class="appic" src="assets/icon-96.png" alt="" width="48" height="48" loading="lazy"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" loading="lazy" width="454" height="454"></div><h3>Garmin</h3><p>ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה</p><p class="models">fēnix&nbsp;· epix&nbsp;· Forerunner&nbsp;· Venu&nbsp;· vívoactive&nbsp;· MARQ&nbsp;· Enduro</p><a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg>להורדה</a></div>
     </div>
   </div>
 </section>
@@ -575,18 +589,33 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   function bar(){bars.forEach(function(b,i){b.classList.toggle('on',i<sp);b.setAttribute('aria-pressed',i===sp-1)});$('#speedv').textContent='מהירות '+sp}
   bar();
   bars.forEach(function(b,i){b.addEventListener('click',function(){chosen=true;sp=i+1;stopped=false;mini.classList.remove('stopped');bar()})});
-  mini.addEventListener('click',function(){stopped=!stopped;mini.classList.toggle('stopped',stopped)});
+  function tog(){stopped=!stopped;mini.classList.toggle('stopped',stopped);mini.setAttribute('aria-pressed',stopped)}
+  mini.addEventListener('click',tog);mini.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
   if(!reduce){
     roll.innerHTML+=roll.innerHTML;
     runner(mini,function(dt){y=(y+(4+sp*2.4)*dt)%(roll.scrollHeight/2);roll.style.transform='translateY('+(-y).toFixed(2)+'px)'},function(){return stopped});
     setInterval(function(){if(document.hidden||chosen||stopped)return;sp=sp>=7?3:sp+1;bar()},2200);
   }
 
-  /* nusach switcher */
-  $$('.nseg button').forEach(function(b){b.addEventListener('click',function(){
-    $$('.nseg button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-    $$('.nline p').forEach(function(x){x.classList.toggle('on',x.dataset.n===b.dataset.n)});
-  })});
+  /* the watch-menu card scrolls slowly, like a list on the watch */
+  (function(){var m=$('#wmenu');if(reduce||!m)return;var y=0;m.innerHTML+=m.innerHTML;
+    runner(m.parentNode,function(dt){y=(y+14*dt)%(m.scrollHeight/2);m.style.transform='translateY('+(-y).toFixed(2)+'px)'},function(){return false})})();
+
+  /* nusach switcher: mark the words that differ from the nusach shown before */
+  (function(){
+    var lines={},cur='s';
+    $$('.nline p').forEach(function(p){lines[p.dataset.n]={el:p,words:p.textContent.split(' ')}});
+    function key(w){return w.replace(/[,.…:;]/g,'')}
+    function show(n){
+      if(n===cur)return;
+      var prev={};lines[cur].words.forEach(function(w){prev[key(w)]=1});
+      var L=lines[n];L.el.innerHTML=L.words.map(function(w){return prev[key(w)]?w:'<mark>'+w+'</mark>'}).join(' ');
+      $$('.nline p').forEach(function(p){var on=p===L.el;p.classList.toggle('on',on);p.setAttribute('aria-hidden',!on)});
+      $$('.nseg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.n===n)});
+      cur=n;
+    }
+    $$('.nseg button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.n)})});
+  })();
 
   /* ---------- the live watch: clock, today's Hebrew date, auto-scroll, a crown you can turn ---------- */
   var TODAY=null;
@@ -649,7 +678,10 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       var tb=$('#todaybar');
       tb.innerHTML='<b>'+TODAY.date+'</b>'+(TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+(TODAY.ins.length?' · בברכת המזון: <i>'+TODAY.ins.join(', ')+'</i>':'');
       tb.classList.add('on');
-      if(TODAY.dark){$('.hero').classList.add('night');$('#nav').classList.add('night-top')}
+      if(TODAY.dark){$('.hero').classList.add('night');$('#nav').classList.add('night-top');tb.classList.add('night');$('#themecolor').setAttribute('content','#0c0d1f')}
+      tb.setAttribute('role','link');tb.tabIndex=0;tb.title='לתוספות של היום';
+      function go(){$('#today').scrollIntoView({behavior:reduce?'auto':'smooth'})}
+      tb.addEventListener('click',go);tb.addEventListener('keydown',function(e){if(e.key==='Enter')go()});
     }
     if(matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
