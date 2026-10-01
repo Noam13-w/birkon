@@ -93,6 +93,7 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.08;letter-spacin
 .lscr{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;cursor:grab;user-select:none;-webkit-user-select:none;container-type:inline-size;
   background:radial-gradient(120% 90% at 50% 0%,#17172e 0%,#000 60%)}
 .lscr:active{cursor:grabbing}
+.lscr::after{content:"";position:absolute;inset:auto 0 0;height:24%;z-index:2;pointer-events:none;background:linear-gradient(#0000,#000)}
 .lhead{position:absolute;top:0;inset-inline:0;z-index:2;padding:10cqw 0 6cqw;text-align:center;background:linear-gradient(#000 72%,#0000)}
 .lhead b{display:block;font:600 7.5cqw/1 var(--sans);color:#fff;letter-spacing:.02em;direction:ltr}
 .lhead span{display:block;margin-top:1.8cqw;font:600 5.4cqw/1.2 var(--sans);color:#e9c46a}
@@ -304,8 +305,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .card .lbl{margin-bottom:6px}
 /* speed control */
 .speed{gap:5px}
-.speed button{flex:1;height:32px;padding:0;background:none;position:relative}
-.speed button::after{content:"";position:absolute;inset:13px 0;border-radius:3px;background:rgba(47,95,174,.2);transition:background .3s}
+.speed button{flex:1;height:44px;padding:0;background:none;position:relative}
+.speed button::after{content:"";position:absolute;inset:19px 0;border-radius:3px;background:rgba(47,95,174,.2);transition:background .3s}
 .speed button.on::after{background:var(--sky-d)}
 .speedv{font-size:14px!important;margin-top:4px!important}
 .speedv span{font-weight:700;color:var(--sky-d)}
@@ -338,7 +339,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .dotsrow button::before{inset:-14px -6px}
 .lroll .lt{letter-spacing:0}
 /* garmin text crop needs breathing room inside the round bezel */
-.dl .card .dev img[src*="garmin"]{padding:7%;background:#000}
+.dev img[src*="garmin"]{padding:6%;background:#000}
 @media (max-width:739px){
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
   .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:58%}
@@ -396,6 +397,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .hero.mincha::before{filter:hue-rotate(-18deg) saturate(1.2)}
 .qa .hero [class*=in-],.qa .trio{animation:none!important}
 @media (max-width:479px){.trio .w:nth-child(1),.trio .w:nth-child(3){display:none}.trio .live-w{--s:66vw}}
+@media (min-width:740px) and (max-height:880px){.hero{padding-top:44px}.hero h1{font-size:88px}.hero .lede{margin-top:12px}.stores{margin-top:20px}.trio{margin-top:26px}}
 </style>
 </head>
 <body>
@@ -427,7 +429,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <a class="store" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span><b>גרמין</b><small>Garmin</small></span></a>
     </div>
     <div class="trio">
-      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" width="403" height="480"></div><span class="cap">Apple Watch</span></div>
+      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-shema.webp" alt="" width="403" height="480"></div><span class="cap">Apple Watch</span></div>
       <div class="w live-w">
         <div class="live">
           <div class="lscr" id="lscr" role="img" aria-label="שעון חי: התאריך העברי של היום וברכת המזון בגלילה אוטומטית">
@@ -505,7 +507,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <p class="note">מתוך ברכת המזון, נוסח ספרד</p>
     </div>
     <div class="groups rv">
-      <div class="grp"><h3>בברכת המזון</h3><ul class="chips"><li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחול המועד</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li>הרחמן <span>לראש חודש ולסוכות</span></li><li>מגדיל <span>או מגדול</span></li></ul></div>
+      <div class="grp"><h3>בברכת המזון</h3><ul class="chips"><li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחול המועד</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li data-k="הרחמן">הרחמן <span>לראש חודש ולסוכות</span></li><li>מגדיל <span>או מגדול</span></li></ul></div>
       <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li data-k="יעלה ויבוא">יעלה ויבוא</li><li data-k="על הניסים">על הניסים</li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
       <div class="grp"><h3>אחרי העמידה</h3><ul class="chips"><li>תחנון <span>רק כשאומרים</span></li><li>אבינו מלכנו</li><li>ויהי נועם</li><li>ספירת העומר</li></ul></div>
     </div>
@@ -536,7 +538,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     <div class="rv"><h2>הכול על השעון.</h2><p class="sub">בלי טלפון, בלי אינטרנט ובלי איסוף מידע.</p></div>
     <div class="row">
       <div class="card sky rv"><div class="ico"><svg viewBox="0 0 24 24" stroke="#3a6fc4"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M4 4l16 16"/></svg></div><h3>בלי טלפון</h3><p>הברכון פועל על השעון עצמו.</p></div>
-      <div class="card lav rv" style="--d:.08s"><div class="ico"><svg viewBox="0 0 24 24" stroke="#6c5fd6"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><path d="M3 3l18 18"/></svg></div><h3>בלי אינטרנט</h3><p>לא צריך חיבור. ההתקנה נעשית מהחנות של השעון.</p></div>
+      <div class="card lav rv" style="--d:.08s"><div class="ico"><svg viewBox="0 0 24 24" stroke="#6c5fd6"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><path d="M3 3l18 18"/></svg></div><h3>בלי אינטרנט</h3><p>לא צריך חיבור, גם לא לתפילה עצמה.</p></div>
       <div class="card mint rv" style="--d:.16s"><div class="ico"><svg viewBox="0 0 24 24" stroke="#2f8a5f"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><h3>בלי איסוף מידע</h3><p>המיקום משמש רק לחישוב השקיעה, על השעון עצמו.</p></div>
     </div>
   </div>
@@ -610,7 +612,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   if(!reduce){
     roll.innerHTML+=roll.innerHTML;
     runner(mini,function(dt){y=(y+(4+sp*2.4)*dt)%(roll.scrollHeight/2);roll.style.transform='translateY('+(-y).toFixed(2)+'px)'},function(){return stopped});
-    setInterval(function(){if(document.hidden||chosen||stopped)return;sp=sp>=7?3:sp+1;bar()},2200);
+    var stepsLeft=4,iv=setInterval(function(){if(document.hidden||chosen||stopped)return;sp=sp>=7?3:sp+1;bar();if(--stepsLeft<=0)clearInterval(iv)},2200);
   }
 
   /* the watch-menu card scrolls slowly, like a list on the watch */
@@ -687,7 +689,10 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       lab.forEach(function(l){if(!yvLab&&P[l]){yvLab=l;yvP=P[l]}});
       function isYT(x){return (x.m==='Tishri'&&(x.d<=2||x.d===10||x.d===15||x.d===22||(!il&&(x.d===16||x.d===23))))||(x.m==='Nisan'&&(x.d===15||x.d===21||(!il&&(x.d===16||x.d===22))))||(x.m==='Sivan'&&(x.d===6||(!il&&x.d===7)))}
       var yt=isYT(h),erev=dow===5||isYT(heb(addDays(d,1)));
-      var rest=dow===6||yt;
+      var rest=dow===6||yt,shab=dow===6,cd=now.getDay(),m=il?45:90;
+      if(!night&&erev&&hr>=su.set-m/60){rest=true;shab=cd===5}
+      if(night&&(cd===6||isYT(heb(now)))&&hr<su.set+m/60){rest=true;shab=cd===6}
+      if(!rest&&(lab.indexOf('ראש חודש')>=0||/סוכות|הושענא/.test(lab.join(' '))))ins.push('הרחמן');
       if(rest){ins=[];yv='';yvLab='';yvP=''}
       var ch=0;
       if(h.m==='Kislev'&&h.d>=25)ch=h.d-24;
@@ -695,7 +700,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(ch>=1&&ch<=8){lab.push('חנוכה, נר '+gem(ch));if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===14){lab.push('פורים');if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===15)lab.push('שושן פורים');
-      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:dow===6,rest:rest,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
+      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:shab,rest:rest,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
     }
     if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;
       var face=TODAY.lab.filter(function(l){return l!=='שבת'});
@@ -717,7 +722,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     if(!resting&&matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
     clock();setInterval(clock,10000);
-    if(TODAY&&F)setInterval(function(){var t=today(new Date());if(t.date===TODAY.date)return;
+    if(TODAY&&F)setInterval(function(){var t=today(new Date());if(t.rest!==TODAY.rest)return location.reload();if(t.date===TODAY.date)return;
       var tb=$('#todaybar'),face=t.lab.filter(function(l){return l!=='שבת'});
       $('#ldate').textContent=t.date;if(!resting)$('#lday').textContent=face.length?face.join(' · '):'יום חול';
       tb.innerHTML='<b>'+t.date+'</b>'+(t.lab.length?' · '+t.lab.join(' · '):'')+(t.ins.length?'<span class="tbi"> · בברכת המזון: <i>'+t.ins.join(', ')+'</i></span>':'');
