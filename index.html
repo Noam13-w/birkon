@@ -370,19 +370,22 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 }
 
 /* ===== round 7 ===== */
+[hidden]{display:none!important}
 .lroll.resting{padding-top:56cqw}
 .lroll .rest{font:700 9cqw/1.2 var(--serif);color:#f5f1e6;margin-bottom:.3em}
 .lroll .rest2{font:500 5.4cqw/1.3 var(--sans);color:#a8a5c8}
 .lpause{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:3;padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--ink);font:600 13px var(--sans);opacity:0;transition:opacity .25s;pointer-events:none}
 .live.stopped .lpause{opacity:1}
 .crown:disabled{cursor:default}
+.hero.resting .trio .w:not(.live-w) img{opacity:.35;filter:grayscale(1)}
 .ins:not(.on) .body{transition:opacity .18s,transform .3s}
 .ins.on .body{transition-delay:.22s}
 .rail-wrap{position:relative}
 .rarrow{display:none}
 @media (hover:hover) and (min-width:740px){
-  .rarrow{display:grid;place-items:center;position:absolute;top:50%;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--hair);box-shadow:0 8px 20px -10px rgba(0,0,0,.3);transition:transform .2s}
+  .rarrow{display:grid;place-items:center;position:absolute;top:calc(50% - 22px);z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--hair);box-shadow:0 8px 20px -10px rgba(0,0,0,.3);transition:transform .2s}
   .rarrow:hover{transform:scale(1.06)}
+  .rarrow:disabled{opacity:0;pointer-events:none}
   .rarrow svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
   .rarrow.prev{right:16px}.rarrow.next{left:16px}
 }
@@ -420,7 +423,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <a class="store" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span><b>גרמין</b><small>Garmin</small></span></a>
     </div>
     <div class="trio">
-      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" width="403" height="480" fetchpriority="high"></div><span class="cap">Apple Watch</span></div>
+      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="" width="403" height="480"></div><span class="cap">Apple Watch</span></div>
       <div class="w live-w">
         <div class="live">
           <div class="lscr" id="lscr" role="img" aria-label="שעון חי: התאריך העברי של היום וברכת המזון בגלילה אוטומטית">
@@ -441,7 +444,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
         </div>
         <span class="cap live-cap" id="lcap"><span class="dot"></span>חי · סובבו את הכתר</span>
       </div>
-      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-mincha.webp" alt="" width="454" height="454" fetchpriority="high"></div><span class="cap">Garmin</span></div>
+      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-mincha.webp" alt="" width="454" height="454"></div><span class="cap">Garmin</span></div>
     </div>
   </div>
 </header>
@@ -678,7 +681,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(yv)add(ins,'יעלה ויבוא');
       var P={'ראש השנה':'בְּרֹאשׁ הַשָּׁנָה','סוכות':'בְּסֻכּוֹת','חול המועד סוכות':'בְּחֹל הַמּוֹעֵד','הושענא רבה':'בְּהוֹשַׁעְנָא רַבָּה','שמיני עצרת':'בִּשְׁמִינִי עֲצֶרֶת','פסח':'בְּפֶסַח','חול המועד פסח':'בְּחֹל הַמּוֹעֵד','שביעי של פסח':'בִּשְׁבִיעִי שֶׁל פֶּסַח','שבועות':'בְּשָׁבוּעוֹת','ראש חודש':'בְּרֹאשׁ חֹדֶשׁ'},yvLab='',yvP='';
       lab.forEach(function(l){if(!yvLab&&P[l]){yvLab=l;yvP=P[l]}});
-      var yt=(h.m==='Tishri'&&(h.d<=2||h.d===10||h.d===15||h.d===22||(!il&&(h.d===16||h.d===23))))||(h.m==='Nisan'&&(h.d===15||h.d===21||(!il&&(h.d===16||h.d===22))))||(h.m==='Sivan'&&(h.d===6||(!il&&h.d===7)));
+      function isYT(x){return (x.m==='Tishri'&&(x.d<=2||x.d===10||x.d===15||x.d===22||(!il&&(x.d===16||x.d===23))))||(x.m==='Nisan'&&(x.d===15||x.d===21||(!il&&(x.d===16||x.d===22))))||(x.m==='Sivan'&&(x.d===6||(!il&&x.d===7)))}
+      var yt=isYT(h),erev=dow===5||isYT(heb(addDays(d,1)));
       var rest=dow===6||yt;
       if(rest){ins=[];yv='';yvLab='';yvP=''}
       var ch=0;
@@ -687,7 +691,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(ch>=1&&ch<=8){lab.push('חנוכה, נר '+gem(ch));if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===14){lab.push('פורים');if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===15)lab.push('שושן פורים');
-      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:dow===6,rest:rest,yt:yt,night:night,toSet:il&&!night?Math.round((su.set-hr)*60):0,ss:il?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
+      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:dow===6,rest:rest,yt:yt,night:night,toSet:il&&!night&&!erev?Math.round((su.set-hr)*60):0,ss:il?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
     }
     if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;
       var face=TODAY.lab.filter(function(l){return l!=='שבת'});
@@ -696,7 +700,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     if(resting){
       $('#lday').textContent='';
       lroll.innerHTML='<p class="rest">'+(TODAY.shabbat?'שבת שלום':'חג שמח')+'</p><p class="rest2">'+(TODAY.shabbat?'נתראה במוצאי שבת':'נתראה במוצאי החג')+'</p>';
-      lroll.classList.add('resting');crown.disabled=true;crown.setAttribute('aria-hidden','true');
+      lroll.classList.add('resting');$('.hero').classList.add('resting');crown.disabled=true;crown.setAttribute('aria-hidden','true');
       $('#lcap').innerHTML='השעון נח';$('#lscr').setAttribute('aria-label','השעון נח: '+(TODAY.shabbat?'שבת':'יום טוב'));
     }
     if(TODAY){
@@ -709,6 +713,11 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     if(!resting&&matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
     clock();setInterval(clock,10000);
+    if(TODAY&&F)setInterval(function(){var t=today(new Date());if(t.date===TODAY.date)return;
+      var tb=$('#todaybar'),face=t.lab.filter(function(l){return l!=='שבת'});
+      $('#ldate').textContent=t.date;if(!resting)$('#lday').textContent=face.length?face.join(' · '):'יום חול';
+      tb.innerHTML='<b>'+t.date+'</b>'+(t.lab.length?' · '+t.lab.join(' · '):'')+(t.ins.length?'<span class="tbi"> · בברכת המזון: <i>'+t.ins.join(', ')+'</i></span>':'');
+      $('.hero').classList.remove('mincha');TODAY=t},30000);
 
     /* auto-scroll with the app's rules: manual input pauses it, it resumes 1.5 s after the last input; a tap pauses it */
     if(resting)return;
@@ -720,11 +729,11 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     if(!reduce)runner(lscr,function(dt){move(lroll.clientWidth*.055*dt)},function(){return held||focus||paused||performance.now()<resume});
     function input(dy){
       if(!touched){touched=true;crown.classList.remove('nudge')}
-      moved=true;move(dy);cy+=dy;crown.style.setProperty('--cy',(cy*.6).toFixed(1)+'px');resume=performance.now()+1500;engaged=performance.now()+2500;
+      move(dy);cy+=dy;crown.style.setProperty('--cy',(cy*.6).toFixed(1)+'px');resume=performance.now()+1500;engaged=performance.now()+2500;
     }
     function drag(el,k){var py=null;
       el.addEventListener('pointerdown',function(e){py=e.clientY;held=true;moved=false;try{el.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()});
-      el.addEventListener('pointermove',function(e){if(py===null)return;input((py-e.clientY)*k);py=e.clientY});
+      el.addEventListener('pointermove',function(e){if(py===null)return;if(Math.abs(py-e.clientY)>2)moved=true;input((py-e.clientY)*k);py=e.clientY});
       function up(){if(py===null)return;py=null;held=false;resume=performance.now()+1500}
       el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up)}
     drag(crown,1.6);
@@ -768,6 +777,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   var db=$$('#dots button');
   function mark(){
     var st=slides[0].getBoundingClientRect().width+12,best=Math.max(0,Math.min(slides.length-1,Math.round(Math.abs(rail.scrollLeft)/st)));
+    $('#rprev').disabled=best===0;$('#rnext').disabled=best===slides.length-1;
     db.forEach(function(b,k){b.classList.toggle('on',k===best);if(k===best)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
   }
   var stp=function(){return slides[0].getBoundingClientRect().width+12};
