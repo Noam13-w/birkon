@@ -777,7 +777,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     var BHM=lroll.innerHTML;
     function setPrayer(k){
       if(resting)return;
-      var side=$('.trio .w:first-child img');if(side){var tw=k==='shema';side.src=tw&&TODAY&&TODAY.yv?'assets/apple-maariv.webp':'assets/apple-shema.webp';side.closest('.w').style.visibility=tw&&!(TODAY&&TODAY.yv)?'hidden':''}
+      var side=$('.trio .w:first-child img');if(side){var tw=k==='shema';side.src=tw&&TODAY&&TODAY.yv?'assets/apple-maariv.webp':'assets/apple-shema.webp';$$('.trio .w:not(.live-w)').forEach(function(w){w.style.display=tw&&!(TODAY&&TODAY.yv)?'none':''})}
       if(!k){lroll.innerHTML=BHM}else{var x=TX[k];lroll.innerHTML='<p class="lt">'+x.t+'</p>'+x.p.map(function(t){return '<p>'+t+'</p>'}).join('')}
       $('#lscr').setAttribute('aria-label','שעון חי: '+lroll.querySelector('.lt').textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
     }
