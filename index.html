@@ -389,7 +389,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .live.stopped .lpause{opacity:1}
 .crown:disabled{cursor:default}
 .hero.resting .trio .w:not(.live-w) .dev img{opacity:0}
-.trio .w:not(.live-w) .dev.sq::before{content:"";position:absolute;top:6%;right:9%;width:72%;height:11%;background:#000;z-index:1;border-radius:4px}
+.trio .w:not(.live-w) .dev.sq::before{content:"";position:absolute;top:5%;right:8%;width:62%;height:16%;background:#000;z-index:1;border-radius:4px}
 .hero.resting .trio .w:not(.live-w){filter:saturate(0) brightness(.92);opacity:.9}
 .hero.resting .trio .dev.sq::before{display:none}
 .hero.resting .trio .w:not(.live-w) .dev{background:radial-gradient(120% 90% at 50% 0%,#17172e,#000 60%)}
@@ -411,6 +411,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:479px){.trio .w:nth-child(1),.trio .w:nth-child(3){display:none}.trio .live-w{--s:66vw}}
 @media (min-width:740px) and (max-height:880px){.hero{padding-top:36px}.hero .badge{display:none}.hero h1{margin-top:0;font-size:76px}.hero .lede{margin-top:10px;max-width:42em}.stores{margin-top:18px}.trio{margin-top:22px}}
 @media (max-width:479px){.hero{padding-top:28px}.hero .lede{font-size:16.5px;margin-top:12px}.stores{margin-top:20px}.trio{margin-top:26px}}
+@media (max-width:379px){.hero .badge{display:none}.hero h1{margin-top:0}}
+.hero.resting .trio .w:not(.live-w) .dev::before{content:"";position:absolute;inset:5%;border-radius:inherit;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.22) 0 1deg,transparent 1deg 30deg);-webkit-mask:radial-gradient(closest-side,transparent 86%,#000 87%,#000 92%,transparent 93%);mask:radial-gradient(closest-side,transparent 86%,#000 87%,#000 92%,transparent 93%);z-index:1}
+.hero.resting .trio .dev.sq::before{display:none}
 </style>
 </head>
 <body>
@@ -625,7 +628,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   function bar(){bars.forEach(function(b,i){b.classList.toggle('on',i<sp);b.setAttribute('aria-checked',i===sp-1);b.tabIndex=i===sp-1?0:-1});$('#speedv').textContent='מהירות '+sp}
   bar();
   bars.forEach(function(b,i){b.addEventListener('click',function(){chosen=true;sp=i+1;stopped=false;mini.classList.remove('stopped');bar()})});
-  $('#speed').addEventListener('keydown',function(e){var d=e.key==='ArrowLeft'||e.key==='ArrowUp'?1:e.key==='ArrowRight'||e.key==='ArrowDown'?-1:0;if(!d)return;e.preventDefault();chosen=true;sp=Math.max(1,Math.min(10,sp+d));bar();bars[sp-1].focus()});
+  $('#speed').addEventListener('keydown',function(e){var d=e.key==='ArrowLeft'||e.key==='ArrowUp'?1:e.key==='ArrowRight'||e.key==='ArrowDown'?-1:e.key==='Home'?-99:e.key==='End'?99:0;if(!d)return;e.preventDefault();chosen=true;sp=Math.max(1,Math.min(10,sp+d));bar();bars[sp-1].focus()});
   function tog(){stopped=!stopped;mini.classList.toggle('stopped',stopped);mini.setAttribute('aria-pressed',stopped)}
   mini.addEventListener('click',tog);mini.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
   if(!reduce){
@@ -742,7 +745,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     }
     if(TODAY){
       var tb=$('#todaybar');
-      tb.innerHTML='<b>'+TODAY.date+'</b>'+(TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+(TODAY.ins.length?'<span class="tbi"> · בברכת המזון: <i>'+TODAY.ins.join(', ')+'</i></span>':'')+(TODAY.ss?'<span class="tbs"> · שקיעה '+TODAY.ss+'</span>':'');
+      tb.innerHTML='<b>'+TODAY.date+'</b>'+(TODAY.rest&&TODAY.night?' · '+TODAY.head:TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+(TODAY.ins.length?'<span class="tbi"> · בברכת המזון: <i>'+TODAY.ins.join(', ')+'</i></span>':'')+(TODAY.ss?'<span class="tbs"> · שקיעה '+TODAY.ss+'</span>':'');
       tb.classList.add('on');
       if(TODAY.toSet>0&&TODAY.toSet<=90&&!TODAY.rest){tb.insertAdjacentHTML('beforeend','<span class="soon"> · עוד '+TODAY.toSet+' דק׳ לשקיעה</span>');$('.hero').classList.add('mincha')}
 
@@ -758,6 +761,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     document.addEventListener('visibilitychange',function(){if(pending&&document.hidden)location.reload()});
     if(TODAY&&F)setInterval(function(){
       var t=today(new Date());
+      if(t.rest&&!TODAY.rest){held=true;lroll.innerHTML='<p class="rest">'+t.head+'</p><p class="rest2">'+t.bye+'</p>';lroll.classList.add('resting');lroll.style.transform='';$('#lday').textContent='';crown.disabled=true;$('.hero').classList.add('resting');$('#lcap').textContent='השעון נח';TODAY=t;return reloadSoon()}
       if(t.rest!==TODAY.rest||t.date!==TODAY.date)return reloadSoon();
       if(!TODAY.rest){var k2=hourKey();if(k2!==HK){HK=k2;setPrayer(k2);lroll.innerHTML+=lroll.innerHTML;y=0;move(0)}}
       var soon=$('#todaybar .soon');if(soon&&t.toSet>0)soon.textContent=' · עוד '+t.toSet+' דק׳ לשקיעה';
