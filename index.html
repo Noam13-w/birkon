@@ -71,7 +71,7 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.08;letter-spacin
 .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.7);border:1px solid var(--hair);font-size:14px;font-weight:500;color:var(--muted)}
 .badge b{color:var(--mint-d);font-weight:700}
 .hero h1{margin-top:18px;font-weight:800;font-size:clamp(50px,15vw,112px);line-height:1;letter-spacing:-.01em}
-.hero .tag{margin-top:12px;font-weight:700;font-size:clamp(22px,6vw,34px);line-height:1.2;letter-spacing:-.015em;
+.hero .tag{margin-top:12px;font-weight:700;font-size:clamp(22px,6vw,34px);line-height:1.2;letter-spacing:0;
   background:linear-gradient(90deg,#c46a3a,#c24d7a 35%,#6c5fd6 70%,#3a6fc4);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
 .hero .lede{max-width:34em;margin:18px auto 0;color:var(--muted);font-size:18px;text-wrap:pretty}
 .stores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:520px;margin:28px auto 0}
@@ -185,7 +185,7 @@ section{padding-block:80px}
 .rail::-webkit-scrollbar{display:none}
 .slide{flex:none;width:76vw;max-width:340px;scroll-snap-align:start;border-radius:var(--r);padding:26px 22px 0;overflow:hidden;display:flex;flex-direction:column;min-height:400px}
 .slide .lbl{font-weight:700;font-size:14px;color:#56565b}
-.slide h3{font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.1;margin-top:4px}
+.slide h3{font-weight:800;font-size:26px;letter-spacing:0;line-height:1.1;margin-top:4px}
 .slide p{color:#56565b;font-size:15.5px;margin-top:6px}
 .slide .dev{width:72%;margin:auto auto 28px}
 .slide .dev.sq{width:60%}
@@ -326,7 +326,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .wmenu li{padding:9px 14px;border-radius:14px;background:#1f1f22;color:#f2f2f7;font-size:15px;font-weight:600;line-height:1.25}
 .wmenu li small{color:#e9c46a;font-weight:500;font-size:12.5px;margin-inline-start:6px}
 /* nusach switcher */
-.card.wide{display:grid;gap:22px}
+.card.wide{display:grid;gap:22px;align-items:start}
+.nbox{padding-top:6px}
 .nseg{display:flex;gap:4px;padding:4px;border-radius:99px;background:rgba(255,255,255,.75);width:max-content;max-width:100%}
 .nseg button{padding:9px 16px;min-height:40px;border-radius:99px;font-size:15px;font-weight:600;color:#56565b;transition:background .35s var(--ease),color .3s,box-shadow .35s}
 .nseg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 10px -4px rgba(60,45,0,.3)}
@@ -346,12 +347,13 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .dotsrow button::before{inset:-14px -6px}
 .lroll .lt{letter-spacing:0}
 /* garmin text crop needs breathing room inside the round bezel */
-.dev img[src*="garmin"]{padding:6%;background:#000}
+.dev img[src*="garmin"]{padding:9%;background:#000;-webkit-mask-image:radial-gradient(closest-side,#000 90%,#0000);mask-image:radial-gradient(closest-side,#000 90%,#0000)}
 @media (max-width:739px){
   .card .dev,.card .mini{margin-bottom:-18%}
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
   .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:58%}
-  .card.peach.has-dev>.dev{position:absolute;left:-4%;bottom:-10%;width:40%;margin:0}
+  .card.peach.has-dev>.dev{position:absolute;left:-4%;bottom:-6%;width:46%;margin:0}
+  .card.peach .hface{font-size:9cqw}
   .trio{gap:6vw}
   .trio .w:nth-child(1),.trio .w:nth-child(3){--s:19vw}
   .trio .live-w{--s:50vw}
@@ -390,10 +392,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .lpause{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:3;padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--ink);font:600 13px var(--sans);opacity:0;transition:opacity .25s;pointer-events:none}
 .live.stopped .lpause{opacity:1}
 .crown:disabled{cursor:default}
-.hero.resting .trio .w:not(.live-w) .dev img{opacity:0}
-.trio .w:not(.live-w) .dev.sq::before{content:"";position:absolute;top:5%;right:8%;width:62%;height:16%;background:#000;z-index:1;border-radius:4px}
+.hero.resting .trio .w:not(.live-w) .dev img,.hero.resting .trio .hface{opacity:0}
 .hero.resting .trio .w:not(.live-w){filter:saturate(0) brightness(.92);opacity:.9}
-.hero.resting .trio .dev.sq::before{display:none}
 .hero.resting .trio .w:not(.live-w) .dev{background:radial-gradient(120% 90% at 50% 0%,#17172e,#000 60%)}
 .ins:not(.on) .body{transition:opacity .18s,transform .3s}
 .ins.on .body{transition-delay:.06s}
@@ -415,7 +415,6 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:479px){.hero{padding-top:28px}.hero .lede{font-size:16.5px;margin-top:12px}.stores{margin-top:20px}.trio{margin-top:26px}}
 @media (max-width:379px){.hero .badge{display:none}.hero h1{margin-top:0}}
 .hero.resting .trio .w:not(.live-w) .dev::before{content:"";position:absolute;inset:5%;border-radius:inherit;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.22) 0 1deg,transparent 1deg 30deg);-webkit-mask:radial-gradient(closest-side,transparent 86%,#000 87%,#000 92%,transparent 93%);mask:radial-gradient(closest-side,transparent 86%,#000 87%,#000 92%,transparent 93%);z-index:1}
-.hero.resting .trio .dev.sq::before{display:none}
 
 /* watch faces drawn from the app's own texts (no repeated screenshots) */
 .dev.live-face{container-type:inline-size}
@@ -425,6 +424,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .hface p{margin:0 0 .55em}
 .card .hface p{margin:0 0 .55em;color:#f5f1e6;font-size:inherit;line-height:inherit;max-width:none}
 .card .hface .ht{font:700 5.6cqw var(--sans);color:#b9b2ff;margin-bottom:.8em}
+@media (min-width:740px){.bento .c3.has-dev>.dev{width:56%;max-width:280px;margin-bottom:-22%}}
 </style>
 </head>
 <body>
@@ -457,12 +457,12 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <a class="store" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span><b>גרמין</b><small>Garmin</small></span></a>
     </div>
     <div class="trio">
-      <div class="w" aria-hidden="true"><div class="dev sq"><img src="assets/apple-shema.webp" alt="" width="403" height="480" loading="lazy"></div><span class="cap">Apple Watch</span></div>
+      <div class="w" aria-hidden="true"><div class="dev sq live-face"><div class="hface"><p class="ht">אשר יצר</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר יָצַר אֶת הָאָדָם בְּחָכְמָה, וּבָרָא בוֹ נְקָבִים נְקָבִים, חֲלוּלִים חֲלוּלִים.</p><p>גָּלוּי וְיָדוּעַ לִפְנֵי כִסֵּא כְבוֹדֶךָ, שֶׁאִם יִפָּתֵחַ אֶחָד מֵהֶם, אוֹ יִסָּתֵם אֶחָד מֵהֶם, אִי אֶפְשַׁר לְהִתְקַיֵּם וְלַעֲמֹד לְפָנֶיךָ אֲפִילוּ שָׁעָה אֶחָת.</p></div></div><span class="cap">Apple Watch</span></div>
       <div class="w live-w">
         <div class="live">
           <div class="lscr" id="lscr" role="img" aria-label="שעון חי: התאריך העברי של היום וברכת המזון בגלילה אוטומטית">
             <div class="lhead"><b id="lclock">--:--</b><span id="ldate"></span><em id="lday"></em></div>
-            <div class="lroll" id="lroll">
+            <div class="lroll" id="lroll" aria-hidden="true">
               <p class="lt">ברכת המזון</p>
               <p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, הַזָּן אֶת הָעוֹלָם כֻּלּוֹ בְּטוּבוֹ, בְּחֵן בְּחֶסֶד וּבְרַחֲמִים, הוּא נוֹתֵן לֶחֶם לְכָל בָּשָׂר, כִּי לְעוֹלָם חַסְדּוֹ.</p>
               <p>וּבְטוּבוֹ הַגָּדוֹל תָּמִיד לֹא חָסַר לָנוּ, וְאַל יֶחְסַר לָנוּ מָזוֹן לְעוֹלָם וָעֶד, בַּעֲבוּר שְׁמוֹ הַגָּדוֹל.</p>
@@ -478,7 +478,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
         </div>
         <span class="cap live-cap" id="lcap"><span class="dot"></span>חי · סובבו את הכתר</span>
       </div>
-      <div class="w" aria-hidden="true"><div class="dev"><img src="assets/garmin-bhm.webp" alt="" width="454" height="454" loading="lazy"></div><span class="cap">Garmin</span></div>
+      <div class="w" aria-hidden="true"><div class="dev live-face"><div class="hface"><p class="ht">בורא נפשות</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא נְפָשׁוֹת רַבּוֹת וְחֶסְרוֹנָן, עַל כָּל מַה שֶּׁבָּרָאתָ לְהַחֲיוֹת בָּהֶם נֶפֶשׁ כָּל חָי.</p><p>בָּרוּךְ חֵי הָעוֹלָמִים.</p></div></div><span class="cap">Garmin</span></div>
     </div>
   </div>
 </header>
@@ -509,7 +509,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
             <p data-n="a" aria-hidden="true">רַחֵם נָא יְיָ אֱלֹהֵינוּ, עַל יִשְׂרָאֵל עַמֶּךָ, וְעַל יְרוּשָׁלַיִם עִירֶךָ, וְעַל צִיּוֹן מִשְׁכַּן כְּבוֹדֶךָ…</p>
             <p data-n="e" aria-hidden="true">רַחֵם יְיָ אֱלֹהֵינוּ עָלֵינוּ וְעַל יִשְׂרָאֵל עַמָּךְ, וְעַל יְרוּשָׁלַיִם עִירָךְ, וְעַל הַר צִיּוֹן מִשְׁכַּן כְּבוֹדָךְ…</p>
           </div>
-          <p class="nsrc">מתוך ברכת המזון, ברכת ״רחם״. מסומן מה שהשתנה מהנוסח הקודם.</p>
+          <p class="nsrc" id="nsrc">מתוך ברכת המזון, ברכת ״רחם״. מסומן מה ששונה מנוסח ספרד.</p>
         </div>
       </article>
     </div>
@@ -665,7 +665,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       $$('.nseg button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.n===n)});
       cur=n;
     }
-    $$('.nseg button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.n)})});
+    $$('.nseg button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.n);$('#nsrc').textContent='מתוך ברכת המזון, ברכת ״רחם״. מסומן מה שהשתנה מהנוסח הקודם.'})});
     show('a');
   })();
 
@@ -786,7 +786,6 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     var BHM=lroll.innerHTML;
     function setPrayer(k){
       if(resting)return;
-      var side=$('.trio .w:first-child img');if(side){var tw=k==='shema';side.src=tw&&TODAY&&TODAY.yv?'assets/apple-maariv.webp':'assets/apple-shema.webp';$$('.trio .w:not(.live-w)').forEach(function(w){w.style.display=tw&&!(TODAY&&TODAY.yv)?'none':''})}
       if(!k){lroll.innerHTML=BHM}else{var x=TX[k];lroll.innerHTML='<p class="lt">'+x.t+'</p>'+x.p.map(function(t){return '<p>'+t+'</p>'}).join('')}
       $('#lscr').setAttribute('aria-label','שעון חי: '+lroll.querySelector('.lt').textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
     }
