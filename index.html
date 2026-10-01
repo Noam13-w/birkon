@@ -55,14 +55,15 @@ section{padding-block:72px}
 .hero{padding-block:28px 64px}
 .hero .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
 .hero h1{font:900 clamp(40px,11.5vw,84px)/1.02 var(--serif);letter-spacing:-.02em}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lede{font-size:18px;color:var(--ink-2);margin-top:18px;max-width:27em;text-wrap:pretty}
-.cta{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.hero .tag{font:700 clamp(22px,6vw,34px)/1.25 var(--serif);color:var(--accent);margin-top:10px;text-wrap:balance}
+.hero .lede{font-size:18px;color:var(--ink-2);margin-top:14px;max-width:30em;text-wrap:pretty}
+.hero .tag+.lede{margin-top:20px}
+.cta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:28px;max-width:520px}
+.cta .btn{flex-direction:column;gap:4px;min-height:74px;padding:10px 6px;font-size:16px;text-align:center;line-height:1.2}
+.cta .btn small{display:block;font-size:12px;font-weight:500;opacity:.75}
 .btn{display:flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 24px;border-radius:14px;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:17px;transition:transform .2s var(--ease),background .2s}
 .btn:active{transform:scale(.98)}
 .btn svg{width:22px;height:22px}
-.others{font-size:15px;color:var(--ink-2);text-align:center}
-.others a{color:var(--ink);text-underline-offset:3px;text-decoration-color:var(--rule)}
 .facts{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:22px;font-size:14.5px;color:var(--ink-2)}
 .facts li+li::before{content:"·";margin-inline:10px;color:var(--accent)}
 
@@ -167,6 +168,7 @@ section{padding-block:72px}
 .stores small{display:block;color:var(--ink-2);font-size:14.5px;line-height:1.4}
 .stores .arr{margin-inline-start:auto;color:var(--accent);font-size:22px;transition:transform .25s var(--ease)}
 .stores a:hover .arr{transform:translateX(-4px)}
+.cta .mine{box-shadow:0 0 0 3px var(--accent-soft)}
 .stores .mine{background:var(--accent-soft);border-radius:12px;border-bottom-color:transparent}
 
 footer{padding-block:44px 120px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink-2);line-height:1.7}
@@ -191,8 +193,7 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
 @media (min-width:720px){
   :root{--g:40px}
   section{padding-block:112px}
-  .cta{flex-direction:row;align-items:center;gap:22px}
-  .others{text-align:start}
+  .cta{gap:12px}
   .shot{width:250px}
   .strip{padding-inline:max(var(--g),calc((100% - 1120px)/2 + var(--g)));scroll-padding-inline:max(var(--g),calc((100% - 1120px)/2 + var(--g)))}
   .page{padding:32px 36px;font-size:21px}
@@ -238,13 +239,16 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
 <section class="hero">
   <div class="wrap grid">
     <div class="copy">
-      <h1>התפילה והברכה.<br><em>תמיד על היד.</em></h1>
-      <p class="lede">מנחה, ערבית, ברכת המזון ועוד, בנוסח שלכם ועם כל התוספות של היום. על השעון עצמו, בלי טלפון ובלי אינטרנט.</p>
+      <h1>ברכון לשעון</h1>
+      <p class="tag">ברכון וסידור ישירות על השעון החכם</p>
+      <p class="lede">ברכת המזון, אשר יצר, תפילת הדרך, קריאת שמע ועוד, זמינים ישירות מהשעון, גם בלי טלפון ובלי אינטרנט.</p>
+      <p class="lede">תמיכה בנוסחי ספרד, אשכנז ועדות המזרח, עם התאמה אוטומטית לתאריך ולמיקום.</p>
       <div class="cta">
-        <a class="btn" id="cta" href="#download" target="_blank" rel="noopener"><svg class="i"><use class="cta-i" href="#i-apple"/></svg><span class="cta-s">הורדה ב־<bdi>App Store</bdi></span></a>
-        <p class="others" id="others"></p>
+        <a class="btn" data-key="wear" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg><span>אנדרואיד <small>Wear OS</small></span></a>
+        <a class="btn" data-key="apple" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><svg class="i"><use href="#i-apple"/></svg><span>אפל <small>Apple Watch</small></span></a>
+        <a class="btn" data-key="garmin" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg><span>גרמין <small>Garmin</small></span></a>
       </div>
-      <ul class="facts"><li>בחינם</li><li>שלושה נוסחים</li><li>לא אוסף מידע</li></ul>
+      <ul class="facts"><li>חינמי לחלוטין</li><li>תומך בכל השעונים החכמים</li></ul>
     </div>
     <div class="stage">
       <div class="watch" id="watch" role="img" aria-label="ברכת המזון על השעון, בגלילה אוטומטית">
@@ -261,7 +265,7 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
       </div>
       <div class="status" id="status" aria-live="polite"><i></i><span>גלילה אוטומטית. נגיעה עוצרת לרגע.</span></div>
       <div class="platforms" role="group" aria-label="איזה שעון">
-        <button data-key="apple" aria-pressed="true">Apple Watch</button><button data-key="wear" aria-pressed="false">Wear OS</button><button data-key="garmin" aria-pressed="false">Garmin</button>
+        <button data-key="wear" aria-pressed="true">Wear OS</button><button data-key="apple" aria-pressed="false">Apple Watch</button><button data-key="garmin" aria-pressed="false">Garmin</button>
       </div>
     </div>
   </div>
@@ -270,8 +274,8 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
 <section class="shots rule" id="screens" aria-label="מסכים">
   <div class="wrap rv"><h2>אותו ברכון, על כל שעון.</h2></div>
   <div class="strip" tabindex="0" aria-label="מסכים מהברכון. גוללים הצידה.">
-    <figure class="shot"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="ערבית ב־Apple Watch" width="403" height="480" loading="lazy"></div><figcaption><b>ערבית</b><span>התוספות של היום מסומנות בצבע</span></figcaption></figure>
     <figure class="shot"><div class="dev"><img src="assets/wear-home.webp" alt="מסך הבית ב־Wear OS" width="466" height="466" loading="lazy"></div><figcaption><b>מסך הבית</b><span>כל התפילות, והתאריך העברי למעלה</span></figcaption></figure>
+    <figure class="shot"><div class="dev sq"><img src="assets/apple-maariv.webp" alt="ערבית ב־Apple Watch" width="403" height="480" loading="lazy"></div><figcaption><b>ערבית</b><span>התוספות של היום מסומנות בצבע</span></figcaption></figure>
     <figure class="shot"><div class="dev"><img src="assets/garmin-mincha.webp" alt="מנחה ב־Garmin" width="454" height="454" loading="lazy"></div><figcaption><b>מנחה</b><span>עם קרבנות ופטום הקטורת כאפשרות</span></figcaption></figure>
     <figure class="shot"><div class="dev sq"><img src="assets/apple-bhm.webp" alt="ברכת המזון ב־Apple Watch" width="403" height="480" loading="lazy"></div><figcaption><b>ברכת המזון</b><span>בניקוד מלא, עם אפשרות זימון</span></figcaption></figure>
     <figure class="shot"><div class="dev"><img src="assets/wear-shema.webp" alt="קריאת שמע שעל המיטה ב־Wear OS" width="466" height="466" loading="lazy"></div><figcaption><b>קריאת שמע שעל המיטה</b><span>רקע שחור שלא מסנוור בחושך</span></figcaption></figure>
@@ -331,7 +335,7 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
 </section>
 
 <section class="quiet" aria-label="פרטיות">
-  <div class="wrap"><p class="rv">בלי טלפון. בלי אינטרנט. בלי איסוף מידע. <span>רק אתם, והתפילה על היד.</span></p></div>
+  <div class="wrap"><p class="rv">בלי טלפון. בלי אינטרנט. <span>בלי איסוף מידע.</span></p></div>
 </section>
 
 <section id="faq">
@@ -368,7 +372,7 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
   </div>
 </footer>
 
-<div class="sbar" id="sbar"><a class="btn" id="cta2" href="#download" target="_blank" rel="noopener"><svg class="i"><use class="cta-i" href="#i-apple"/></svg><span class="cta-s">הורדה ב־<bdi>App Store</bdi></span></a></div>
+<div class="sbar" id="sbar"><a class="btn" href="#download">הורדה בחינם</a></div>
 
 <script>
 (function(){
@@ -376,24 +380,19 @@ footer .mem{font:500 18px var(--serif);color:var(--ink);padding-bottom:14px;bord
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- platform: the hero watch, the download buttons ---------- */
-  var P={
-    apple:{name:'Apple Watch',icon:'#i-apple',store:'App Store',href:'https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769'},
-    wear:{name:'Wear OS',icon:'#i-play',store:'Google Play',href:'https://play.google.com/store/apps/details?id=com.noam.birkon'},
-    garmin:{name:'Garmin',icon:'#i-garmin',store:'Connect IQ',href:'https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724'}
-  };
   var watch=$('#watch');
+  var cur='wear',rotate=null;
   function setPlatform(k){
-    var p=P[k];
-    $$('#cta,#cta2').forEach(function(a){a.href=p.href});
-    $$('.cta-i').forEach(function(u){u.setAttribute('href',p.icon)});
-    $$('.cta-s').forEach(function(s){s.innerHTML='הורדה ב־<bdi>'+p.store+'</bdi>'});
-    $('#others').innerHTML='או ל־'+Object.keys(P).filter(function(x){return x!==k}).map(function(x){return '<a href="'+P[x].href+'" target="_blank" rel="noopener">'+P[x].name+'</a>'}).join(' ול־');
+    cur=k;
     $$('.platforms button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.key===k)});
-    $$('.stores a').forEach(function(a){a.classList.toggle('mine',a.dataset.key===k)});
     watch.classList.toggle('round',k!=='apple');
   }
-  $$('.platforms button').forEach(function(b){b.addEventListener('click',function(){setPlatform(b.dataset.key)})});
-  setPlatform(/Android/i.test(navigator.userAgent)?'wear':'apple');
+  $$('.platforms button').forEach(function(b){b.addEventListener('click',function(){clearInterval(rotate);setPlatform(b.dataset.key)})});
+  /* on a phone, mark that phone's store; otherwise the three are equal */
+  var mine=/Android/i.test(navigator.userAgent)?'wear':/iPhone|iPad/i.test(navigator.userAgent)?'apple':null;
+  if(mine)$$('.stores a[data-key="'+mine+'"],.cta a[data-key="'+mine+'"]').forEach(function(a){a.classList.add('mine')});
+  setPlatform(mine||'wear');
+  if(!reduce&&!mine)rotate=setInterval(function(){var o=['wear','apple','garmin'];setPlatform(o[(o.indexOf(cur)+1)%3])},5000);
 
   /* ---------- the text on the watch scrolls by itself, like the app's auto-scroll ---------- */
   var roll=$('#roll'),status=$('#status'),y=0,last=0,held=false,resumeAt=0,visible=true,speed=14; /* px per second */
