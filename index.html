@@ -127,8 +127,8 @@ section{padding-block:80px}
 .sky{background:var(--sky)}.sky .lbl{color:var(--sky-d)}
 .butter{background:var(--butter)}.butter .lbl{color:var(--butter-d)}
 .rose{background:var(--rose)}.rose .lbl{color:var(--rose-d)}
-.card.night{background:var(--night);color:#f3f2fb}
-.card.night p{color:#a9a8c4}.card.night .lbl{color:#b9b2ff}
+.card.night{background:linear-gradient(170deg,#ecebfb,#e3e6f7);color:var(--ink)}
+.card.night p{color:#56565b}.card.night .lbl{color:#4b4fae}
 .card .dev{width:62%;max-width:250px;margin:26px auto -28%;transition:transform .8s var(--ease)}
 .card .dev.sq{width:54%}
 .card.has-dev{padding-bottom:0}
@@ -678,8 +678,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       var tb=$('#todaybar');
       tb.innerHTML='<b>'+TODAY.date+'</b>'+(TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+(TODAY.ins.length?' · בברכת המזון: <i>'+TODAY.ins.join(', ')+'</i>':'');
       tb.classList.add('on');
-      if(TODAY.dark){$('.hero').classList.add('night');$('#nav').classList.add('night-top');tb.classList.add('night');$('#themecolor').setAttribute('content','#0c0d1f')}
-      tb.setAttribute('role','link');tb.tabIndex=0;tb.title='לתוספות של היום';
+            tb.setAttribute('role','link');tb.tabIndex=0;tb.title='לתוספות של היום';
       function go(){$('#today').scrollIntoView({behavior:reduce?'auto':'smooth'})}
       tb.addEventListener('click',go);tb.addEventListener('keydown',function(e){if(e.key==='Enter')go()});
     }
