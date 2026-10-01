@@ -8,11 +8,16 @@
 <meta property="og:title" content="ברכון לשעון">
 <meta property="og:description" content="ברכון וסידור ישירות על השעון החכם. Apple Watch, Wear OS ו־Garmin.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://noam13-w.github.io/birkon/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://noam13-w.github.io/birkon/">
 <meta property="og:image" content="https://noam13-w.github.io/birkon/assets/og.jpg">
 <meta name="theme-color" content="#fbfbfd" id="themecolor">
 <link rel="icon" href="assets/icon-96.png">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/frankruhl-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/frankruhl-hebrew.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
 @font-face { font-family: 'Frank Ruhl Libre'; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/frankruhl-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
@@ -334,7 +339,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:739px){
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
   .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:58%}
-  .card.peach.has-dev>.dev{position:absolute;left:-9%;bottom:-14%;width:44%;margin:0}
+  .card.peach.has-dev>.dev{position:absolute;left:-4%;bottom:-10%;width:40%;margin:0}
   .trio{gap:6vw}
   .trio .w:nth-child(1),.trio .w:nth-child(3){--s:19vw}
   .trio .live-w{--s:50vw}
@@ -363,10 +368,31 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   .groups{grid-template-columns:repeat(3,1fr);gap:32px}
   .card.wide{grid-template-columns:1fr 1.3fr;align-items:center;min-height:0}
 }
+
+/* ===== round 7 ===== */
+.lroll.resting{padding-top:56cqw}
+.lroll .rest{font:700 9cqw/1.2 var(--serif);color:#f5f1e6;margin-bottom:.3em}
+.lroll .rest2{font:500 5.4cqw/1.3 var(--sans);color:#a8a5c8}
+.lpause{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:3;padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--ink);font:600 13px var(--sans);opacity:0;transition:opacity .25s;pointer-events:none}
+.live.stopped .lpause{opacity:1}
+.crown:disabled{cursor:default}
+.ins:not(.on) .body{transition:opacity .18s,transform .3s}
+.ins.on .body{transition-delay:.22s}
+.rail-wrap{position:relative}
+.rarrow{display:none}
+@media (hover:hover) and (min-width:740px){
+  .rarrow{display:grid;place-items:center;position:absolute;top:50%;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--hair);box-shadow:0 8px 20px -10px rgba(0,0,0,.3);transition:transform .2s}
+  .rarrow:hover{transform:scale(1.06)}
+  .rarrow svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .rarrow.prev{right:16px}.rarrow.next{left:16px}
+}
+.todaybar .soon{color:var(--peach-d);font-weight:600}
+.hero.mincha::before{filter:hue-rotate(-18deg) saturate(1.2)}
+.qa .hero [class*=in-],.qa .trio{animation:none!important}
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');if(/[?&]qa/.test(location.search))document.documentElement.classList.add('qa')</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.15-2.8.85-3.5.85s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.35 1.2-.05 1.6-.75 3-.75s1.8.75 3 .72c1.25-.02 2.05-1.15 2.8-2.28.9-1.3 1.25-2.55 1.27-2.62-.03-.01-2.45-.94-2.47-3.7ZM14.1 5.8c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.05-.52 2.69-1.27Z"/></symbol>
@@ -379,7 +405,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   <ul><li><a href="#features">מה בפנים</a></li><li><a href="#today">התוספות</a></li><li><a href="#screens">מסכים</a></li><li><a href="#faq">שאלות</a></li></ul>
   <a class="get" href="#download">הורדה</a>
 </div></nav>
-<a class="todaybar" id="todaybar" href="#today" aria-label="התוספות של היום"></a>
+<a class="todaybar" id="todaybar" href="#today"></a>
 
 <main id="top">
 <header class="hero">
@@ -410,6 +436,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
               <p>וְעַל אֲכִילַת מָזוֹן שָׁאַתָּה זָן וּמְפַרְנֵס אוֹתָנוּ תָּמִיד, בְּכָל יוֹם וּבְכָל עֵת וּבְכָל שָׁעָה.</p>
             </div>
           </div>
+          <span class="lpause" aria-hidden="true">עצרה</span>
           <button class="crown" id="crown" aria-label="כתר השעון: חצים למעלה ולמטה גוללים את הטקסט"><i></i></button>
         </div>
         <span class="cap live-cap" id="lcap"><span class="dot"></span>חי · סובבו את הכתר</span>
@@ -472,15 +499,18 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     </div>
     <div class="groups rv">
       <div class="grp"><h3>בברכת המזון</h3><ul class="chips"><li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחול המועד</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li>הרחמן <span>לראש חודש ולסוכות</span></li><li>מגדיל <span>או מגדול</span></li></ul></div>
-      <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li>יעלה ויבוא</li><li>על הניסים</li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
+      <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li data-k="יעלה ויבוא">יעלה ויבוא</li><li data-k="על הניסים">על הניסים</li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
       <div class="grp"><h3>אחרי העמידה</h3><ul class="chips"><li>תחנון <span>רק כשאומרים</span></li><li>אבינו מלכנו</li><li>ויהי נועם</li><li>ספירת העומר</li></ul></div>
     </div>
-    <p class="fine rv" style="text-wrap:pretty">מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. אפשר לבחור ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי מיקום השעון.</p>
+    <p class="fine rv" style="text-wrap:pretty">מנחה שמתפללים אחרי השקיעה נשארת של היום, וערבית כבר של הלילה. בשעון אפשר לבחור ארץ ישראל, ירושלים או חו״ל, או להשאיר זיהוי אוטומטי לפי המיקום.</p>
   </div>
 </section>
 
 <section id="screens" style="padding-bottom:40px">
   <div class="wrap center rv"><h2>אותו ברכון, על כל שעון.</h2></div>
+  <div class="rail-wrap">
+  <button class="rarrow prev" id="rprev" aria-label="המסך הקודם"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+  <button class="rarrow next" id="rnext" aria-label="המסך הבא"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
   <div class="rail" id="rail" tabindex="0" role="region" aria-label="מסכים מהברכון">
     <article class="slide" data-p="wear"><span class="lbl">Wear OS</span><h3>מסך הבית</h3><p>כל התפילות, והתאריך העברי למעלה.</p><div class="dev"><img src="assets/wear-home.webp" alt="מסך הבית ב־Wear OS" loading="lazy" width="466" height="466"></div></article>
     <article class="slide" data-p="apple"><span class="lbl">Apple Watch</span><h3>ערבית</h3><p>התוספות של היום מסומנות בצבע.</p><div class="dev sq"><img src="assets/apple-maariv.webp" alt="ערבית ב־Apple Watch" loading="lazy" width="403" height="480"></div></article>
@@ -489,6 +519,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     <article class="slide" data-p="apple"><span class="lbl">Apple Watch</span><h3>ברכת המזון</h3><p>בניקוד מלא, עם אפשרות זימון.</p><div class="dev sq"><img src="assets/apple-bhm.webp" alt="ברכת המזון ב־Apple Watch" loading="lazy" width="403" height="480"></div></article>
     <article class="slide" data-p="garmin"><span class="lbl">Garmin</span><h3>אפשרויות קריאה</h3><p>גודל טקסט, קרבנות ועוד, בנגיעה אחת.</p><div class="dev"><img src="assets/garmin-options.webp" alt="אפשרויות קריאה ב־Garmin" loading="lazy" width="454" height="454"></div></article>
     <article class="slide" data-p="wear"><span class="lbl">Wear OS</span><h3>גלילה אוטומטית</h3><p>מהירות מ־1 עד 10. לחיצה עוצרת לרגע.</p><div class="dev"><img src="assets/wear-auto.webp" alt="גלילה אוטומטית ב־Wear OS" loading="lazy" width="466" height="466"></div></article>
+  </div>
   </div>
   <div class="dotsrow" id="dots"></div>
 </section>
@@ -512,7 +543,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <details><summary>כמה זה עולה?</summary><p>הברכון חינמי לחלוטין.</p></details>
       <details><summary>אילו נוסחים יש?</summary><p>ספרד, אשכנז ועדות המזרח, בניקוד מלא ובגופן עברי ברור.</p></details>
       <details><summary>מה עם מידע אישי?</summary><p>הברכון לא אוסף שום מידע ולא מתחבר לאינטרנט. המיקום האחרון של השעון משמש רק לחישוב השקיעה ולזיהוי ארץ ישראל או חו״ל, על השעון עצמו.</p></details>
-      <details><summary>מצאתי טעות בנוסח</summary><p>נשמח לשמוע: <a dir="ltr" href="mailto:support@nisai.dev">support@nisai.dev</a></p></details>
+      <details><summary>מצאתי טעות בנוסח. למי לפנות?</summary><p>נשמח לשמוע: <a dir="ltr" href="mailto:support@nisai.dev">support@nisai.dev</a></p></details>
     </div>
   </div>
 </section>
@@ -656,36 +687,52 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       if(ch>=1&&ch<=8){lab.push('חנוכה, נר '+gem(ch));if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===14){lab.push('פורים');if(!rest)add(ins,'על הניסים')}
       if((h.m==='Adar'||h.m==='Adar II')&&h.d===15)lab.push('שושן פורים');
-      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:dow===6,rest:rest,yt:yt,night:night,ss:il?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
+      return {date:(night?'ליל ':'')+gem(h.d)+' ב'+(HM[h.m]||h.m)+' '+gem(h.y%1000),short:gem(h.d)+' ב'+(HM[h.m]||h.m),lab:lab,ins:ins,yv:yv,yvLab:yvLab,yvP:yvP,shabbat:dow===6,rest:rest,yt:yt,night:night,toSet:il&&!night?Math.round((su.set-hr)*60):0,ss:il?(function(x){return Math.floor(x)+':'+('0'+Math.floor(x%1*60)).slice(-2)})(su.set):''};
     }
-    if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;$('#lday').textContent=TODAY.lab.length?TODAY.lab.join(' · '):'יום חול'}catch(e){TODAY=null}}
+    if(F){try{TODAY=today(new Date());$('#ldate').textContent=TODAY.date;
+      var face=TODAY.lab.filter(function(l){return l!=='שבת'});
+      $('#lday').textContent=face.length?face.join(' · '):'יום חול'}catch(e){TODAY=null}}
+    var resting=!!(TODAY&&TODAY.rest);
+    if(resting){
+      $('#lday').textContent='';
+      lroll.innerHTML='<p class="rest">'+(TODAY.shabbat?'שבת שלום':'חג שמח')+'</p><p class="rest2">'+(TODAY.shabbat?'נתראה במוצאי שבת':'נתראה במוצאי החג')+'</p>';
+      lroll.classList.add('resting');crown.disabled=true;crown.setAttribute('aria-hidden','true');
+      $('#lcap').innerHTML='השעון נח';$('#lscr').setAttribute('aria-label','השעון נח: '+(TODAY.shabbat?'שבת':'יום טוב'));
+    }
     if(TODAY){
       var tb=$('#todaybar');
       tb.innerHTML='<b>'+TODAY.date+'</b>'+(TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+(TODAY.ins.length?'<span class="tbi"> · בברכת המזון: <i>'+TODAY.ins.join(', ')+'</i></span>':'')+(TODAY.ss?'<span class="tbs"> · שקיעה '+TODAY.ss+'</span>':'');
       tb.classList.add('on');
+      if(TODAY.toSet>0&&TODAY.toSet<=90&&!TODAY.rest){tb.insertAdjacentHTML('beforeend','<span class="soon"> · עוד '+TODAY.toSet+' דק׳ לשקיעה</span>');$('.hero').classList.add('mincha')}
 
     }
-    if(matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
+    if(!resting&&matchMedia('(pointer:coarse)').matches)$('#lcap').lastChild.textContent='חי · גררו את הכתר';
     function clock(){var n=new Date();$('#lclock').textContent=('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
     clock();setInterval(clock,10000);
 
-    /* auto-scroll with the app's rules: manual input pauses it, it resumes 1.5 s after the last input */
+    /* auto-scroll with the app's rules: manual input pauses it, it resumes 1.5 s after the last input; a tap pauses it */
+    if(resting)return;
     lroll.innerHTML+=lroll.innerHTML;
-    var y=0,resume=0,held=false,cy=0,touched=false,engaged=0,focus=false;
+    var y=0,resume=0,held=false,cy=0,touched=false,engaged=0,focus=false,paused=false,moved=false;
     crown.addEventListener('focus',function(){focus=true});crown.addEventListener('blur',function(){focus=false});
     function half(){return lroll.scrollHeight/2}
     function move(dy){var hh=half();y=((y+dy)%hh+hh)%hh;lroll.style.transform='translateY('+(-y).toFixed(2)+'px)'}
-    if(!reduce)runner(lscr,function(dt){move(lroll.clientWidth*.055*dt)},function(){return held||focus||performance.now()<resume});
+    if(!reduce)runner(lscr,function(dt){move(lroll.clientWidth*.055*dt)},function(){return held||focus||paused||performance.now()<resume});
     function input(dy){
       if(!touched){touched=true;crown.classList.remove('nudge')}
-      move(dy);cy+=dy;crown.style.setProperty('--cy',(cy*.6).toFixed(1)+'px');resume=performance.now()+1500;engaged=performance.now()+2500;
+      moved=true;move(dy);cy+=dy;crown.style.setProperty('--cy',(cy*.6).toFixed(1)+'px');resume=performance.now()+1500;engaged=performance.now()+2500;
     }
     function drag(el,k){var py=null;
-      el.addEventListener('pointerdown',function(e){py=e.clientY;held=true;try{el.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()});
+      el.addEventListener('pointerdown',function(e){py=e.clientY;held=true;moved=false;try{el.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault()});
       el.addEventListener('pointermove',function(e){if(py===null)return;input((py-e.clientY)*k);py=e.clientY});
       function up(){if(py===null)return;py=null;held=false;resume=performance.now()+1500}
       el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up)}
     drag(crown,1.6);
+    var live=$('.live');
+    function tog(){paused=!paused;live.classList.toggle('stopped',paused);$('#lscr').setAttribute('aria-pressed',paused)}
+    $('#lscr').addEventListener('click',function(){if(moved){moved=false;return}tog()});
+    $('#lscr').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
+    $('#lscr').tabIndex=0;$('#lscr').setAttribute('role','button');$('#lscr').setAttribute('aria-pressed','false');$('#lscr').setAttribute('aria-label','שעון חי: ברכת המזון בגלילה אוטומטית. הקשה עוצרת וממשיכה');
     if(matchMedia('(pointer:fine)').matches)drag(lscr,1);
     /* the wheel turns the crown only once the reader has grabbed the watch (or is on the crown); otherwise the page scrolls */
     function wheel(e){if(e.currentTarget===crown||performance.now()<engaged){e.preventDefault();input(e.deltaY*.5)}}
@@ -704,6 +751,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     var said=TODAY.rest?(TODAY.shabbat?'שבת שלום. בשבת השעון נח, והברכון מחכה למוצאי שבת.':'חג שמח. ביום טוב השעון נח, והברכון מחכה למוצאי החג.'):TODAY.ins.length?'בברכת המזון אומרים '+TODAY.ins.map(function(x){return '״'+x+'״'}).join(' ו')+'.':'אין תוספות מיוחדות בברכת המזון.';
     $('#now').innerHTML='<b>היום, '+TODAY.short+(TODAY.lab.length?' · '+TODAY.lab.join(' · '):'')+'.</b> '+said;
     $('#now').hidden=false;
+    if(TODAY.rest){$('.days').hidden=true;$('.page').hidden=true;$('.page').nextElementSibling.hidden=true}
     $$('.chips li').forEach(function(li){var k=li.dataset.k;if(k&&TODAY.ins.indexOf(k)>=0)li.classList.add('today')});
   }
   function setDay(d){days.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.day===d)});ins.forEach(function(x){x.classList.toggle('on',x.dataset.for===d)})}
@@ -722,6 +770,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     var st=slides[0].getBoundingClientRect().width+12,best=Math.max(0,Math.min(slides.length-1,Math.round(Math.abs(rail.scrollLeft)/st)));
     db.forEach(function(b,k){b.classList.toggle('on',k===best);if(k===best)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
   }
+  var stp=function(){return slides[0].getBoundingClientRect().width+12};
+  $('#rnext').addEventListener('click',function(){rail.scrollBy({left:-stp(),behavior:reduce?'auto':'smooth'})});
+  $('#rprev').addEventListener('click',function(){rail.scrollBy({left:stp(),behavior:reduce?'auto':'smooth'})});
   rail.addEventListener('scroll',function(){requestAnimationFrame(mark)},{passive:true});addEventListener('resize',mark);addEventListener('load',mark);mark();
 })();
 </script>
