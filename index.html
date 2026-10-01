@@ -416,6 +416,15 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:379px){.hero .badge{display:none}.hero h1{margin-top:0}}
 .hero.resting .trio .w:not(.live-w) .dev::before{content:"";position:absolute;inset:5%;border-radius:inherit;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.22) 0 1deg,transparent 1deg 30deg);-webkit-mask:radial-gradient(closest-side,transparent 86%,#000 87%,#000 92%,transparent 93%);mask:radial-gradient(closest-side,transparent 86%,#000 87%,#000 92%,transparent 93%);z-index:1}
 .hero.resting .trio .dev.sq::before{display:none}
+
+/* watch faces drawn from the app's own texts (no repeated screenshots) */
+.dev.live-face{container-type:inline-size}
+.hface{position:absolute;inset:5%;border-radius:inherit;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#17172e 0%,#000 60%);padding:15cqw 13cqw 0;text-align:center;color:#f5f1e6;font:500 7.6cqw/1.62 var(--serif);
+  -webkit-mask-image:linear-gradient(#000 70%,#0000);mask-image:linear-gradient(#000 70%,#0000)}
+.dev.sq .hface{padding:12cqw 10cqw 0}
+.hface p{margin:0 0 .55em}
+.card .hface p{margin:0 0 .55em;color:#f5f1e6;font-size:inherit;line-height:inherit;max-width:none}
+.card .hface .ht{font:700 5.6cqw var(--sans);color:#b9b2ff;margin-bottom:.8em}
 </style>
 </head>
 <body>
@@ -478,9 +487,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   <div class="wrap">
     <div class="center rv"><h2>כל היום, על היד.</h2><p class="sub">מנחה בעבודה, ערבית בדרך הביתה, ברכת המזון אחרי הארוחה וקריאת שמע לפני השינה. מוצאים הכול בשתי נגיעות.</p></div>
     <div class="bento">
-      <article class="card lav has-dev c3 rv"><span class="lbl">מנחה</span><h3>באמצע יום העבודה.</h3><p>עם קרבנות ופטום הקטורת כאפשרות. מה שנאמר רק בחזרת הש״ץ מסומן.</p><div class="dev"><img src="assets/garmin-mincha.webp" alt="מנחה על Garmin" width="454" height="454" loading="lazy"></div></article>
-      <article class="card peach has-dev c3 rv" style="--d:.08s"><span class="lbl">ברכת המזון</span><h3>אחרי הארוחה.</h3><p>עם אפשרות זימון, ו״ברכה מעין שלוש״: בוחרים מה אכלתם, והנוסח מתאים את עצמו.</p><div class="dev sq"><img src="assets/apple-bhm.webp" alt="ברכת המזון על Apple Watch" width="403" height="480" loading="lazy"></div></article>
-      <article class="card night has-dev c2 rv"><span class="lbl">קריאת שמע</span><h3>לפני השינה.</h3><p>על רקע שחור שלא מסנוור בחושך.</p><div class="dev sq"><img src="assets/apple-shema.webp" alt="קריאת שמע שעל המיטה על Apple Watch" width="403" height="480" loading="lazy"></div></article>
+      <article class="card lav has-dev c3 rv"><span class="lbl">מנחה</span><h3>באמצע יום העבודה.</h3><p>עם קרבנות ופטום הקטורת כאפשרות. מה שנאמר רק בחזרת הש״ץ מסומן.</p><div class="dev live-face"><div class="hface" aria-hidden="true"><p class="ht">מנחה</p><p>אַשְׁרֵי יוֹשְׁבֵי בֵיתֶךָ עוֹד יְהַלְלוּךָ סֶּלָה. אַשְׁרֵי הָעָם שֶׁכָּכָה לּוֹ אַשְׁרֵי הָעָם שֶׁיְיָ אֱלֹהָיו. תְּהִלָּה לְדָוִד אֲרוֹמִמְךָ אֱלוֹהַי הַמֶּלֶךְ וַאֲבָרְכָה שִׁמְךָ לְעוֹלָם וָעֶד.</p><p>בְּכָל יוֹם אֲבָרְכֶךָּ וַאֲהַלְלָה שִׁמְךָ לְעוֹלָם וָעֶד. גָּדוֹל יְיָ וּמְהֻלָּל מְאֹד וְלִגְדֻלָּתוֹ אֵין חֵקֶר. דּוֹר לְדוֹר יְשַׁבַּח מַעֲשֶׂיךָ וּגְבוּרֹתֶיךָ יַגִּידוּ. הֲדַר כְּבוֹד הוֹדֶךָ וְדִבְרֵי נִפְלְאֹתֶיךָ אָשִׂיחָה.</p></div></div></article>
+      <article class="card peach has-dev c3 rv" style="--d:.08s"><span class="lbl">ברכת המזון</span><h3>אחרי הארוחה.</h3><p>עם אפשרות זימון, ו״ברכה מעין שלוש״: בוחרים מה אכלתם, והנוסח מתאים את עצמו.</p><div class="dev sq live-face"><div class="hface" aria-hidden="true"><p class="ht">ברכת המזון</p><p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, הַזָּן אֶת הָעוֹלָם כֻּלּוֹ בְּטוּבוֹ, בְּחֵן בְּחֶסֶד וּבְרַחֲמִים, הוּא נוֹתֵן לֶחֶם לְכָל בָּשָׂר, כִּי לְעוֹלָם חַסְדּוֹ.</p><p>וּבְטוּבוֹ הַגָּדוֹל תָּמִיד לֹא חָסַר לָנוּ, וְאַל יֶחְסַר לָנוּ מָזוֹן לְעוֹלָם וָעֶד, בַּעֲבוּר שְׁמוֹ הַגָּדוֹל.</p></div></div></article>
+      <article class="card night has-dev c2 rv"><span class="lbl">קריאת שמע</span><h3>לפני השינה.</h3><p>על רקע שחור שלא מסנוור בחושך.</p><div class="dev sq live-face"><div class="hface" aria-hidden="true"><p class="ht">קריאת שמע שעל המיטה</p><p>רִבּוֹנוֹ שֶׁל עוֹלָם, הֲרֵינִי מוֹחֵל לְכָל מִי שֶׁהִכְעִיס וְהִקְנִיט אוֹתִי אוֹ שֶׁחָטָא כְּנֶגְדִּי, בֵּין בְּגוּפִי בֵּין בְּמָמוֹנִי בֵּין בִּכְבוֹדִי בֵּין בְּכָל אֲשֶׁר לִי, בֵּין בְּאֹנֶס בֵּין בְּרָצוֹן בֵּין בְּשׁוֹגֵג בֵּין בְּמֵזִיד, בֵּין בְּדִבּוּר בֵּין בְּמַעֲשֶׂה, בֵּין בְּגִלְגּוּל זֶה בֵּין בְּגִלְגּוּל אַחֵר, לְכָל בַּר יִשְׂרָאֵל, וְלֹא יֵעָנֵשׁ שׁוּם אָדָם בְּסִבָּתִי.</p></div></div></article>
       <article class="card sky has-dev c2 rv" style="--d:.08s"><span class="lbl">גלילה אוטומטית</span><h3>קוראים בלי לגעת.</h3>
         <div class="speed" id="speed" role="radiogroup" aria-label="מהירות הגלילה"><button role="radio" aria-label="מהירות 1"></button><button role="radio" aria-label="מהירות 2"></button><button role="radio" aria-label="מהירות 3"></button><button role="radio" aria-label="מהירות 4"></button><button role="radio" aria-label="מהירות 5"></button><button role="radio" aria-label="מהירות 6"></button><button role="radio" aria-label="מהירות 7"></button><button role="radio" aria-label="מהירות 8"></button><button role="radio" aria-label="מהירות 9"></button><button role="radio" aria-label="מהירות 10"></button></div>
         <p class="speedv"><span id="speedv">מהירות 3</span> · נגיעה בשעון עוצרת</p>
