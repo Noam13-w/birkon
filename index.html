@@ -384,15 +384,17 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 
 /* ===== round 7 ===== */
 [hidden]{display:none!important}
-.lroll.resting{padding-top:56cqw}
+.lroll.resting{padding-top:56cqw;animation:wake 1.6s .3s var(--ease) both}
+@keyframes wake{from{opacity:0;transform:translateY(8px)}}
 .lroll .rest{font:700 9cqw/1.2 var(--serif);color:#f5f1e6;margin-bottom:.3em}
 .lroll .rest2{font:500 5.4cqw/1.3 var(--sans);color:#a8a5c8}
 .lpause{position:absolute;left:50%;bottom:18%;transform:translateX(-50%);z-index:3;padding:3px 12px;border-radius:99px;background:rgba(255,255,255,.92);color:var(--ink);font:600 13px var(--sans);opacity:0;transition:opacity .25s;pointer-events:none}
 .live.stopped .lpause{opacity:1}
 .crown:disabled{cursor:default}
 .hero.resting .trio .w:not(.live-w) .dev img{opacity:0}
-.trio .w:not(.live-w) .dev.sq::before{content:"";position:absolute;top:7%;right:9%;width:24%;height:8%;background:#000;z-index:1;border-radius:4px}
-.hero.resting .trio .w:not(.live-w){opacity:.55;filter:saturate(0)}
+.trio .w:not(.live-w) .dev.sq::before{content:"";position:absolute;top:7%;right:9%;width:62%;height:9%;background:#000;z-index:1;border-radius:4px}
+.hero.resting .trio .w:not(.live-w){filter:saturate(0) brightness(.92);opacity:.9}
+.hero.resting .trio .dev.sq::before{display:none}
 .hero.resting .trio .w:not(.live-w) .dev{background:radial-gradient(120% 90% at 50% 0%,#17172e,#000 60%)}
 .ins:not(.on) .body{transition:opacity .18s,transform .3s}
 .ins.on .body{transition-delay:.06s}
@@ -401,7 +403,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (hover:hover) and (min-width:740px){
   .rarrow{display:grid;place-items:center;position:static;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--hair);box-shadow:0 8px 20px -10px rgba(0,0,0,.3);transition:transform .2s}
   .rarrow:hover{transform:scale(1.06)}
-  .rarrow:disabled{opacity:0;pointer-events:none}
+  .rarrow:disabled{opacity:.3;pointer-events:none}
   .rarrow svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 
 }
@@ -543,9 +545,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   </div>
   </div>
   <div class="railnav">
-    <button class="rarrow prev" id="rprev" aria-label="המסך הקודם"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+    <button class="rarrow prev" id="rprev" aria-controls="rail" aria-label="המסך הקודם"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
     <div class="dotsrow" id="dots"></div>
-    <button class="rarrow next" id="rnext" aria-label="המסך הבא"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
+    <button class="rarrow next" id="rnext" aria-controls="rail" aria-label="המסך הבא"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
   </div>
 </section>
 
@@ -687,7 +689,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     }
     function sunset(d){return sun(d).set}
     function today(now){
-      var hr=now.getHours()+now.getMinutes()/60,su=sun(now),il=su.il,night=hr>=su.set,d=night?addDays(now,1):now;
+      var hr=now.getHours()+now.getMinutes()/60,su=sun(now),il=su.il,night=hr>=su.set+(il?0:1.5),d=night?addDays(now,1):now;
       var h=heb(d),dow=d.getDay(),lab=[],ins=[],yv='';
       function add(a,x){if(a.indexOf(x)<0)a.push(x)}
       if(dow===6)lab.push('שבת');
@@ -794,7 +796,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     function tog(){paused=!paused;live.classList.toggle('stopped',paused);$('#lscr').setAttribute('aria-pressed',paused)}
     $('#lscr').addEventListener('click',function(){if(moved){moved=false;return}tog()});
     $('#lscr').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
-    $('#lscr').tabIndex=0;$('#lscr').setAttribute('role','button');$('#lscr').setAttribute('aria-pressed','false');$('#lscr').setAttribute('aria-label','שעון חי: '+(lroll.querySelector('.lt')||{textContent:'ברכת המזון'}).textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
+    $('#lcap').id='lcap';$('#lscr').setAttribute('aria-describedby','lcap');$('#lscr').tabIndex=0;$('#lscr').setAttribute('role','button');$('#lscr').setAttribute('aria-pressed','false');$('#lscr').setAttribute('aria-label','שעון חי: '+(lroll.querySelector('.lt')||{textContent:'ברכת המזון'}).textContent+' בגלילה אוטומטית. הקשה עוצרת וממשיכה');
     if(matchMedia('(pointer:fine)').matches)drag(lscr,1);
     /* the wheel turns the crown only once the reader has grabbed the watch (or is on the crown); otherwise the page scrolls */
     function wheel(e){if(e.currentTarget===crown||performance.now()<engaged){e.preventDefault();input(e.deltaY*.5)}}
