@@ -350,7 +350,8 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:739px){
   .card .dev,.card .mini{margin-bottom:-18%}
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
-  .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:54%}
+  .card.peach.has-dev>h3,.card.peach.has-dev>.lbl{max-width:none}
+  .card.peach.has-dev>p{max-width:56%}
   .card.peach.has-dev>.dev{position:absolute;left:-2%;bottom:-6%;width:46%;margin:0}
   .card.peach .hface{font-size:9cqw}
   .trio{gap:6vw}
@@ -430,11 +431,9 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .proof:hover{background:rgba(255,255,255,.7)}
 .mlink{margin-inline-start:auto;margin-inline-end:14px;font-size:14px;font-weight:600;color:var(--muted);padding:10px 4px}
 @media (min-width:740px){.mlink{display:none}#features{padding-top:72px}}
-.dl .models{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin:8px 0 0;font-size:13px;color:#56565b;list-style:none;padding:0}
+.dl .models{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 12px;margin:8px 0 0;font-size:13px;color:#56565b;list-style:none;padding:0}
 .dl .models li{white-space:nowrap}
-.dl .models li{padding:0 .45em;border-inline-start:1px solid rgba(0,0,0,.15);line-height:1.1}
-.dl .models li:first-child{border-inline-start:0}
-@media (max-width:739px){.dl .card>.models{flex-basis:100%;order:3;justify-content:flex-end;margin-top:2px}}
+@media (max-width:739px){.dl .card>.models{flex-basis:100%;order:3;justify-content:flex-start;margin-top:2px}}
 .legend{margin:32px 0 0;text-align:center;font-size:14px;color:#56565b}
 .legend .chip-dot{display:inline-block;width:22px;height:12px;border-radius:99px;background:var(--ink);vertical-align:-1px;margin-inline-end:8px}
 .legend+.groups{margin-top:18px}
