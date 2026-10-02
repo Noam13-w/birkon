@@ -350,7 +350,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:739px){
   .card .dev,.card .mini{margin-bottom:-18%}
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
-  .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:62%}
+  .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:58%}
   .card.peach.has-dev>.dev{position:absolute;left:-2%;bottom:-6%;width:46%;margin:0}
   .card.peach .hface{font-size:9cqw}
   .trio{gap:6vw}
@@ -499,7 +499,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       <article class="card night has-dev c2 rv"><span class="lbl">קריאת שמע</span><h3>לפני השינה.</h3><p>על רקע שחור שלא מסנוור בחושך.</p><div class="dev sq live-face"><div class="hface" aria-hidden="true"><p class="ht">קריאת שמע שעל המיטה</p><p>רִבּוֹנוֹ שֶׁל עוֹלָם, הֲרֵינִי מוֹחֵל לְכָל מִי שֶׁהִכְעִיס וְהִקְנִיט אוֹתִי אוֹ שֶׁחָטָא כְּנֶגְדִּי, בֵּין בְּגוּפִי בֵּין בְּמָמוֹנִי בֵּין בִּכְבוֹדִי בֵּין בְּכָל אֲשֶׁר לִי, בֵּין בְּאֹנֶס בֵּין בְּרָצוֹן בֵּין בְּשׁוֹגֵג בֵּין בְּמֵזִיד, בֵּין בְּדִבּוּר בֵּין בְּמַעֲשֶׂה, בֵּין בְּגִלְגּוּל זֶה בֵּין בְּגִלְגּוּל אַחֵר, לְכָל בַּר יִשְׂרָאֵל, וְלֹא יֵעָנֵשׁ שׁוּם אָדָם בְּסִבָּתִי.</p></div></div></article>
       <article class="card sky has-dev c2 rv" style="--d:.08s"><span class="lbl">גלילה אוטומטית</span><h3>קוראים בלי לגעת.</h3>
         <div class="speed" id="speed" role="radiogroup" aria-label="מהירות הגלילה"><button role="radio" aria-label="מהירות 1"></button><button role="radio" aria-label="מהירות 2"></button><button role="radio" aria-label="מהירות 3"></button><button role="radio" aria-label="מהירות 4"></button><button role="radio" aria-label="מהירות 5"></button><button role="radio" aria-label="מהירות 6"></button><button role="radio" aria-label="מהירות 7"></button><button role="radio" aria-label="מהירות 8"></button><button role="radio" aria-label="מהירות 9"></button><button role="radio" aria-label="מהירות 10"></button></div>
-        <p class="speedv"><span id="speedv" aria-live="polite">מהירות 3</span> · נגיעה בשעון עוצרת</p>
+        <p class="speedv"><span id="speedv">מהירות 3</span> · נגיעה בשעון עוצרת</p>
         <div class="mini" id="mini" role="button" tabindex="0" aria-pressed="false" aria-label="עצירה והמשך של הגלילה"><div class="scr"><div class="roll" id="roll">
           <p>בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, הַזָּן אֶת הָעוֹלָם כֻּלּוֹ בְּטוּבוֹ, בְּחֵן בְּחֶסֶד וּבְרַחֲמִים, הוּא נוֹתֵן לֶחֶם לְכָל בָּשָׂר, כִּי לְעוֹלָם חַסְדּוֹ.</p>
           <p>וּבְטוּבוֹ הַגָּדוֹל תָּמִיד לֹא חָסַר לָנוּ, וְאַל יֶחְסַר לָנוּ מָזוֹן לְעוֹלָם וָעֶד, בַּעֲבוּר שְׁמוֹ הַגָּדוֹל.</p>
@@ -645,14 +645,15 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
   var roll=$('#roll'),bars=$$('#speed button'),y=0,sp=3,mini=$('#mini'),stopped=false,chosen=false;
   function bar(){bars.forEach(function(b,i){b.classList.toggle('on',i<sp);b.setAttribute('aria-checked',i===sp-1);b.tabIndex=i===sp-1?0:-1});$('#speedv').textContent='מהירות '+sp}
   bar();
-  bars.forEach(function(b,i){b.addEventListener('click',function(){chosen=true;sp=i+1;stopped=false;mini.classList.remove('stopped');bar()})});
-  $('#speed').addEventListener('keydown',function(e){var d=e.key==='ArrowLeft'||e.key==='ArrowUp'?1:e.key==='ArrowRight'||e.key==='ArrowDown'?-1:e.key==='Home'?-99:e.key==='End'?99:0;if(!d)return;e.preventDefault();chosen=true;sp=Math.max(1,Math.min(10,sp+d));bar();bars[sp-1].focus()});
+  bars.forEach(function(b,i){b.addEventListener('click',function(){$('#speedv').setAttribute('aria-live','polite');chosen=true;sp=i+1;stopped=false;mini.classList.remove('stopped');bar()})});
+  $('#speed').addEventListener('keydown',function(e){var d=e.key==='ArrowLeft'||e.key==='ArrowUp'?1:e.key==='ArrowRight'||e.key==='ArrowDown'?-1:e.key==='Home'?-99:e.key==='End'?99:0;if(!d)return;e.preventDefault();$('#speedv').setAttribute('aria-live','polite');chosen=true;sp=Math.max(1,Math.min(10,sp+d));bar();bars[sp-1].focus()});
   function tog(){stopped=!stopped;mini.classList.toggle('stopped',stopped);mini.setAttribute('aria-pressed',stopped)}
   mini.addEventListener('click',tog);mini.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}});
   if(!reduce){
     roll.innerHTML+=roll.innerHTML;
     runner(mini,function(dt){y=(y+(4+sp*2.4)*dt)%(roll.scrollHeight/2);roll.style.transform='translateY('+(-y).toFixed(2)+'px)'},function(){return stopped});
-    var stepsLeft=4,iv=setInterval(function(){if(document.hidden||chosen||stopped)return;sp=sp>=7?3:sp+1;bar();if(--stepsLeft<=0)clearInterval(iv)},2200);
+    var miniSeen=false;new IntersectionObserver(function(es){miniSeen=es[0].isIntersecting}).observe(mini);
+    var stepsLeft=4,iv=setInterval(function(){if(document.hidden||chosen||stopped||!miniSeen)return;sp=sp>=7?3:sp+1;bar();if(--stepsLeft<=0)clearInterval(iv)},2200);
   }
 
   /* the watch-menu card scrolls slowly, like a list on the watch */
