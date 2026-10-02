@@ -87,7 +87,7 @@ h2{font-weight:800;font-size:clamp(34px,9vw,64px);line-height:1.08;letter-spacin
 /* the live watch */
 .live{position:relative;width:100%;aspect-ratio:1;border-radius:50%;background:#000;padding:4.5%;
   box-shadow:0 0 0 2px #3a3a3c,0 0 0 6px #1c1c1e,0 0 0 7px #a1a1a6,0 40px 70px -30px rgba(40,30,90,.45)}
-.lscr{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;cursor:grab;user-select:none;-webkit-user-select:none;container-type:inline-size;
+.lscr{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side,#000 84%,#0000);mask-image:radial-gradient(closest-side,#000 84%,#0000);cursor:grab;user-select:none;-webkit-user-select:none;container-type:inline-size;
   background:radial-gradient(120% 90% at 50% 0%,#17172e 0%,#000 60%)}
 .lscr:active{cursor:grabbing}
 .lscr::after{content:"";position:absolute;inset:auto 0 0;height:24%;z-index:2;pointer-events:none;background:linear-gradient(#0000,#000)}
@@ -193,7 +193,7 @@ section{padding-block:80px}
 .slide:nth-child(6n+4){background:var(--sky)}.slide:nth-child(6n+5){background:var(--rose)}.slide:nth-child(6n+6){background:var(--butter)}
 .railnav{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:22px}
 .dotsrow{display:flex;justify-content:center;gap:8px}
-.dotsrow button{position:relative;width:8px;height:8px;border-radius:99px;background:#d2d2d7;transition:width .4s var(--ease),background .3s}
+.dotsrow button{position:relative;width:8px;height:8px;border-radius:99px;background:#aeaeb2;transition:width .4s var(--ease),background .3s}
 .dotsrow button::before{content:"";position:absolute;inset:-10px -6px}
 .dotsrow button.on{width:26px;background:var(--ink)}
 
@@ -311,7 +311,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 /* speed control */
 .speed{gap:5px}
 .speed button{flex:1;height:44px;padding:0;background:none;position:relative}
-.speed button::after{content:"";position:absolute;inset:19px 0;border-radius:3px;background:rgba(47,95,174,.2);transition:background .3s}
+.speed button::after{content:"";position:absolute;inset:19px 0;border-radius:3px;background:rgba(47,95,174,.45);transition:background .3s}
 .speed button.on::after{background:var(--sky-d)}
 .speedv{font-size:14px!important;margin-top:4px!important}
 .speedv span{font-weight:700;color:var(--sky-d)}
@@ -350,7 +350,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 @media (max-width:739px){
   .card .dev,.card .mini{margin-bottom:-18%}
   .card.peach.has-dev{display:block;padding-bottom:28px;min-height:250px}
-  .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:58%}
+  .card.peach.has-dev>h3,.card.peach.has-dev>p,.card.peach.has-dev>.lbl{max-width:54%}
   .card.peach.has-dev>.dev{position:absolute;left:-2%;bottom:-6%;width:46%;margin:0}
   .card.peach .hface{font-size:9cqw}
   .trio{gap:6vw}
@@ -430,6 +430,14 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
 .proof:hover{background:rgba(255,255,255,.7)}
 .mlink{margin-inline-start:auto;margin-inline-end:14px;font-size:14px;font-weight:600;color:var(--muted);padding:10px 4px}
 @media (min-width:740px){.mlink{display:none}#features{padding-top:72px}}
+.dl .models{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;margin:8px 0 0;font-size:13px;color:#56565b;list-style:none;padding:0}
+.dl .models li{white-space:nowrap}
+.dl .models li{padding:0 .45em;border-inline-start:1px solid rgba(0,0,0,.15);line-height:1.1}
+.dl .models li:first-child{border-inline-start:0}
+@media (max-width:739px){.dl .card>.models{flex-basis:100%;order:3;justify-content:flex-end;margin-top:2px}}
+.legend{margin:32px 0 0;text-align:center;font-size:14px;color:#56565b}
+.legend .chip-dot{display:inline-block;width:22px;height:12px;border-radius:99px;background:var(--ink);vertical-align:-1px;margin-inline-end:8px}
+.legend+.groups{margin-top:18px}
 </style>
 </head>
 <body>
@@ -541,6 +549,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
       </div>
       <p class="note">מתוך ברכת המזון, נוסח ספרד</p>
     </div>
+    <p class="legend"><span class="chip-dot"></span>מודגש: נאמר היום</p>
     <div class="groups rv">
       <div class="grp"><h3>בברכת המזון</h3><ul class="chips"><li data-k="יעלה ויבוא">יעלה ויבוא <span>ראש חודש וחול המועד</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li data-k="הרחמן">הרחמן <span>לראש חודש ולסוכות</span></li><li>מגדיל <span>או מגדול</span></li></ul></div>
       <div class="grp"><h3>בעמידה</h3><ul class="chips"><li>משיב הרוח <span>או מוריד הטל</span></li><li>טל ומטר <span>בארץ ובחו״ל</span></li><li data-k="יעלה ויבוא">יעלה ויבוא <span>כמו בברכת המזון</span></li><li data-k="על הניסים">על הניסים <span>חנוכה ופורים</span></li><li>עננו <span>בתעניות</span></li><li>אתה חוננתנו <span>במוצאי שבת</span></li><li>עשרת ימי תשובה</li></ul></div>
@@ -600,7 +609,7 @@ footer .mem{font:500 17px var(--serif);color:var(--ink);text-align:center;paddin
     <div class="dl">
       <div class="card mint rv"><span class="appic" aria-hidden="true"><svg class="i"><use href="#i-play"/></svg></span><h3>Wear OS</h3><p>אנדרואיד, ב־<bdi>Google Play</bdi></p><a class="btn" href="https://play.google.com/store/apps/details?id=com.noam.birkon" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>להורדה</a></div>
       <div class="card lav rv" style="--d:.08s"><span class="appic" aria-hidden="true"><svg class="i"><use href="#i-apple"/></svg></span><h3>Apple Watch</h3><p>ב־<bdi>App Store</bdi></p><a class="btn" href="https://apps.apple.com/app/%D7%91%D7%A8%D7%9B%D7%95%D7%9F-%D7%9C%D7%A9%D7%A2%D7%95%D7%9F/id6816498769" target="_blank" rel="noopener"><svg class="i"><use href="#i-apple"/></svg>להורדה</a></div>
-      <div class="card peach rv" style="--d:.16s"><span class="appic" aria-hidden="true"><svg class="i"><use href="#i-garmin"/></svg></span><h3>Garmin</h3><p>ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה</p><p class="models">fēnix&nbsp;· epix&nbsp;· Forerunner&nbsp;· Venu&nbsp;· vívoactive&nbsp;· MARQ&nbsp;· Enduro</p><a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg>להורדה</a></div>
+      <div class="card peach rv" style="--d:.16s"><span class="appic" aria-hidden="true"><svg class="i"><use href="#i-garmin"/></svg></span><h3>Garmin</h3><p>ב־<bdi>Connect IQ</bdi>, גרסה 3.2 ומעלה</p><ul class="models" dir="ltr"><li>fēnix</li><li>epix</li><li>Forerunner</li><li>Venu</li><li>vívoactive</li><li>MARQ</li><li>Enduro</li></ul><a class="btn" href="https://apps.garmin.com/apps/5a3bef7b-743d-4c35-bd46-21d68fb27724" target="_blank" rel="noopener"><svg class="i"><use href="#i-garmin"/></svg>להורדה</a></div>
     </div>
   </div>
 </section>
